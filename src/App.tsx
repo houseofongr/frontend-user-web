@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import LoginPage from "./pages/Login";
-import MyAccountSettingTab from "./pages/Mypage/MyAccountSettingTab";
-import MyAudioListTab from "./pages/Mypage/MyAudioListTab";
+
 import RootLayout from "./components/layout/RootLayout";
+import LoginPage from "./pages/login/Login";
+import MainHouse from "./pages/MainHouse";
+import AuthPage from "./pages/login/Auth";
+import TermsPage from "./pages/login/Terms";
 
 function App() {
   return (
@@ -12,8 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/mypage/account" element={<MyAccountSettingTab />} />
-          <Route path="/mypage/audio-list" element={<MyAudioListTab />} />
+          <Route path="/login/auth" element={<AuthPage />} />
+          <Route path="/login/terms" element={<TermsPage />} />
+          <Route path="/main" element={<MainHouse />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>
