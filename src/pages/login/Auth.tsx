@@ -16,16 +16,20 @@ const AuthPage = () => {
 
     if (isFirstLogin === "true") {
       if (nickname && accessToken) {
-        localStorage.setItem("tempnickname", nickname);
-        localStorage.setItem("tempToken", accessToken);
+        sessionStorage.setItem("tempnickname", nickname);
+        sessionStorage.setItem("tempToken", accessToken);
         console.log("신규유저");
         navigate("/terms"); // 신규유저면 약관동의 페이지로 이동
       }
     } else {
       console.log("기존유저");
-      navigate("/main"); // 기존 유저면 메인페이지로 이동
+      if (nickname && accessToken) {
+        navigate("/main/home"); // 기존 유저면 메인페이지로 이동
+        sessionStorage.setItem("nickname", nickname);
+        sessionStorage.setItem("authToken", accessToken);
+      }
     }
-  }, [location, history]);
+  }, [location]);
 
   return <SpinnerIcon />;
 };
