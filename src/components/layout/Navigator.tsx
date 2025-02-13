@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 // const TABS = [
 //   { label: "음원", href: "/sound-sources" },
@@ -7,8 +7,8 @@ import { Link, useLocation } from "react-router-dom";
 // ];
 
 const Navigator = () => {
-  const location = useLocation();
-  const pathName = location.pathname;
+  // const location = useLocation();
+  // const pathName = location.pathname;
 
   return (
     <nav className="md:pt-0 md:pb-0 lg:pt-10 lg:pb-3 w-full flex justify-end md:justify-center text-sm">

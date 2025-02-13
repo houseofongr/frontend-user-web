@@ -1,9 +1,7 @@
 import React from "react";
-
 import Header from "./Header";
 import Footer from "./Footer";
-
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const HIDE_LAYOUT_PATHS = ["/main/home"];
 
