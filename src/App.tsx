@@ -3,20 +3,27 @@ import Home from "./pages/Home";
 
 import RootLayout from "./components/layout/RootLayout";
 import LoginPage from "./pages/login/Login";
-import MainHouse from "./pages/MainHouse";
 import AuthPage from "./pages/login/Auth";
 import TermsPage from "./pages/login/Terms";
+import MainHome from "./pages/MainHome";
+import Mypage from "./pages/mypage/Mypage";
 
 function App() {
   return (
     <BrowserRouter>
       <RootLayout>
         <Routes>
+          {/* 공통 */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/auth" element={<AuthPage />} />
+
+          {/* 신규유저 */}
           <Route path="/login/terms" element={<TermsPage />} />
-          <Route path="/main" element={<MainHouse />} />
+
+          {/* 기존유저 */}
+          <Route path="/main/home" element={<MainHome />} />
+          <Route path="/mypage" element={<Mypage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>
