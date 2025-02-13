@@ -95,9 +95,15 @@ export default function MainHome() {
 
   if (!homeData || !scale || !user) return <SpinnerIcon />;
   return (
-    <section className="w-full h-screen   bg-stone-800 ">
-      <h1 className="relative top-22 left-163 text-gray-100">{homeData.homeName}</h1>
-      <div>{homeData && scale && <RenderImages homeData={homeData} scale={scale} />}</div>
+    <section className="w-full h-screen  bg-stone-800 ">
+      <h1 className="relative top-22 left-163 inline right-0 z-10 bg-stone-700 px-2 py-1 text-gray-100">
+        {homeData.homeName}
+      </h1>
+      <div>
+        {homeData && scale && selectedHomeId && (
+          <RenderImages homeData={homeData} scale={scale} homeId={selectedHomeId} />
+        )}
+      </div>
 
       {/* 캐러셀 */}
       {homeList && homeList.length >= 1 && (

@@ -7,6 +7,7 @@ import AuthPage from "./pages/login/Auth";
 import TermsPage from "./pages/login/Terms";
 import MainHome from "./pages/MainHome";
 import Mypage from "./pages/mypage/Mypage";
+import RoomDetailPage from "./pages/RoomDetail";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
 
           {/* 기존유저 */}
           <Route path="/main/home" element={<MainHome />} />
+
+          <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
           <Route path="/mypage" element={<Mypage />} />
         </Routes>
       </RootLayout>
