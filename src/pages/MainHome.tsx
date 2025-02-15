@@ -3,7 +3,9 @@ import API_CONFIG from "../config/api";
 import { HomeListItem, UserMainHomeDetail } from "../types/home";
 import SpinnerIcon from "../components/icons/SpinnerIcon";
 import RenderImages from "../components/RenderImages";
-import UserHomesCarousel from "../components/Carousel/UserHomesCarousel";
+import UserHomesCarousel from "../components/carousel/UserHomesCarousel";
+import { Link, useNavigate } from "react-router-dom";
+import HeaderForDarkBackground from "../components/layout/HeaderForDarkBackground";
 
 interface UserData {
   nickname: string;
@@ -14,6 +16,8 @@ export default function MainHome() {
   const [homeList, setHomeList] = useState<HomeListItem[] | null>(null);
   const [selectedHomeId, setSelectedHomeId] = useState<number | null>(null);
   const [scale, setScale] = useState<number | null>(null);
+
+  const navigate = useNavigate();
 
   const fetchHomeData = async (homeId: number) => {
     try {
@@ -42,7 +46,9 @@ export default function MainHome() {
     const fetchData = async () => {
       try {
         const token = sessionStorage.getItem("authToken");
-        if (!token) throw new Error("Authentication token is missing");
+        if (!token) {
+          navigate("/login");
+        }
 
         // 1. 유저 인증
         const userResponse = await fetch(`${API_CONFIG.BACK_API}/users/me`, {
@@ -52,7 +58,9 @@ export default function MainHome() {
             Authorization: `Bearer ${token}`,
           },
         });
-        if (!userResponse.ok) throw new Error("Failed to fetch user info");
+        if (!userResponse.ok) {
+          throw new Error("Failed to fetch user info");
+        }
 
         const userData = await userResponse.json();
         setUser(userData);
@@ -94,16 +102,13 @@ export default function MainHome() {
 
   if (!homeData || !scale || !user) return <SpinnerIcon />;
   return (
-    <div className="w-full h-screen  bg-stone-800 pt-10">
-      <section className="h-full ">
-        <h1 className="relative top-10 left-[10%] inline right-0 z-10 bg-stone-700 px-4 py-2 text-gray-100">
-          {homeData.homeName}
-        </h1>
-        <div>
-          {homeData && scale && selectedHomeId && (
-            <RenderImages homeData={homeData} scale={scale} homeId={selectedHomeId} />
-          )}
-        </div>
+    <div className="w-full h-screen bg-stone-800">
+      <HeaderForDarkBackground />
+      <section className="flex flex-col items-center mt-10">
+        <h1 className="inline bg-stone-700 px-4 py-2 text-gray-100">{homeData.homeName}</h1>
+        {homeData && scale && selectedHomeId && (
+          <RenderImages homeData={homeData} scale={scale} homeId={selectedHomeId} />
+        )}
       </section>
 
       {/* 캐러셀 */}

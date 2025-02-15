@@ -2,7 +2,7 @@ import { Tabs } from "../../components/Tabs";
 
 export default function Mypage() {
   return (
-    <div className=" h-full mt-[7%] ">
+    <div className="pt-[130px]">
       <Tabs />
     </div>
   );

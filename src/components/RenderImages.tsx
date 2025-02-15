@@ -9,9 +9,8 @@ type RenderImagesProps = {
 };
 
 export default function RenderImages({ homeId, homeData, scale }: RenderImagesProps) {
-  console.log("homeData", homeData);
   return (
-    <section className="relative flex justify-center ">
+    <div className="relative flex justify-center  ">
       <div className="relative">
         <img
           alt="house-border-image"
@@ -19,7 +18,7 @@ export default function RenderImages({ homeId, homeData, scale }: RenderImagesPr
           height={window.innerHeight}
           src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${homeData.house.borderImageId}`}
         />
-        {/* /main/homes/:homeId/rooms/:roomId */}
+
         {homeData.rooms.map((room) => (
           <Link key={room.imageId} to={`/main/home/${homeId}/rooms/${room.roomId}`}>
             <img
@@ -39,6 +38,6 @@ export default function RenderImages({ homeId, homeData, scale }: RenderImagesPr
           </Link>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

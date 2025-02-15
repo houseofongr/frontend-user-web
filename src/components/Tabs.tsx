@@ -36,7 +36,7 @@ export function Tabs() {
       </div>
 
       {/* 오른쪽 컨텐츠 영역 */}
-      <div className="flex-1 p-8 bg-neutral-100">
+      <div className="flex-1 p-8 ">
         <h1 className="font-extrabold text-2xl mb-4">{tabsData[activeTabIndex].label}</h1>
         <p>{tabsData[activeTabIndex].content}</p>
       </div>

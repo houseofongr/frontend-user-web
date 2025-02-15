@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import Logo from "./Logo";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function HeaderForDarkBackground() {
   const navigate = useNavigate();
   return (
-    <header className="w-full flex justify-between items-center fixed  md:py-8 sm:py-2  bg-transparent z-10 ">
-      <div className="w-[250px]"></div>
-      <Logo />
-      <div className="pr-10 flex gap-10 text-xs md:text-base">
+    <header className="w-full flex justify-between items-center fixed bg-transparent z-2  py-6 pl-6 ">
+      <Link to={"/"} className="flex flex-col items-center md:flex-row cursor-pointer ">
+        <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={65} height={65} />
+      </Link>
+      <div className="flex gap-10 text-white text-xs md:text-base pr-10">
         <button
           onClick={() => {
             navigate("/main/home");

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import API_CONFIG from "../../config/api";
-import Header from "../../components/layout/Header";
+
 import InitHouseImage from "../../components/InitHouseImage";
 import Footer from "../../components/layout/Footer";
 
@@ -15,8 +15,6 @@ export default function LoginPage() {
 
   return (
     <div className="h-screen flex-center">
-      <Header />
-
       <div className="flex justify-center items-center relative border h-full w-full">
         <motion.div
           initial={{ y: 0 }}
