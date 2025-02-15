@@ -4,7 +4,7 @@ import { HomeListItem, UserMainHomeDetail } from "../types/home";
 import SpinnerIcon from "../components/icons/SpinnerIcon";
 import RenderImages from "../components/RenderImages";
 import UserHomesCarousel from "../components/carousel/UserHomesCarousel";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderForDarkBackground from "../components/layout/HeaderForDarkBackground";
 
 interface UserData {
