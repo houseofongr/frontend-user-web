@@ -4,10 +4,10 @@ import Logo from "./Logo";
 export default function Header() {
   const navigate = useNavigate();
   return (
-    <header className="w-full flex justify-between items-center fixed top-0 right-11 inset-x-0 md:py-8 sm:py-2 bg-transparent z-10 ">
+    <header className="w-full flex  justify-between items-center fixed top-0 right-11 inset-x-0 md:py-8 sm:py-2 bg-transparent z-10 ">
       <div className="invisible w-[150px]"></div>
       <Logo />
-      <div className="pr-10 flex gap-4 text-white">
+      <div className="pr-10 flex gap-4 text-white text-xs md:text-base">
         <button
           onClick={() => {
             navigate("/mypage");
