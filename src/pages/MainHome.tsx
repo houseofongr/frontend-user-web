@@ -3,9 +3,10 @@ import API_CONFIG from "../config/api";
 import { HomeListItem, UserMainHomeDetail } from "../types/home";
 import SpinnerIcon from "../components/icons/SpinnerIcon";
 import RenderImages from "../components/RenderImages";
-import UserHomesCarousel from "../components/carousel/UserHomesCarousel";
+
 import { useNavigate } from "react-router-dom";
 import HeaderForDarkBackground from "../components/layout/HeaderForDarkBackground";
+import UserHomesCarousel from "../components/UserHomesCarousel";
 
 interface UserData {
   nickname: string;

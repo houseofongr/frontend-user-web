@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import API_CONFIG from "../../config/api";
+import API_CONFIG from "../config/api";
 
 import { MdOutlineRadioButtonUnchecked, MdOutlineRadioButtonChecked } from "react-icons/md";
 
@@ -31,7 +31,7 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
         {slides.map((slide, index) => {
           return (
             <div key={index} className="flex flex-col outline-none pt-4 relative  cursor-pointer ">
-              <div className="fixed ">
+              <div className="fixed">
                 <button onClick={() => onHomeSelect(slide.id)}>
                   {slide.id === selectedHomeId ? (
                     <MdOutlineRadioButtonChecked size={20} className="text-[#F5946D] cursor-not-allowed" />
