@@ -30,7 +30,7 @@ export default function MainHome() {
       if (!response.ok) throw new Error("Failed to fetch home details");
 
       const homeDetail = await response.json();
-      console.log(" home detail data:", homeDetail);
+
       setHomeData(homeDetail);
       setSelectedHomeId(homeId);
     } catch (error) {
@@ -56,7 +56,6 @@ export default function MainHome() {
 
         const userData = await userResponse.json();
         setUser(userData);
-        console.log("user info", userData);
 
         // 2. 유저가 가지고있는 홈 목록 페치
         const homeResponse = await fetch(`${API_CONFIG.BACK_API}/homes`, {
@@ -69,7 +68,7 @@ export default function MainHome() {
         if (!homeResponse.ok) throw new Error("Failed to fetch home list");
 
         const homeListData = await homeResponse.json();
-        console.log("user home list data", homeListData.homes);
+
         if (!homeListData.homes.length) throw new Error("No homes available");
         setHomeList(homeListData.homes);
 
@@ -95,24 +94,26 @@ export default function MainHome() {
 
   if (!homeData || !scale || !user) return <SpinnerIcon />;
   return (
-    <section className="w-full h-screen  bg-stone-800 ">
-      <h1 className="relative top-22 left-163 inline right-0 z-10 bg-stone-700 px-2 py-1 text-gray-100">
-        {homeData.homeName}
-      </h1>
-      <div>
-        {homeData && scale && selectedHomeId && (
-          <RenderImages homeData={homeData} scale={scale} homeId={selectedHomeId} />
-        )}
-      </div>
+    <div className="w-full h-screen  bg-stone-800 pt-10">
+      <section className="h-full ">
+        <h1 className="relative top-10 left-[10%] inline right-0 z-10 bg-stone-700 px-4 py-2 text-gray-100">
+          {homeData.homeName}
+        </h1>
+        <div>
+          {homeData && scale && selectedHomeId && (
+            <RenderImages homeData={homeData} scale={scale} homeId={selectedHomeId} />
+          )}
+        </div>
+      </section>
 
       {/* 캐러셀 */}
-      {homeList && homeList.length >= 1 && (
-        <div className="w-full flex-center flex-col pt-10 pb-15 bg-neutral-200">
+      {homeList && homeList.length > 1 && (
+        <div className="w-full flex-center flex-col pt-10 pb-15 bg-[#F5ECD5]">
           <span className="text-center font-bold">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>
           <p>좌우로 움직여 메인으로 보여줄 나의 집을 설정해보세요!</p>
           <UserHomesCarousel slides={homeList} onHomeSelect={handleHomeSelect} selectedHomeId={selectedHomeId} />
         </div>
       )}
-    </section>
+    </div>
   );
 }

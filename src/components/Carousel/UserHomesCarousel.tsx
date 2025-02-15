@@ -19,17 +19,18 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    className: "",
-    autoplay: true,
+    className: "max-w-fit",
+    // autoplay: true,
   };
 
+  console.log(slides);
   return (
-    <div className="slider-container w-[30%] ">
+    <div className="slider-container w-[45%] md:w-[13%]">
       <Slider {...settings}>
         {slides.map((slide, index) => {
           return (
             <div key={index} className="flex flex-col outline-none pt-4 relative  cursor-pointer ">
-              <div className="absolute top-3 right-4">
+              <div className="absolute  right-10">
                 <button onClick={() => onHomeSelect(slide.id)}>
                   {slide.id === selectedHomeId ? (
                     <MdOutlineRadioButtonChecked size={20} className="text-[#F5946D] cursor-not-allowed" />
