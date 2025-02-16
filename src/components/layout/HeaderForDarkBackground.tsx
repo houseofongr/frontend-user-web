@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function HeaderForDarkBackground() {
   const navigate = useNavigate();
   return (
-    <header className="w-full flex justify-between items-center fixed bg-transparent z-2  py-6 pl-6 ">
+    <header className="w-full flex justify-between items-center fixed bg-transparent z-2  pt-10 pl-10 ">
       <Link to={"/"} className="flex flex-col items-center md:flex-row cursor-pointer ">
         <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={65} height={65} />
       </Link>
