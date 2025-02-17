@@ -14,7 +14,6 @@ export default function RenderImages({ homeId, scale, homeData }: RenderImagesPr
   const totalImages = homeData.rooms.length + 1;
   const [loadedImages, setLoadedImages] = useState(0);
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
-  console.log("loadedImages", loadedImages);
 
   useEffect(() => {
     if (loadedImages === totalImages) {

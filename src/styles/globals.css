@@ -80,6 +80,21 @@
       format("woff2"),
     url("https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo-ExtraBold.ttf") format("truetype");
 }
+:root {
+  --primary-color: #f5946d;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.border-primary {
+  border-color: var(--primary-color);
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
 
 html,
 body {

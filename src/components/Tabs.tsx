@@ -26,7 +26,7 @@ export function Tabs() {
           <button
             key={idx}
             className={`py-4 px-6 text-left transition-colors duration-300 ${
-              idx === activeTabIndex ? "bg-[#F5946D] text-white f=s " : "hover:bg-gray-100"
+              idx === activeTabIndex ? "bg-[#F5946D] text-white" : "hover:bg-gray-100"
             }`}
             onClick={() => setActiveTabIndex(idx)}
           >

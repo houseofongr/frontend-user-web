@@ -33,7 +33,7 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
               <div className="fixed">
                 <button onClick={() => onHomeSelect(slide.id)}>
                   {slide.id === selectedHomeId ? (
-                    <MdOutlineRadioButtonChecked size={20} className="text-[#F5946D] cursor-not-allowed" />
+                    <MdOutlineRadioButtonChecked size={20} className="text-primary cursor-not-allowed" />
                   ) : (
                     <MdOutlineRadioButtonUnchecked size={20} className="text-gray-500" />
                   )}
