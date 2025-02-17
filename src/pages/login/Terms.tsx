@@ -46,11 +46,17 @@ export default function TermsPage() {
 
   return (
     <div className="mt-[25%] md:mt-[25%] lg:mt-[15%] mx-20">
+      <div>
+        <label>
+          <input type="checkbox" checked={recordAgreement} onChange={(e) => setRecordAgreement(e.target.checked)} />
+          이용약관, 개인정보 수집 및 이용에 모두 동의합니다.
+        </label>
+      </div>
       <h1>이용약관 동의</h1>
       <div>
         <label>
           <input type="checkbox" checked={recordAgreement} onChange={(e) => setRecordAgreement(e.target.checked)} />
-          음성 기록에 동의합니다.
+          음성 기록에 동의합니다. (필수)
         </label>
       </div>
       <div>
@@ -60,7 +66,7 @@ export default function TermsPage() {
             checked={personalInformationAgreement}
             onChange={(e) => setPersonalInformationAgreement(e.target.checked)}
           />
-          개인정보 수집 및 이용에 동의합니다.
+          개인정보 수집 및 이용에 동의합니다. (필수)
         </label>
       </div>
       <button
