@@ -24,7 +24,6 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
     arrow: false,
   };
 
-  console.log(slides);
   return (
     <div className="slider-container w-[45%] md:w-[225px]">
       <Slider {...settings}>

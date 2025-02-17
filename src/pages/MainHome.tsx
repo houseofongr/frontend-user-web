@@ -1,114 +1,68 @@
 import { useEffect, useState } from "react";
-import API_CONFIG from "../config/api";
-import { HomeListItem, UserMainHomeDetail } from "../types/home";
 import SpinnerIcon from "../components/icons/SpinnerIcon";
 import RenderImages from "../components/RenderImages";
-
 import { useNavigate } from "react-router-dom";
 import HeaderForDarkBackground from "../components/layout/HeaderForDarkBackground";
 import UserHomesCarousel from "../components/UserHomesCarousel";
+import { useUserData } from "../hooks/useUserData";
+import { useUserStore } from "../stores/useUserStore";
+import { useHomeList } from "../hooks/useHomeList";
+import { useHomeData } from "../hooks/useHomeData";
 
-interface UserData {
-  nickname: string;
-}
 export default function MainHome() {
-  const [user, setUser] = useState<UserData | null>(null);
-  const [homeData, setHomeData] = useState<UserMainHomeDetail | null>(null);
-  const [homeList, setHomeList] = useState<HomeListItem[] | null>(null);
-  const [selectedHomeId, setSelectedHomeId] = useState<number | null>(null);
   const [scale, setScale] = useState<number | null>(null);
-
+  const [selectedHomeId, setSelectedHomeId] = useState<number | null>(null);
   const navigate = useNavigate();
-
-  const fetchHomeData = async (homeId: number) => {
-    try {
-      const token = sessionStorage.getItem("authToken");
-      if (!token) throw new Error("Authentication token is missing");
-
-      const response = await fetch(`${API_CONFIG.BACK_API}/homes/rooms?homeId=${homeId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (!response.ok) throw new Error("Failed to fetch home details");
-
-      const homeDetail = await response.json();
-
-      setHomeData(homeDetail);
-      setSelectedHomeId(homeId);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { isLoading: userLoading, isError: userError } = useUserData();
+  const { user } = useUserStore();
+  const { data: homeList, isLoading: homeListLoading, isError: homeListError } = useHomeList();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = sessionStorage.getItem("authToken");
-        if (!token) {
-          navigate("/login");
-        }
+    if (homeList && homeList.length > 0) {
+      //  *todo : home data fetch 시 메인 홈 id 에 대한 값을 서버로 부터 받아서 fetch 해야함
+      setSelectedHomeId(homeList[0].id);
+    }
+  }, [homeList]);
 
-        // 1. 유저 인증
-        const userResponse = await fetch(`${API_CONFIG.BACK_API}/users/me`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!userResponse.ok) {
-          throw new Error("Failed to fetch user info");
-        }
+  const {
+    data: homeData,
+    isLoading: homeDataLoading,
+    isError: homeDataError,
+  } = useHomeData(selectedHomeId || undefined);
 
-        const userData = await userResponse.json();
-        setUser(userData);
-
-        // 2. 유저가 가지고있는 홈 목록 페치
-        const homeResponse = await fetch(`${API_CONFIG.BACK_API}/homes`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!homeResponse.ok) throw new Error("Failed to fetch home list");
-
-        const homeListData = await homeResponse.json();
-
-        if (!homeListData.homes.length) throw new Error("No homes available");
-        setHomeList(homeListData.homes);
-
-        const mainHomeId = homeListData.homes[0].id;
-
-        setSelectedHomeId(mainHomeId);
-        // 2. 홈 상세 fetch
-        fetchHomeData(mainHomeId);
-        setScale(window.innerWidth < window.innerHeight ? window.innerWidth / 5000 : window.innerHeight / 5000);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+  useEffect(() => {
+    setScale(window.innerWidth < window.innerHeight ? window.innerWidth / 5000 : window.innerHeight / 5000);
   }, []);
 
-  const handleHomeSelect = (homeId: number) => {
-    if (homeId !== selectedHomeId) {
-      fetchHomeData(homeId);
+  useEffect(() => {
+    const token = sessionStorage.getItem("authToken");
+    if (!token) {
+      navigate("/login");
     }
+  }, [navigate]);
+
+  const handleHomeSelect = (homeId: number) => {
+    setSelectedHomeId(homeId);
   };
 
-  if (!homeData || !scale || !user) return <SpinnerIcon />;
+  if (userLoading || !user) return <SpinnerIcon />;
+  if (userError) return <div>유저 정보를 불러올 수 없습니다.</div>;
+  if (homeListLoading || !scale) return <SpinnerIcon />;
+  if (homeListError) return <div>홈 목록을 불러올 수 없습니다.</div>;
+
   return (
     <div className="w-full h-screen bg-stone-800">
       <HeaderForDarkBackground />
-      <section className="flex flex-col items-center mt-10">
-        <h1 className="inline bg-stone-700 px-4 py-2 text-gray-100">{homeData.homeName}</h1>
-        {homeData && scale && selectedHomeId && (
-          <RenderImages homeData={homeData} scale={scale} homeId={selectedHomeId} />
+      <section className="flex flex-col items-center mt-10 min-h-full">
+        {homeDataLoading ? (
+          <SpinnerIcon />
+        ) : homeDataError || !homeData ? (
+          <div className=" w-full pt-[10%] flex-center text-white">홈 데이터를 불러올 수 없습니다.</div>
+        ) : (
+          <>
+            <h1 className="inline bg-stone-700 px-4 py-2 text-gray-100">{homeData.homeName}</h1>
+            <RenderImages homeId={selectedHomeId!} scale={scale} homeData={homeData} />
+          </>
         )}
       </section>
 

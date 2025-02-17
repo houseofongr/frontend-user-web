@@ -4,7 +4,7 @@ import Logo from "./Logo";
 export default function Header() {
   const navigate = useNavigate();
   return (
-    <header className="w-full flex justify-between items-center fixed  md:py-8 sm:py-2  bg-transparent z-10 ">
+    <header className="w-full flex justify-between items-center fixed  md:py-10 sm:py-2  bg-transparent z-10 ">
       <div className="w-[250px]"></div>
       <Logo />
       <div className="pr-10 flex gap-10 text-xs md:text-base">
