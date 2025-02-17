@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchHomeData } from "../service/homeService";
 
-export function useHomeData(homeId?: number) {
+export function useHomeData(homeId: number | null) {
   return useQuery({
     queryKey: ["homeData", homeId],
     queryFn: () => fetchHomeData(homeId!),

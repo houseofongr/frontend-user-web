@@ -39,7 +39,7 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
             return (
               <RectItem
                 key={shape.id}
-                fill={shape.fill ? shape.fill : "#ffff"}
+                // fill={shape.fill ? shape.fill : "#ffff"}
                 shapeProps={shape.rectangleData}
                 onClick={() => onItemClick(shape.id)}
               />
@@ -48,7 +48,7 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
             return (
               <CircleItem
                 key={shape.id}
-                fill={shape.fill ? shape.fill : "#ffff"}
+                // fill={shape.fill ? shape.fill : "#ffff"}
                 shapeProps={shape.circleData}
                 onClick={() => onItemClick(shape.id)}
               />
@@ -57,7 +57,7 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
             return (
               <EllipseItem
                 key={shape.id}
-                fill={shape.fill ? shape.fill : "#ffff"}
+                // fill={shape.fill ? shape.fill : "#ffff"}
                 shapeProps={shape.ellipseData}
                 onClick={() => onItemClick(shape.id)}
               />

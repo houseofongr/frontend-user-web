@@ -8,6 +8,7 @@ import { useUserData } from "../hooks/useUserData";
 import { useUserStore } from "../stores/useUserStore";
 import { useHomeList } from "../hooks/useHomeList";
 import { useHomeData } from "../hooks/useHomeData";
+import Button from "../components/layout/Button";
 
 export default function MainHome() {
   const [scale, setScale] = useState<number | null>(null);
@@ -24,11 +25,7 @@ export default function MainHome() {
     }
   }, [homeList]);
 
-  const {
-    data: homeData,
-    isLoading: homeDataLoading,
-    isError: homeDataError,
-  } = useHomeData(selectedHomeId || undefined);
+  const { data: homeData, isLoading: homeDataLoading, isError: homeDataError } = useHomeData(selectedHomeId || null);
 
   useEffect(() => {
     setScale(window.innerWidth < window.innerHeight ? window.innerWidth / 5000 : window.innerHeight / 5000);

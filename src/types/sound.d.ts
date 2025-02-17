@@ -12,7 +12,7 @@ export interface SoundSource extends SoundMetadata {
 // 룸상세페이지 - 음원 목록
 export interface ItemSoundsData {
   itemName: string;
-  soundSource: SoundSource[];
+  sounds: SoundSource[];
 }
 
 // 룸상세페이지 - 뉴사운드폼 - 사운드메타데이터  (사운드 데이터 수정/삭제)

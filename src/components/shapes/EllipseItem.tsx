@@ -5,18 +5,17 @@ import { EllipseData } from "../../types/items";
 
 interface EllipseProps {
   shapeProps: EllipseData["ellipseData"];
-  fill: string;
+  // fill: string;
   onClick: () => void;
 }
 
-function EllipseItem({ shapeProps, fill, onClick }: EllipseProps) {
+function EllipseItem({ shapeProps, onClick }: EllipseProps) {
   const shapeRef = useRef<Konva.Ellipse | null>(null);
 
   return (
     <Ellipse
       {...shapeProps}
-      draggable
-      fill={fill}
+      // fill={fill}
       opacity={0.6}
       stroke={"red"}
       strokeWidth={2}
