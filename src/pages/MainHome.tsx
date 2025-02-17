@@ -8,7 +8,6 @@ import { useUserData } from "../hooks/useUserData";
 import { useUserStore } from "../stores/useUserStore";
 import { useHomeList } from "../hooks/useHomeList";
 import { useHomeData } from "../hooks/useHomeData";
-import Button from "../components/layout/Button";
 
 export default function MainHome() {
   const [scale, setScale] = useState<number | null>(null);
