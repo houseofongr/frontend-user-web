@@ -5,14 +5,27 @@ import { CircleData } from "../../types/items";
 
 interface CircleProps {
   shapeProps: CircleData["circleData"];
-  // fill: string;
   onClick: () => void;
 }
 
 function CircleItem({ shapeProps, onClick }: CircleProps) {
   const shapeRef = useRef<Konva.Circle | null>(null);
 
-  return <Circle {...shapeProps} onClick={onClick} opacity={0.6} stroke={"red"} strokeWidth={2} ref={shapeRef} />;
+  return (
+    <Circle
+      {...shapeProps}
+      onClick={onClick}
+      stroke={"red"}
+      strokeWidth={2}
+      ref={shapeRef}
+      onMouseEnter={() => {
+        document.body.style.cursor = "pointer";
+      }}
+      onMouseLeave={() => {
+        document.body.style.cursor = "default";
+      }}
+    />
+  );
 }
 
 export default CircleItem;

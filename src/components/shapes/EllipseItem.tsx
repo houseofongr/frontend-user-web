@@ -5,7 +5,6 @@ import { EllipseData } from "../../types/items";
 
 interface EllipseProps {
   shapeProps: EllipseData["ellipseData"];
-  // fill: string;
   onClick: () => void;
 }
 
@@ -16,11 +15,16 @@ function EllipseItem({ shapeProps, onClick }: EllipseProps) {
     <Ellipse
       {...shapeProps}
       // fill={fill}
-      opacity={0.6}
       stroke={"red"}
       strokeWidth={2}
       onClick={onClick}
       ref={shapeRef}
+      onMouseEnter={() => {
+        document.body.style.cursor = "pointer";
+      }}
+      onMouseLeave={() => {
+        document.body.style.cursor = "default";
+      }}
     />
   );
 }
