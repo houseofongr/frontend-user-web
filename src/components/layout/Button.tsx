@@ -18,7 +18,7 @@ export default function Button({ label, type = "button", onClick, disabled, size
         "rounded-lg  text-white bg-primary hover:bg-[#e7a68c]",
 
         {
-          "px-4 py-2 md:px-5 md:py-3 text-sm": size === "default",
+          "px-4 py-2 md:px-20 md:py-3 text-sm": size === "default",
           "px-2 py-2 text-xs": size === "small",
         }
       )}

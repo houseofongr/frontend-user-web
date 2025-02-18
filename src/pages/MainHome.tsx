@@ -53,7 +53,7 @@ export default function MainHome() {
         {homeDataLoading ? (
           <SpinnerIcon />
         ) : homeDataError || !homeData ? (
-          <div className=" w-full pt-[10%] flex-center text-white">홈 데이터를 불러올 수 없습니다.</div>
+          <div className=" w-full pt-[20%] flex-center text-white">홈 데이터를 불러올 수 없습니다.</div>
         ) : (
           <>
             <h1 className="inline bg-stone-700 px-4 py-2 text-gray-100">{homeData.homeName}</h1>
