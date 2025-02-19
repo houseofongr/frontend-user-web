@@ -3,12 +3,12 @@ import Home from "./pages/Home";
 import RootLayout from "./components/layout/RootLayout";
 import LoginPage from "./pages/login/Login";
 import AuthPage from "./pages/login/Auth";
-import TermsPage from "./pages/login/Terms";
 import MainHome from "./pages/MainHome";
 import Mypage from "./pages/mypage/Mypage";
 import RoomDetailPage from "./pages/RoomDetail";
 import AboutPage from "./pages/About";
 import NotFoundPage from "./pages/NotFound";
+import TermsOfServicePage from "./pages/login/TermsOfSevice";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/login/auth" element={<AuthPage />} />
 
           {/* 신규유저 */}
-          <Route path="/login/terms" element={<TermsPage />} />
+          <Route path="/login/terms" element={<TermsOfServicePage />} />
 
           {/* 기존유저 */}
           <Route path="/main/home" element={<MainHome />} />
