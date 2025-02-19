@@ -8,7 +8,6 @@ type PreviewContent = {
 };
 
 export default function PreviewContent({ data }: PreviewContent) {
-  console.log("data", data);
   const { name, description, audioFileId, updatedDate } = data;
 
   return (
