@@ -78,7 +78,7 @@ export default function TermsOfServicePage() {
   }, []);
 
   return (
-    <div className="flex-center flex-col  bg-neutral-100">
+    <div className="flex-center flex-col mt-[130px] bg-neutral-100">
       <section className="w-full md:w-[60%] flex flex-col p-10">
         <span className="text-2xl ">약관동의</span>
 
