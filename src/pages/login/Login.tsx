@@ -2,9 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import API_CONFIG from "../../config/api";
 import InitHouseImage from "../../components/InitHouseImage";
-
-const HEADER_HEIGHT = 143;
-const FOOTER_HEIGHT = 36;
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
 
 export default function LoginPage() {
   const [isAnimationComplete, setIsAnimationComplete] = useState<boolean>(false);
@@ -16,7 +14,7 @@ export default function LoginPage() {
 
   return (
     <div
-      className="flex-center flex-col  "
+      className="flex-center flex-col"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <motion.div

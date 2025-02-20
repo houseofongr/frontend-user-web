@@ -1,11 +1,9 @@
 import InitHouseImage from "../components/InitHouseImage";
 import InitText from "../components/InitText";
 import { Link } from "react-router-dom";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../constants/componentSize";
 
 export default function Home() {
-  const HEADER_HEIGHT = 143;
-  const FOOTER_HEIGHT = 36;
-
   return (
     <div
       className="flex-center flex-col "

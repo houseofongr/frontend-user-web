@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 
 import InitHouseImage from "../components/InitHouseImage";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../constants/componentSize";
 
 export default function NotFoundPage() {
   return (
-    <div className="flex flex-col lg:flex-row gap-10 lg:gap-15 items-center justify-center h-screen text-center md:text-left px-5">
-      <div className="">
+    <div
+      className="flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  text-center md:text-left px-5"
+      style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
+    >
+      <div>
         <div className="text-6xl md:text-8xl font-bold mb-2 text-center lg:text-start">404</div>
         <p className="text-[15px] md:text-lg pb-5 font-extralight">
           죄송합니다. 현재 찾을 수 없는 페이지를 요청하셨습니다.

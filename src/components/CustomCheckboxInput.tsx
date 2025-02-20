@@ -19,7 +19,11 @@ export default function CustomCheckboxInput({
   hasBorder = false,
 }: CheckboxInputProps) {
   return (
-    <div className={clsx(`inline-flex w-full p-2 justify-${justify}`, { "border p-3 border-gray-200": hasBorder })}>
+    <div
+      className={clsx(`inline-flex w-full p-2 justify-${justify}`, {
+        "border p-3 border-gray-300": hasBorder,
+      })}
+    >
       <label className="flex items-center cursor-pointer relative " htmlFor={id}>
         <input
           type="checkbox"
