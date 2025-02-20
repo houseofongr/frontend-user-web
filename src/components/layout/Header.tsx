@@ -12,10 +12,10 @@ export default function Header() {
   const pathName = location.pathname;
 
   return (
-    <header className="w-full flex justify-between items-center fixed  md:py-10 sm:py-2  bg-transparent z-10 ">
-      <div className="w-[250px]"></div>
+    <header className="w-full flex justify-between items-center sticky top-0  md:py-10 sm:py-2  bg-transparent z-10 border-b border-gray-200 ">
+      <div className="w-[250px] hidden md:flex "></div>
       <Logo />
-      <ul className="pr-10 flex gap-10 text-xs md:text-base">
+      <ul className="pr-10 flex gap-5 md:gap-10 text-sm md:text-base">
         {TABS.map(({ label, href }) => {
           const isActive = pathName === href;
           return (

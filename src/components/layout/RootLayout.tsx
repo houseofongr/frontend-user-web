@@ -16,12 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // const shouldHideLayout = HIDE_LAYOUT_REGEX.test(currentPath);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       {!shouldHideLayout && <Header />}
       <QueryClientProvider client={queryClient}>
-        <main className="w-full h-screen overflow-auto">{children}</main>
+        <main className="flex-1 ">{children}</main>
       </QueryClientProvider>
-
       <Footer />
     </div>
   );
