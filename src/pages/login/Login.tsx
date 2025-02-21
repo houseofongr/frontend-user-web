@@ -36,7 +36,7 @@ export default function LoginPage() {
           transition={{ duration: 0.8 }}
           className="w-full absolute z-10 flex-center flex-col"
         >
-          {/* <div className="cursor-pointer pb-5">
+          <div className="cursor-pointer pb-5">
             <img
               onClick={() => handleLogin("kakao")}
               src={"/images/kakaoLoginButton.png"}
@@ -44,7 +44,7 @@ export default function LoginPage() {
               width={200}
               height={100}
             />
-          </div> */}
+          </div>
           <div className="rounded-2xl border-2 border-[#535454] hover:border-[#FEE500] ">
             <button className="flex gap-2 px-10 py-3" type="button" onClick={() => handleLogin("kakao")}>
               <span>
