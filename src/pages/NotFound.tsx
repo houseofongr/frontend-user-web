@@ -6,7 +6,7 @@ import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../constants/componentSize";
 export default function NotFoundPage() {
   return (
     <div
-      className="flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  text-center md:text-left px-5"
+      className="flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  md:text-left pb-15 "
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <div>

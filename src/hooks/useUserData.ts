@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useUserStore } from "../stores/useUserStore";
 import { User } from "../types/user";
-import { fetchUser, logoutUser, updateUserProfile } from "../service/userService";
+import { deleteUser, fetchUser, logoutUser, updateUserProfile } from "../service/userService";
 
 // 유저 데이터 조회 훅
 export function useUserData() {
@@ -43,4 +43,19 @@ export function useLogout() {
     logoutUser();
     clearUser();
   };
+}
+
+export function useDeleteUser() {
+  const queryClient = useQueryClient();
+  const { clearUser } = useUserStore();
+
+  return useMutation({
+    mutationFn: deleteUser,
+    onSuccess: () => {
+      clearUser();
+      queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+    },
+  });
 }

@@ -24,7 +24,7 @@ export async function updateUserProfile(updatedUserData: { nickname: string }) {
   if (!token) throw new Error("Authentication token is missing");
 
   const response = await fetch(`${API_CONFIG.BACK_API}/users/me`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -33,6 +33,27 @@ export async function updateUserProfile(updatedUserData: { nickname: string }) {
   });
 
   if (!response.ok) throw new Error("Failed to update user profile");
+  return response.json();
+}
+
+// src/service/userService.ts
+
+export async function deleteUser(agreement: {
+  termsOfDeletionAgreement: boolean;
+  personalInformationDeletionAgreement: boolean;
+}) {
+  const token = sessionStorage.getItem("authToken");
+  if (!token) throw new Error("Authentication token is missing");
+
+  const response = await fetch(`${API_CONFIG.BACK_API}/users`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(agreement),
+  });
+
+  if (!response.ok) throw new Error("Failed to delete user account");
   return response.json();
 }
 

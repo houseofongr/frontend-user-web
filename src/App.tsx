@@ -9,6 +9,8 @@ import RoomDetailPage from "./pages/RoomDetail";
 import AboutPage from "./pages/About";
 import NotFoundPage from "./pages/NotFound";
 import TermsOfServicePage from "./pages/login/TermsOfSevice";
+import WithdrawalAccountPage from "./pages/mypage/WithdrawalAccount";
+import RecheckWithdrawalPage from "./pages/mypage/RecheckWithdrawal";
 
 function App() {
   return (
@@ -27,7 +29,12 @@ function App() {
           <Route path="/main/home" element={<MainHome />} />
 
           <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
+
+          {/* 마이페이지 */}
           <Route path="/mypage" element={<Mypage />} />
+          <Route path="/mypage/account/withdraw" element={<WithdrawalAccountPage />} />
+          <Route path="/mypage/account/withdraw/recheck" element={<RecheckWithdrawalPage />} />
+
           <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
