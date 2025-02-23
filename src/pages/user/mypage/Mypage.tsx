@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AccountTab from "../../../components/mypage/AccountTab";
 import SoundsTab from "../../../components/mypage/SoundsTab";
 import TabController from "../../../components/mypage/TabController";
 import CustomerServiceTab from "../../../components/mypage/CustomerServiceTab";
+import { useNavigate } from "react-router-dom";
 
 const tabsData = [
   {
@@ -23,6 +24,14 @@ const tabsData = [
 
 export default function Mypage() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("authToken");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   return (
     <div className="bg-neutral-100 h-screen">
