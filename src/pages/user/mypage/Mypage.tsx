@@ -2,7 +2,7 @@ import { useState } from "react";
 import AccountTab from "../../../components/mypage/AccountTab";
 import SoundsTab from "../../../components/mypage/SoundsTab";
 import TabController from "../../../components/mypage/TabController";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../../constants/componentSize";
+import CustomerServiceTab from "../../../components/mypage/CustomerServiceTab";
 
 const tabsData = [
   {
@@ -14,18 +14,18 @@ const tabsData = [
 
     content: <SoundsTab />,
   },
-  // {
-  //   label: "고객센터",
-  //   subTabs: [" •  1:1문의", " •  공지사항", " •  FAQ"],
-  //   content: <ReservationTab />,
-  // },
+  {
+    label: "고객센터",
+    subTabs: [" •  1:1문의", " •  공지사항", " •  FAQ"],
+    content: <CustomerServiceTab />,
+  },
 ];
 
 export default function Mypage() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   return (
-    <div className="bg-neutral-100" style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}>
+    <div className="bg-neutral-100 h-screen">
       <div className="flex ">
         {/* 왼쪽 사이드 영역 */}
         <TabController activeTabIndex={activeTabIndex} onTabChange={setActiveTabIndex} />

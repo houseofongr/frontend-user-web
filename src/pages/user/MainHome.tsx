@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import SpinnerIcon from "../../components/icons/SpinnerIcon";
 import RenderImages from "../../components/RenderImages";
 import { useNavigate } from "react-router-dom";
-
 import UserHomesCarousel from "../../components/UserHomesCarousel";
 import { useUserData } from "../../hooks/useUserData";
 import { useUserStore } from "../../stores/useUserStore";
 import { useHomeList } from "../../hooks/useHomeList";
 import { useHomeData } from "../../hooks/useHomeData";
-import VerticalHeader from "../../components/layout/VerticalHeader";
 
 export default function MainHome() {
   const [scale, setScale] = useState<number | null>(null);
@@ -49,8 +47,6 @@ export default function MainHome() {
 
   return (
     <div className="w-full h-screen bg-stone-800 flex">
-      {/* <HeaderForDarkBackground /> */}
-      <VerticalHeader />
       <section className="flex flex-col justify-center w-full items-center mt-10">
         {homeDataLoading ? (
           <SpinnerIcon />

@@ -6,12 +6,12 @@ import UserInformation from "./UserInformation";
 
 export default function AccountTab() {
   const { data: homeList, isLoading: homeListLoading, isError: homeListError } = useHomeList();
-  // console.log(homeList);
+
   return (
     <section className="py-5 px-24 ">
       <UserInformation />
       <div>
-        <p className="text-2xl mb-5">보유하고 있는 홈 목록</p>
+        <p className="text-2xl mb-5">보유 홈 목록</p>
         {homeListLoading && <SpinnerIcon />}
         {homeListError && <div>홈 목록을 불러올 수 없습니다.</div>}
         <ul className="flex gap-5">

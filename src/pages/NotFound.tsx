@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-
 import InitHouseImage from "../components/InitHouseImage";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../constants/componentSize";
 
 export default function NotFoundPage() {
   return (
     <div
-      className="flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  md:text-left pb-15 "
-      style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
+      className="h-screen border flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  md:text-left pb-15 "
+      // style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <div>
         <div className="text-6xl md:text-8xl font-bold mb-2 text-center lg:text-start">404</div>
@@ -19,6 +17,7 @@ export default function NotFoundPage() {
           <p className="text-sm md:text-base font-extralight">
             주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.
           </p>
+          묘
         </div>
       </div>
 

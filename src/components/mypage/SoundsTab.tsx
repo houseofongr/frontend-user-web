@@ -16,7 +16,6 @@ export default function SoundsTab() {
 
   const soundSources: SoundData[] = data?.soundSources || [];
   const totalPages: number = data?.pagination?.totalPages || 0;
-  console.log("ttl pages", totalPages);
 
   useEffect(() => {}, [currentPage]);
   return (

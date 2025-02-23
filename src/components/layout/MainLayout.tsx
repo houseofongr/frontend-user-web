@@ -3,9 +3,9 @@ import VerticalHeader from "./VerticalHeader";
 
 function MainLayout() {
   return (
-    <div className="main-layout flex">
+    <div className="main-layout flex h-screen">
       <VerticalHeader />
-      <main className="flex-1">
+      <main className="flex-1 ">
         <Outlet />
       </main>
     </div>

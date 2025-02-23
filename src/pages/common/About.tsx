@@ -1,6 +1,6 @@
 export default function AboutPage() {
   return (
-    <section className="flex-center mt-[10%]  ">
+    <section className="flex-center h-screen">
       <div className="">
         <p className="font-extralight text-lg">우리는 모두 옹알이를 시작으로, 세상을 향한 첫마디를 시작합니다.</p>
         <br />

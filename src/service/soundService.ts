@@ -34,16 +34,16 @@ export const fetchSoundDetail = async (soundSourceId: number) => {
 
   if (!response.ok) throw new Error("Failed to fetch sound details");
   const data = await response.json();
-  console.log("sound data", data);
   return data;
 };
 
 // 전체 음원 경로 조회
 export const fetchAllSoundPath = async (pageNum: number) => {
+  const SIZE = 10;
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/sound-sources/path?page=${pageNum}&size=4`, {
+  const response = await fetch(`${API_CONFIG.BACK_API}/sound-sources/path?page=${pageNum}&size=${SIZE}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -53,9 +53,5 @@ export const fetchAllSoundPath = async (pageNum: number) => {
 
   if (!response.ok) throw new Error("Failed to fetch sound details");
   const data = await response.json();
-
-  console.log(data.soundSources);
-  console.log(data.pagination); // {size :5, pageNumber:1, totalPages:2,totalElements:6}
-
   return data;
 };
