@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import API_CONFIG from "../config/api";
-import { BaseRoom } from "../types/home";
-import SpinnerIcon from "../components/icons/SpinnerIcon";
-import RoomDetailLayout from "../components/layout/RoomDetailLayout";
-import KonvaContainer from "../components/KonvaContainer";
-import { ShapeData } from "../types/items";
-import formatShapeDataForView from "../utils/formatShapeDataForView";
-import { fetchItemSounds } from "../service/soundService";
-import { ItemSoundsData } from "../types/sound";
-import ItemSoundList from "../components/ItemSoundList";
+import { ShapeData } from "../../types/items";
+import { fetchItemSounds } from "../../service/soundService";
+import { ItemSoundsData } from "../../types/sound";
+import API_CONFIG from "../../config/api";
+import SpinnerIcon from "../../components/icons/SpinnerIcon";
+import RoomDetailLayout from "../../components/layout/RoomDetailLayout";
+import KonvaContainer from "../../components/KonvaContainer";
+import formatShapeDataForView from "../../utils/formatShapeDataForView";
+import ItemSoundList from "../../components/ItemSoundList";
+import { BaseRoom } from "../../types/home";
 
 export default function RoomDetailPage() {
   const { homeId, roomId } = useParams<{ homeId: string; roomId: string }>();

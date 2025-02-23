@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import CustomCheckboxInput from "../../components/CustomCheckboxInput";
-import Button from "../../components/layout/Button";
 import { useState } from "react";
+import Button from "../../../components/layout/Button";
+import CustomCheckboxInput from "../../../components/CustomCheckboxInput";
 ("");
 const CHECK_LIST: { id: string; text: string; suggest: string }[] = [
   { id: "check-1", text: "탈퇴 후 재가입을 하고싶습니다.", suggest: "탈퇴 시 30일동안 재가입을 할 수 없습니다." },

@@ -47,7 +47,9 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
                 className=" object-contain outline-none "
                 src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${slide.basicImageId}`}
               />
-              <p className="text-center text-xs w-[220px] line-clamp-2 overflow-hidden break-words">{slide.name}</p>
+              <p className="text-center text-xs w-[220px] line-clamp-2 overflow-hidden break-words text-gray-400">
+                {slide.name}
+              </p>
             </div>
           );
         })}

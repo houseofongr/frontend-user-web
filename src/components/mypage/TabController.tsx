@@ -1,6 +1,6 @@
 import AccountTab from "./AccountTab";
 import SoundsTab from "./SoundsTab";
-import ReservationTab from "./ReservationTab";
+
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
 
 const TABS = [
@@ -14,11 +14,7 @@ const TABS = [
     subTabs: ["나의 소리 모음"],
     content: <SoundsTab />,
   },
-  {
-    label: "나의 예약",
-    subTabs: ["예약 조회", "새로운 예약"],
-    content: <ReservationTab />,
-  },
+
   //   {
   //     label: "고객지원",
   //     subTabs: ["1:1 문의", "공지사항", "FAQ"],

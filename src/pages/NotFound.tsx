@@ -23,7 +23,7 @@ export default function NotFoundPage() {
       </div>
 
       <Link to="/">
-        <InitHouseImage />
+        <InitHouseImage imgType="private" />
         <span className="text-xs block mt-2 text-center">홈으로 이동</span>
       </Link>
     </div>

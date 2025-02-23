@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDeleteUser } from "../../hooks/useUserData";
-import CustomCheckboxInput from "../../components/CustomCheckboxInput";
-import Button from "../../components/layout/Button";
+import { useDeleteUser } from "../../../hooks/useUserData";
+import CustomCheckboxInput from "../../../components/CustomCheckboxInput";
+import Button from "../../../components/layout/Button";
 
 export default function RecheckWithdrawalPage() {
   const [agreements, setAgreements] = useState({

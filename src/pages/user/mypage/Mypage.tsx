@@ -1,9 +1,8 @@
 import { useState } from "react";
-import AccountTab from "../../components/mypage/AccountTab";
-import SoundsTab from "../../components/mypage/SoundsTab";
-import ReservationTab from "../../components/mypage/ReservationTab";
-import TabController from "../../components/mypage/TabController";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
+import AccountTab from "../../../components/mypage/AccountTab";
+import SoundsTab from "../../../components/mypage/SoundsTab";
+import TabController from "../../../components/mypage/TabController";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../../constants/componentSize";
 
 const tabsData = [
   {
@@ -14,10 +13,6 @@ const tabsData = [
     label: "나의 소리 기록실",
 
     content: <SoundsTab />,
-  },
-  {
-    label: "나의 예약",
-    content: <ReservationTab />,
   },
   // {
   //   label: "고객센터",

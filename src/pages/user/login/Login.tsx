@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import API_CONFIG from "../../config/api";
-import InitHouseImage from "../../components/InitHouseImage";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
+import InitHouseImage from "../../../components/InitHouseImage";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../../constants/componentSize";
+import API_CONFIG from "../../../config/api";
 
 export default function LoginPage() {
   const [isAnimationComplete, setIsAnimationComplete] = useState<boolean>(false);
@@ -26,7 +26,7 @@ export default function LoginPage() {
         }}
         onAnimationComplete={() => setIsAnimationComplete(true)}
       >
-        <InitHouseImage />
+        <InitHouseImage imgType="private" />
       </motion.div>
 
       {isAnimationComplete && (

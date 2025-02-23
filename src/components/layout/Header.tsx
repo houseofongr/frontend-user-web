@@ -2,9 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 
 const TABS = [
-  { label: "홈", href: "/main/home" },
-  { label: "마이페이지", href: "/mypage/account" },
-  { label: "소개", href: "/about" },
+  // { label: "HOME", href: "/main/home" },
+  // { label: "MY PAGE", href: "/mypage/account" },
+  { label: "ABOUT", href: "/about" },
+  { label: "PROGRAM", href: "/program" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 export default function Header() {
