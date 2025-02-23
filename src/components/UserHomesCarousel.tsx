@@ -4,10 +4,10 @@ import "slick-carousel/slick/slick-theme.css";
 import API_CONFIG from "../config/api";
 
 import { MdOutlineRadioButtonUnchecked, MdOutlineRadioButtonChecked } from "react-icons/md";
+import { HomeListItem } from "../types/home";
 
-type HomeImage = { id: number; basicImageId: number; name: string };
 type CarouselItemsProp = {
-  slides: HomeImage[];
+  slides: HomeListItem[];
   onHomeSelect: (homeId: number) => void;
   selectedHomeId: number | null;
 };
