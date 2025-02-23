@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 const TABS = [
   { label: "홈", href: "/main/home" },
-  { label: "마이페이지", href: "/mypage" },
+  { label: "마이페이지", href: "/mypage/account" },
   { label: "소개", href: "/about" },
 ];
 
