@@ -18,14 +18,13 @@ const B2B_TABS = [
   { label: "CONTACT", href: "/public/contact" },
 ];
 
-// const HIDE_LAYOUT_PATHS = ["/main/home"];
-const HIDE_LAYOUT_REGEX = /^\/main\/home\/[^/]+\/rooms\/[^/]+$/;
+const HIDE_LAYOUT_REGEX = /^\/main\/home(?:\/[^/]+\/rooms\/[^/]+)?$/;
 
 export default function VerticalHeader() {
   const location = useLocation();
   const pathName = location.pathname;
   console.log("path", pathName);
-  // const shouldHideLayout = HIDE_LAYOUT_PATHS.includes(pathName) || HIDE_LAYOUT_REGEX.test(pathName);
+
   const shouldHideLayout = HIDE_LAYOUT_REGEX.test(pathName);
 
   const tabs = pathName.startsWith("/public") ? B2B_TABS : USER_TABS;

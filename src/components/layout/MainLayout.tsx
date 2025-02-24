@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import VerticalHeader from "./VerticalHeader";
+import VerticalHeader from "../common/VerticalHeader";
 
 function MainLayout() {
   return (

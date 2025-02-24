@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Button from "../../../components/layout/Button";
+import Button from "../../../components/common/Button";
 import CustomCheckboxInput from "../../../components/CustomCheckboxInput";
 ("");
 const CHECK_LIST: { id: string; text: string; suggest: string }[] = [
@@ -70,7 +70,7 @@ export default function WithdrawalAccountPage() {
 
         <div className="flex-center flex-col my-5 ">
           <div className="flex gap-10">
-            <Button label="취소" variant="outline" onClick={() => navigate("/mypage")} />
+            <Button label="취소" variant="outline" onClick={() => navigate("/mypage/account")} />
             {/* disabled 조건 : 탈퇴 사유 선택 한 것이 하나도 없을 때  */}
             <Button
               label="다음"

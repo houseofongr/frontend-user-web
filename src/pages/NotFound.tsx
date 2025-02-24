@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import InitHouseImage from "../components/InitHouseImage";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../constants/componentSize";
 
 export default function NotFoundPage() {
   return (
     <div
       className="h-screen border flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  md:text-left pb-15 "
-      // style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
+      style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <div>
         <div className="text-6xl md:text-8xl font-bold mb-2 text-center lg:text-start">404</div>

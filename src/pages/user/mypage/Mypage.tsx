@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import AccountTab from "../../../components/mypage/AccountTab";
-import SoundsTab from "../../../components/mypage/SoundsTab";
-import TabController from "../../../components/mypage/TabController";
-import CustomerServiceTab from "../../../components/mypage/CustomerServiceTab";
 import { useNavigate } from "react-router-dom";
+import AccountTab from "../../../components/mypage/AccountTab";
+import TabController from "../../../components/mypage/TabController";
+import SoundsTab from "../../../components/mypage/SoundsTab";
+import CustomerServiceTab from "../../../components/mypage/CustomerServiceTab";
 
 const tabsData = [
   {
@@ -41,7 +41,6 @@ export default function Mypage() {
 
         {/* 오른쪽 컨텐츠 영역 */}
         <div className="flex-1 p-8 flex flex-col ">
-          {/* <span className="text-2xl">{tabsData[activeTabIndex].label}</span> */}
           <div>{tabsData[activeTabIndex].content}</div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../common/Header";
+import Footer from "../common/Footer";
 import { useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

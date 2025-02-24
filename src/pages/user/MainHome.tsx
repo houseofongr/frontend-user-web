@@ -7,6 +7,10 @@ import { useUserData } from "../../hooks/useUserData";
 import { useUserStore } from "../../stores/useUserStore";
 import { useHomeList } from "../../hooks/useHomeList";
 import { useHomeData } from "../../hooks/useHomeData";
+import HeaderForDarkBackground from "../../components/common/HeaderForDarkBackground";
+import { HomeListItem } from "../../types/home";
+import API_CONFIG from "../../config/api";
+import { DEFAULT_HOME_ID_FOR_USER_WITHOUT_HOME } from "../../constants/defaultHomeId";
 
 export default function MainHome() {
   const [scale, setScale] = useState<number | null>(null);
@@ -15,15 +19,14 @@ export default function MainHome() {
   const { isLoading: userLoading, isError: userError } = useUserData();
   const { user } = useUserStore();
   const { data: homeList, isLoading: homeListLoading, isError: homeListError } = useHomeList();
+  const { homeData, isLoading: homeDataLoading, isFetching, updateMainHome, isPending } = useHomeData(selectedHomeId);
 
   useEffect(() => {
     if (homeList && homeList.length > 0) {
-      //  *todo : home data fetch 시 메인 홈 id 에 대한 값을 서버로 부터 받아서 fetch 해야함
-      setSelectedHomeId(homeList[0].id);
+      const mainHome = homeList.find((home: HomeListItem) => home.isMain);
+      setSelectedHomeId(mainHome.id);
     }
   }, [homeList]);
-
-  const { data: homeData, isLoading: homeDataLoading, isError: homeDataError } = useHomeData(selectedHomeId || null);
 
   useEffect(() => {
     setScale(window.innerWidth < window.innerHeight ? window.innerWidth / 5000 : window.innerHeight / 5000);
@@ -38,6 +41,7 @@ export default function MainHome() {
 
   const handleHomeSelect = (homeId: number) => {
     setSelectedHomeId(homeId);
+    updateMainHome(homeId);
   };
 
   if (userLoading || !user) return <SpinnerIcon />;
@@ -47,11 +51,23 @@ export default function MainHome() {
 
   return (
     <div className="w-full h-screen bg-stone-800 flex">
+      <HeaderForDarkBackground />
       <section className="flex flex-col justify-center w-full items-center mt-10">
-        {homeDataLoading ? (
+        {homeDataLoading || isFetching || isPending ? (
           <SpinnerIcon />
-        ) : homeDataError || !homeData ? (
-          <div className="text-white">홈 데이터를 불러올 수 없습니다.</div>
+        ) : !homeData ? (
+          <div className="text-center">
+            {/* 보유한 홈이 없을 경우 보여줘야할 기본 홈 이미지 */}
+            <p className="inline bg-stone-700 px-4 py-2 text-gray-100">
+              {user.nickname}님, 보유중인 하우스가 존재하지 않습니다.
+            </p>
+            <img
+              alt="default-home-image"
+              width={window.innerHeight}
+              height={window.innerHeight}
+              src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${DEFAULT_HOME_ID_FOR_USER_WITHOUT_HOME}`}
+            />
+          </div>
         ) : (
           <div className="w-full text-center">
             <div className="min-h-full">

@@ -16,8 +16,6 @@ export const fetchUser = async () => {
   return response.json();
 };
 
-//* todo :  user 의 메인 홈 설정 함수
-
 // 닉네임 변경
 export async function updateUserProfile(updatedUserData: { nickname: string }) {
   const token = sessionStorage.getItem("authToken");

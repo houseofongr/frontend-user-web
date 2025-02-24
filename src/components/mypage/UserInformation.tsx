@@ -7,6 +7,7 @@ import { MdAudiotrack, MdCalendarMonth } from "react-icons/md";
 import FlexColBox from "../FlexColBox";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BorderButton from "../common/BorderButton";
 
 export default function UserInformation() {
   const { user } = useUserStore();
@@ -38,14 +39,6 @@ export default function UserInformation() {
       setNickname(user.nickname);
     }
   }, [user?.nickname]);
-
-  // useEffect(() => {
-  //   if (isEditing) {
-  //     setNickname("");
-  //   } else {
-  //     setNickname(user?.nickname || "");
-  //   }
-  // }, [isEditing, user?.nickname]);
 
   if (userLoading || !user) return <SpinnerIcon />;
   return (
@@ -99,8 +92,9 @@ export default function UserInformation() {
             >
               <input
                 value={nickname}
+                readOnly={!isEditing}
                 onChange={(e) => setNickname(e.target.value)}
-                className="w-full outline-none bg-transparent"
+                className={`w-full outline-none bg-transparent ${!isEditing ? "cursor-default" : ""}`}
                 placeholder={isEditing ? "새로운 닉네임을 입력하여 주세요." : ""}
               />
             </div>
@@ -109,29 +103,11 @@ export default function UserInformation() {
           <div className="w-[25%] flex justify-end">
             {isEditing ? (
               <div className="flex gap-2">
-                <button
-                  // type="button"
-                  onClick={handleConfirmNicknameChange}
-                  className="px-2 py-1 rounded border border-[#F5946D] text-[#F5946D] text-xs"
-                >
-                  확인
-                </button>
-                <button
-                  type="button"
-                  onClick={toggleNicknameField}
-                  className="px-2 py-1 rounded border border-[#F5946D] text-[#F5946D] text-xs"
-                >
-                  취소
-                </button>
+                <BorderButton label="확인" onClick={handleConfirmNicknameChange} />
+                <BorderButton label="취소" onClick={toggleNicknameField} />
               </div>
             ) : (
-              <button
-                type="submit"
-                onClick={toggleNicknameField}
-                className="px-2 py-1 rounded border border-[#F5946D] text-[#F5946D] text-xs"
-              >
-                닉네임 변경
-              </button>
+              <BorderButton type="submit" label="닉네임 변경" onClick={toggleNicknameField} />
             )}
           </div>
         </>
@@ -152,15 +128,6 @@ export default function UserInformation() {
                         <span className="">{info.email}</span>
                       </div>
                     </li>
-                    {/* <div className="mt-2">
-                      <div className="flex gap-3 items-center p-3 bg-white rounded">
-                        <span>{<NaverSymbol />}</span>
-                        <div className="flex flex-col leading-tight">
-                          <span className="text-sm text-gray-400">NAVER</span>
-                          <span className="">hh_2401@naver.com</span>
-                        </div>
-                      </div>
-                    </div> */}
                   </div>
                 );
               })}

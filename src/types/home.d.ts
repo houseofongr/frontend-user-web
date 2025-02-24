@@ -28,4 +28,5 @@ export interface HomeListItem {
   id: number;
   basicImageId: number;
   name: string;
+  isMain: boolean;
 }
