@@ -11,8 +11,6 @@ type Props = {
 };
 
 function ContactInput({ label, type, name, placeholder, onChange, value }: Props) {
-  //   const COMMON_STYLE = "p-2 border placeholder:italic placeholder:text-slate-400 placeholder:text-sm";
-
   const COMMON_STYLE = "p-2 bg-white border border-gray-300 rounded-md";
 
   return (
