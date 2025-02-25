@@ -29,7 +29,7 @@ export default function Button({
           "border border-primary text-primary bg-transparent": variant === "outline",
         },
         {
-          "px-2 py-2 text-xs": size === "small",
+          "text-xs": size === "small",
         }
       )}
     >
