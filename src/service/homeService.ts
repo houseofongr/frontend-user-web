@@ -14,9 +14,15 @@ export const fetchHomeList = async () => {
   });
   if (!response.ok) throw new Error("Failed to fetch user home list data");
   const data = await response.json();
+  // console.log("data", data.homes);
 
+  // const testResult = [
+  //   { id: 72, basicImageId: 166, name: "#윤선영의 메인홈", isMain: false },
+  //   { id: 105, basicImageId: 169, name: "주잔돌이 그려준 윤선영의 집", isMain: false },
+  // ];
+  // return testResult;
   return data.homes;
-  // return [];
+  // return []; // 보유한 홈 없을 경우 테스트
 };
 
 // 유저의 홈 상세 조회

@@ -70,7 +70,7 @@ export default function UserInformation() {
             </div>
           </div>
           {/* 예약 */}
-          <div className="flex-center gap-5 px-10">
+          <div className="flex-center gap-5 px-10 cursor-pointer" onClick={() => navigate("/reservation")}>
             <MdCalendarMonth size={50} color="#F5946D" />
             <div className="flex flex-col items-center">
               <strong className="text-2xl">- </strong>

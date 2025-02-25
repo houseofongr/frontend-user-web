@@ -5,11 +5,11 @@ import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../constants/componentSize";
 export default function NotFoundPage() {
   return (
     <div
-      className="h-screen border flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  md:text-left pb-15 "
+      className="h-full flex flex-col flex-center lg:flex-row gap-10 lg:gap-15  md:text-left  pb-15 "
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <div>
-        <div className="text-6xl md:text-8xl font-bold mb-2 text-center lg:text-start">404</div>
+        <div className="text-7xl md:text-8xl font-bold mb-2 text-center lg:text-start">404</div>
         <p className="text-[15px] md:text-lg pb-5 font-extralight">
           죄송합니다. 현재 찾을 수 없는 페이지를 요청하셨습니다.
         </p>
@@ -18,7 +18,6 @@ export default function NotFoundPage() {
           <p className="text-sm md:text-base font-extralight">
             주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.
           </p>
-          묘
         </div>
       </div>
 

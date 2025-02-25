@@ -12,30 +12,48 @@ type CarouselItemsProp = {
   selectedHomeId: number | null;
 };
 
+// function SampleNextArrow(props) {
+//   const { className, style, onClick } = props;
+//   return <div className={className} style={{ ...style, display: "block", background: "red" }} onClick={onClick} />;
+// }
+
+// function SamplePrevArrow(props) {
+//   const { className, style, onClick } = props;
+//   return <div className={className} style={{ ...style, display: "block", background: "green" }} onClick={onClick} />;
+// }
+
 export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId }: CarouselItemsProp) {
+  // const slickRef = useRef(null);
+  // const previous = useCallback(() => slickRef?.current?.slickPrev(), []);
+  // const next = useCallback(() => slickRef?.current?.slickNext(), []);
+  console.log(selectedHomeId);
+
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: slides.length > 1,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     className: "max-w-fit min-w-[220px]",
     // autoplay: true,
     arrow: false,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
   };
 
   return (
-    <div className="slider-container w-[45%] md:w-[225px]">
+    <div className="slider-container w-[70%] md:w-[225px] ">
       <Slider {...settings}>
         {slides.map((slide, index) => {
           return (
-            <div key={index} className="flex flex-col outline-none pt-4 relative  cursor-pointer ">
+            <div key={index} className="flex flex-col outline-none pt-4 relative ">
               <div className="fixed">
                 <button onClick={() => onHomeSelect(slide.id)}>
                   {slide.id === selectedHomeId ? (
                     <MdOutlineRadioButtonChecked size={20} className="text-primary cursor-not-allowed" />
                   ) : (
-                    <MdOutlineRadioButtonUnchecked size={20} className="text-gray-500" />
+                    <MdOutlineRadioButtonUnchecked size={20} className="text-gray-500 cursor-pointer" />
                   )}
                 </button>
               </div>

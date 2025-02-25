@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainHome from "./pages/user/MainHome";
+
 import AboutPage from "./pages/common/About";
 import NotFoundPage from "./pages/NotFound";
 import ProgramPage from "./pages/common/Program";
@@ -13,8 +13,9 @@ import TermsOfServicePage from "./pages/user/login/TermsOfSevice";
 import WithdrawalAccountPage from "./pages/user/mypage/WithdrawalAccount";
 import RecheckWithdrawalPage from "./pages/user/mypage/RecheckWithdrawal";
 import ReservationPage from "./pages/user/Reservation";
-import ClientPage from "./pages/public/ClientPage";
+
 import RootLayout from "./components/layout/RootLayout";
+import MyHomesPage from "./pages/user/MyHomes";
 
 function App() {
   return (
@@ -30,9 +31,8 @@ function App() {
           {/* </Route> */}
           {/* <Route element={<MainLayout />}> */}
 
-          <Route path="/public/client" element={<ClientPage />} />
           {/* 기존유저 */}
-          <Route path="/main/home" element={<MainHome />} />
+          <Route path="/main/home" element={<MyHomesPage />} />
           <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
           {/* 마이페이지 */}
           <Route path="/mypage/account" element={<Mypage />} />
@@ -40,17 +40,12 @@ function App() {
           <Route path="/mypage/account/withdraw/recheck" element={<RecheckWithdrawalPage />} />
           {/* 소개 */}
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/public/about" element={<AboutPage />} />
-
           {/* 예약 */}
           <Route path="/reservation" element={<ReservationPage />} />
           {/* 프로그램 */}
           <Route path="/program" element={<ProgramPage />} />
-          <Route path="/public/program" element={<ProgramPage />} />
-
           {/* contact */}
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/public/contact" element={<ContactPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
           {/* </Route> */}

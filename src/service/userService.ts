@@ -34,8 +34,7 @@ export async function updateUserProfile(updatedUserData: { nickname: string }) {
   return response.json();
 }
 
-// src/service/userService.ts
-
+// 회원탙퇴
 export async function deleteUser(agreement: {
   termsOfDeletionAgreement: boolean;
   personalInformationDeletionAgreement: boolean;
@@ -50,7 +49,7 @@ export async function deleteUser(agreement: {
     },
     body: JSON.stringify(agreement),
   });
-
+  console.log("res", response);
   if (!response.ok) throw new Error("Failed to delete user account");
   return response.json();
 }

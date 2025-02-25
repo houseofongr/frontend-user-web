@@ -30,7 +30,7 @@ export default function Header() {
     <header className="w-full flex justify-between items-center sticky top-0  md:py-10 sm:py-2  bg-transparent z-10 border-b border-gray-200 ">
       <div className="w-[350px] hidden md:flex "></div>
       <Logo />
-      <ul className="pr-10 flex gap-5 md:gap-10 text-sm md:text-base">
+      <ul className="pr-3 md:pr-10 flex gap-5 md:gap-10 text-sm md:text-base">
         {TABS.map(({ label, href, icon }) => {
           const isActive = pathName === href;
           return (
@@ -45,12 +45,14 @@ export default function Header() {
             <li key={label}>
               <Link
                 to={href}
-                className={`flex-center  flex-col gap-0.5 ${
+                className={`flex-center flex-col gap-0.5 ${
                   isActive ? "hover:cursor-default text-[#F5946D]" : "hover:cusor-pointer"
                 }`}
               >
                 <div>{icon}</div>
-                <span className={`text-xs ${isActive ? "font-normal " : "font-extralight "}`}>{label}</span>
+                <span className={`hidden md:inline text-xs ${isActive ? "font-normal " : "font-extralight "}`}>
+                  {label}
+                </span>
               </Link>
             </li>
           );
