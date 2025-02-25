@@ -16,7 +16,6 @@ import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 export default function MyHomesPage() {
   const [scale, setScale] = useState<number | null>(null);
   const [selectedHomeId, setSelectedHomeId] = useState<number | null>(null);
-
   const navigate = useNavigate();
   const { isLoading: userLoading, isError: userError } = useUserData();
   const { user } = useUserStore();
@@ -37,7 +36,7 @@ export default function MyHomesPage() {
         setSelectedHomeId(homeList[0].basicImageId);
       }
     } else {
-      console.log("보유한 홈이 아에 없은", homeList);
+      console.log("보유한 홈이 없음", homeList);
       setSelectedHomeId(null);
     }
   }, [homeList]);
@@ -92,8 +91,49 @@ export default function MyHomesPage() {
           </div>
         )}
       </section>
-      {/* 캐러셀 */}
-      {/* {hasHomes && (
+
+      <div className="w-full flex-center flex-col">
+        {hasHomes && homeList.length > 1 && (
+          <>
+            <span className="text-center font-bold text-white">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>
+            <p className="text-white">좌우로 움직여 메인으로 보여줄 나의 집을 설정해보세요!</p>
+            <UserHomesCarousel slides={homeList} onHomeSelect={handleHomeSelect} selectedHomeId={selectedHomeId} />
+          </>
+        )}
+
+        {/* 보유한 홈이 1개이면서 - 메인홈 설정이 있는경우 ||  메인홈 설정이 없는경우 */}
+        {hasHomes && homeList.length === 1 && (
+          <>
+            <span className="text-center font-bold text-white">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>
+            <p className="text-center  text-white mb-10">
+              {hasMainHome ? "현재 메인 홈으로 설정된 하우스입니다." : "메인 홈으로 설정하여 방으로 이동해보세요!"}
+            </p>
+            <div className="flex flex-col outline-none relative">
+              {!hasMainHome && (
+                <div className="absolute">
+                  <button onClick={() => updateMainHome(selectedHomeId!)}>
+                    <MdOutlineRadioButtonUnchecked size={20} className="text-gray-500 cursor-pointer" />
+                  </button>
+                </div>
+              )}
+
+              <img
+                alt={"default-home-img"}
+                width={220}
+                height={220}
+                className="object-contain outline-none"
+                src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${selectedHomeId}`}
+              />
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+{
+  /* {hasHomes && (
         <div className="w-full flex-center flex-col">
           <span className="text-center font-bold text-white">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>
 
@@ -105,37 +145,5 @@ export default function MyHomesPage() {
           )}
           <UserHomesCarousel slides={homeList} onHomeSelect={handleHomeSelect} selectedHomeId={selectedHomeId} />
         </div>
-      )} */}
-      <div className="w-full flex-center flex-col">
-        {hasHomes && homeList.length > 1 && (
-          <>
-            <span className="text-center font-bold text-white">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>
-            <p className="text-white">좌우로 움직여 메인으로 보여줄 나의 집을 설정해보세요!</p>
-            <UserHomesCarousel slides={homeList} onHomeSelect={handleHomeSelect} selectedHomeId={selectedHomeId} />
-          </>
-        )}
-        {hasHomes && homeList.length === 1 && (
-          <>
-            <p className="text-white">보유중인 하우스가 1개 존재합니다. 메인 하우스로 설정하여 방으로 이동해보세요!</p>
-            <div className="flex flex-col outline-none relative border">
-              <div className="absolute">
-                <button onClick={() => updateMainHome(selectedHomeId!)}>
-                  <MdOutlineRadioButtonUnchecked size={20} className="text-gray-500 cursor-pointer" />
-                </button>
-              </div>
-
-              <img
-                alt={"default-home-img"}
-                width={220}
-                height={220}
-                className=" object-contain outline-none "
-                src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${selectedHomeId}`}
-              />
-              <p className="text-center text-xs w-[220px] line-clamp-2 overflow-hidden break-words text-gray-400"></p>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
+      )} */
 }

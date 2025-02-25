@@ -7,10 +7,12 @@ import UserInformation from "./UserInformation";
 import BorderButton from "../common/BorderButton";
 import { useState } from "react";
 import { useHomeData } from "../../hooks/useHomeData";
+import Modal from "../Modal";
 
 export default function AccountTab() {
   const [targetHomeId, setTargetHomeId] = useState<number | null>(null);
   const [homeNameValue, setHomeNameValue] = useState("");
+  const [showMessage, setShowMessage] = useState({ show: false, message: "" });
   const { data: homeList, isLoading: homeListLoading, isError: homeListError } = useHomeList();
   const { updateHomeName, isUpdatingName, updateNameError } = useHomeData(targetHomeId);
 
@@ -24,13 +26,29 @@ export default function AccountTab() {
   };
 
   const handleConfirmHomeNameChange = () => {
-    if (!targetHomeId || homeNameValue.trim() === "") {
-      alert("값을 입력해주세요.");
-    } else {
-      console.log(homeNameValue);
-      updateHomeName({ homeId: targetHomeId, newName: homeNameValue.trim() });
-      setTargetHomeId(null);
+    if (homeNameValue.trim().length > 50) {
+      setShowMessage({
+        show: true,
+        message: `입력한 홈 네임 길이가 현재 ${
+          homeNameValue.trim().length
+        }자 입니다. 홈 네임은 최대 50자까지 설정 가능합니다!`,
+      });
+      return;
     }
+    if (!targetHomeId || homeNameValue.trim() === "") {
+      setShowMessage({ show: true, message: "홈 네임 값을 입력해주세요!" });
+      return;
+    }
+    //기존의 홈 네임 값과 변동 여부 체크
+    const currentHome = homeList?.find((home: HomeListItem) => home.id === targetHomeId);
+    if (currentHome && currentHome.name === homeNameValue.trim()) {
+      setShowMessage({ show: true, message: "변경하려는 홈 이름과 기존의 홈 이름이 동일합니다." });
+      return;
+    }
+
+    updateHomeName({ homeId: targetHomeId, newName: homeNameValue.trim() });
+    setTargetHomeId(null);
+    setShowMessage({ show: true, message: "홈네임 변경이 완료되었습니다." });
   };
 
   return (
@@ -92,6 +110,11 @@ export default function AccountTab() {
               })}
           </ul>
           {isUpdatingName && <SpinnerIcon />}
+          {showMessage.show && (
+            <Modal onClose={() => setShowMessage({ show: false, message: "" })}>
+              <p className="text-white">{showMessage.message}</p>
+            </Modal>
+          )}
           {updateNameError && <div className="text-red-500 text-xs ">홈 이름 변경에 실패했습니다.</div>}
         </div>
       </div>

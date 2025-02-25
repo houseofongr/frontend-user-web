@@ -17,8 +17,8 @@ export const fetchHomeList = async () => {
   // console.log("data", data.homes);
 
   // const testResult = [
-  //   { id: 72, basicImageId: 166, name: "#윤선영의 메인홈", isMain: false },
-  //   { id: 105, basicImageId: 169, name: "주잔돌이 그려준 윤선영의 집", isMain: false },
+  //   { id: 72, basicImageId: 166, name: "#윤선영의 메인홈", isMain: true },
+  //   // { id: 105, basicImageId: 169, name: "주잔돌이 그려준 윤선영의 집", isMain: false },
   // ];
   // return testResult;
   return data.homes;

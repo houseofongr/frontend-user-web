@@ -12,7 +12,6 @@ const tabsData = [
   },
   {
     label: "나의 소리 기록실",
-
     content: <SoundsTab />,
   },
   {
