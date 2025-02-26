@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { ItemSoundsData } from "../types/sound";
 import SoundItem from "./SoundItem";
-import Modal from "./Modal";
+
 import PreviewContent from "./PreviewContent";
 import { useSoundDetail } from "../hooks/useSoundData";
 import SpinnerIcon from "./icons/SpinnerIcon";
+import Modal from "./Modal";
 
 type SoundListProps = {
   itemSounds: ItemSoundsData;
