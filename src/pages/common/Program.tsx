@@ -15,13 +15,13 @@ type ProgramImageProp = {
 
 const ProgramImages = ({ images }: ProgramImageProp) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-10 max-w-2xl mx-auto">
+    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 p-10 max-w-2xl mx-auto">
       {images.map((item, index) => (
-        <div key={index} className="flex flex-col items-center">
+        <li key={index} className="flex flex-col items-center">
           <img src={item.src} alt={`program-progress-${index + 1}`} className="w-full aspect-square object-cover" />
           <h1 className="mt-2 text-center text-sm">{item.caption}</h1>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };

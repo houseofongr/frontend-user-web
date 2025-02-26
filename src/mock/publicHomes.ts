@@ -8,18 +8,19 @@ export const PUBLIC_HOMES = [
   {
     id: 2,
     brand: "푸르메재단",
-    brandIntroduce: "장애 어린이의 재활과 자립을 지원하는 비영리 재단",
+    brandIntroduce:
+      "장애 어린이의 재활과 자립을 지원하는 비영리 재단 장애 어린이의 재활과 자립을 지원하는 비영리 재단 장애 어린이의 재활과 자립을 지원하는 비영리 재단 장애 어린이의 재활과 자립을 지원하는 비영리 재단",
     thumbnailImg: "/images/demo/thumbnail.png",
   },
   {
     id: 3,
-    brand: "초록우산 어린이재단",
+    brand: "초록우산 어린이재단 ",
     brandIntroduce: "아동 권리를 옹호하고 지원하는 대표적인 비영리단체",
     thumbnailImg: "/images/demo/thumbnail.png",
   },
   {
     id: 4,
-    brand: "세브란스 어린이병원",
+    brand: "세브란스 어린이병원 ",
     brandIntroduce: "세브란스병원 산하 소아 전문 병원",
     thumbnailImg: "/images/demo/thumbnail.png",
   },

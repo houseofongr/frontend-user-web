@@ -4,7 +4,7 @@ import Footer from "../common/Footer";
 import { useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const HIDE_LAYOUT_PATHS = ["/main/home"];
+const HIDE_LAYOUT_PATHS = ["/main/home", "/common/homes/1/demo"];
 const HIDE_LAYOUT_REGEX = /^\/main\/home\/[^/]+\/rooms\/[^/]+$/;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

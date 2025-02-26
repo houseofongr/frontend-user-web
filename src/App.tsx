@@ -15,8 +15,10 @@ import ReservationPage from "./pages/user/Reservation";
 import RootLayout from "./components/layout/RootLayout";
 import MyHomesPage from "./pages/user/MyHomes";
 import WelcomePage from "./pages/user/login/WelcomePage";
-import PublicHomesPage from "./pages/public/PublicHomes";
-import BusinessPage from "./pages/public/Business";
+import PublicHomesPage from "./pages/b2b/PublicHomes";
+import BusinessPage from "./pages/b2b/Business";
+import Init from "./pages/b2b/homesDemo/250226/Init";
+import DemoPage from "./pages/b2b/homesDemo/250226/Demo";
 
 function App() {
   return (
@@ -46,10 +48,12 @@ function App() {
 
           {/* 진행 예정 페이지 */}
           <Route path="/reservation" element={<ReservationPage />} />
+          <Route path="/common/business" element={<BusinessPage />} />
           {/* public page */}
-          <Route path="/public/homes" element={<PublicHomesPage />} />
-          <Route path="/public/homes/1/demo" element={<PublicHomesPage />} />
-          <Route path="/public/business" element={<BusinessPage />} />
+          <Route path="/common/homes" element={<PublicHomesPage />} />
+          {/* demo page */}
+          <Route path="/common/homes/1/init" element={<Init />} />
+          <Route path="/common/homes/1/demo" element={<DemoPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>

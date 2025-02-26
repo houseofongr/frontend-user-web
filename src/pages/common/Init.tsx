@@ -19,7 +19,7 @@ export default function InitPage() {
     >
       <InitText />
       <div className="flex gap-10 md:gap-20">
-        <Link to="/public/homes" className=" text-center">
+        <Link to="/common/homes" className=" text-center">
           <InitHouseImage imgType="public" />
           <span className="text-xs">PUBLIC</span>
         </Link>
