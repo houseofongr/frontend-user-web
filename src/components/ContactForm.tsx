@@ -65,7 +65,7 @@ export default function ContactForm() {
           label="이메일"
           type="email"
           name="from_name"
-          placeholder="메일 주소를 입력해주세요."
+          placeholder="메일 주소를 입력해 주세요."
           onChange={onChangeHandler}
           value={form.from_name}
         />
@@ -73,7 +73,7 @@ export default function ContactForm() {
           label="제목"
           type="text"
           name="subject"
-          placeholder="제목을 입력해주세요."
+          placeholder="제목을 입력해 주세요."
           onChange={onChangeHandler}
           value={form.subject}
         />
@@ -81,7 +81,7 @@ export default function ContactForm() {
           label="내용"
           type="text"
           name="message"
-          placeholder="내용을 입력해주세요"
+          placeholder="내용을 입력해 주세요"
           onChange={onChangeHandler}
           value={form.message}
         />
