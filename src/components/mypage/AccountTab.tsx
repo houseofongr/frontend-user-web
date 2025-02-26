@@ -7,7 +7,7 @@ import UserInformation from "./UserInformation";
 import BorderButton from "../common/BorderButton";
 import { useState } from "react";
 import { useHomeData } from "../../hooks/useHomeData";
-import Modal from "../Modal";
+import ModalAlertMessage from "../ModalAlertMessage";
 
 export default function AccountTab() {
   const [targetHomeId, setTargetHomeId] = useState<number | null>(null);
@@ -63,12 +63,13 @@ export default function AccountTab() {
         <div>
           {homeListLoading && <SpinnerIcon />}
           {homeListError && <div>홈 목록을 불러올 수 없습니다.</div>}
-          <ul className="flex gap-5">
+          {/* <ul className="flex gap-5"> */}
+          <ul className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {homeList &&
               homeList.map((home: HomeListItem) => {
                 return (
                   <div key={home.id}>
-                    <li className="bg-white px-3 pt-2 pb-6 shadow relative">
+                    <li className="bg-white px-3 pt-2 pb-6 shadow relative flex flex-col items-center">
                       {home.isMain && (
                         <MdOutlineRadioButtonChecked size={20} className="text-primary absolute top-3 left-3" />
                       )}
@@ -79,7 +80,7 @@ export default function AccountTab() {
                         className=" object-contain outline-none "
                         src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${home.basicImageId}`}
                       />
-                      <p className="text-center text-xs w-[220px] line-clamp-1 overflow-hidden break-words">
+                      <p className="text-xs max-w-full line-clamp-1 pt-1 text-ellipsis overflow-hidden whitespace-normal">
                         {home.name}
                       </p>
                     </li>
@@ -111,9 +112,9 @@ export default function AccountTab() {
           </ul>
           {isUpdatingName && <SpinnerIcon />}
           {showMessage.show && (
-            <Modal onClose={() => setShowMessage({ show: false, message: "" })}>
+            <ModalAlertMessage onClose={() => setShowMessage({ show: false, message: "" })}>
               <p className="text-white">{showMessage.message}</p>
-            </Modal>
+            </ModalAlertMessage>
           )}
           {updateNameError && <div className="text-red-500 text-xs ">홈 이름 변경에 실패했습니다.</div>}
         </div>
