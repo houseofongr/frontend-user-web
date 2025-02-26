@@ -80,8 +80,6 @@ export default function TermsOfServicePage() {
     <div className="flex-center flex-col bg-neutral-100">
       <section className="w-full md:w-[60%] flex flex-col p-10">
         <span className="text-2xl">약관동의</span>
-
-        {/* <p>'아카이브 오브 옹알' 서비스 이용약관 및 정보이용 안내에 대한 동의를 해주세요.</p> */}
         <p className="font-extralight mb-5">
           '아카이브 오브 옹알'이 처음이신 고객님, 서비스 시작 및 가입을 위해 아래의 약관 내용에 동의해 주세요.
         </p>

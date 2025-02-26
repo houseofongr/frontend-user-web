@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import AboutPage from "./pages/common/About";
 import NotFoundPage from "./pages/NotFound";
 import ProgramPage from "./pages/common/Program";
@@ -13,10 +12,11 @@ import TermsOfServicePage from "./pages/user/login/TermsOfSevice";
 import WithdrawalAccountPage from "./pages/user/mypage/WithdrawalAccount";
 import RecheckWithdrawalPage from "./pages/user/mypage/RecheckWithdrawal";
 import ReservationPage from "./pages/user/Reservation";
-
 import RootLayout from "./components/layout/RootLayout";
 import MyHomesPage from "./pages/user/MyHomes";
 import WelcomePage from "./pages/user/login/WelcomePage";
+import PublicHomesPage from "./pages/public/PublicHomes";
+import BusinessPage from "./pages/public/Business";
 
 function App() {
   return (
@@ -46,6 +46,10 @@ function App() {
 
           {/* 진행 예정 페이지 */}
           <Route path="/reservation" element={<ReservationPage />} />
+          {/* public page */}
+          <Route path="/public/homes" element={<PublicHomesPage />} />
+          <Route path="/public/homes/1/demo" element={<PublicHomesPage />} />
+          <Route path="/public/business" element={<BusinessPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>
