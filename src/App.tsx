@@ -16,39 +16,36 @@ import ReservationPage from "./pages/user/Reservation";
 
 import RootLayout from "./components/layout/RootLayout";
 import MyHomesPage from "./pages/user/MyHomes";
+import WelcomePage from "./pages/user/login/WelcomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <RootLayout>
         <Routes>
-          {/* <Route element={<LoginLayout />}> */}
+          {/* 완료된 페이지 */}
           <Route path="/" element={<InitPage />} />
           {/* 신규 유저 */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/auth" element={<AuthPage />} />
+          <Route path="/login/auth/complete" element={<WelcomePage />} />
           <Route path="/login/terms" element={<TermsOfServicePage />} />
-          {/* </Route> */}
-          {/* <Route element={<MainLayout />}> */}
 
           {/* 기존유저 */}
           <Route path="/main/home" element={<MyHomesPage />} />
           <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
-          {/* 마이페이지 */}
+
           <Route path="/mypage/account" element={<Mypage />} />
           <Route path="/mypage/account/withdraw" element={<WithdrawalAccountPage />} />
           <Route path="/mypage/account/withdraw/recheck" element={<RecheckWithdrawalPage />} />
-          {/* 소개 */}
-          <Route path="/about" element={<AboutPage />} />
-          {/* 예약 */}
-          <Route path="/reservation" element={<ReservationPage />} />
-          {/* 프로그램 */}
-          <Route path="/program" element={<ProgramPage />} />
-          {/* contact */}
-          <Route path="/contact" element={<ContactPage />} />
 
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/program" element={<ProgramPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
-          {/* </Route> */}
+
+          {/* 진행 예정 페이지 */}
+          <Route path="/reservation" element={<ReservationPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>

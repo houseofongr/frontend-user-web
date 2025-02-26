@@ -28,9 +28,9 @@ export default function Header() {
 
   return (
     <header className="w-full flex justify-between items-center sticky top-0  md:py-10 sm:py-2  bg-transparent z-10 border-b border-gray-200 ">
-      <div className="w-[350px] hidden md:flex "></div>
+      <div className="w-[200px] lg:w-[350px] hidden md:flex "></div>
       <Logo />
-      <ul className="pr-3 md:pr-10 flex gap-5 md:gap-10 text-sm md:text-base">
+      <ul className="pr-3 md:pr-10 flex gap-5 lg:gap-10 text-sm md:text-base">
         {TABS.map(({ label, href, icon }) => {
           const isActive = pathName === href;
           return (
@@ -50,7 +50,7 @@ export default function Header() {
                 }`}
               >
                 <div>{icon}</div>
-                <span className={`hidden md:inline text-xs ${isActive ? "font-normal " : "font-extralight "}`}>
+                <span className={`hidden lg:inline text-xs ${isActive ? "font-normal " : "font-extralight "}`}>
                   {label}
                 </span>
               </Link>

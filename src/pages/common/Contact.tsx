@@ -91,7 +91,7 @@ export default function ContactPage() {
           </div>
         </section>
         {/* 오른쪽 섹션 */}
-        <section className="w-full md:w-2/5  shadow-md flex-col flex p-1 md:p-7 bg-white rounded">
+        <section className="w-full md:w-2/5 shadow-md flex-col flex p-1 md:p-7 bg-white rounded">
           <div className="m-4">
             <p className="text-2xl font-extrabold py-1">CONTACT US</p>
             <p className="text-sm md:text-base font-extralight mb-5">

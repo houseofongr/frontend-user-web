@@ -48,7 +48,6 @@ export default function TermsOfServicePage() {
         sessionStorage.removeItem("tempToken");
         sessionStorage.setItem("accessToken", data.accessToken);
         sessionStorage.setItem("username", data.nickname);
-
         navigate("/main");
       } else {
         throw new Error("동의 처리 실패");

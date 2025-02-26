@@ -19,12 +19,12 @@ const AuthPage = () => {
         sessionStorage.setItem("tempnickname", nickname);
         sessionStorage.setItem("tempToken", accessToken);
         console.log("신규유저");
-        navigate("/terms"); // 신규유저면 약관동의 페이지로 이동
+        navigate("/terms");
       }
     } else {
       console.log("기존유저");
       if (nickname && accessToken) {
-        navigate("/main/home"); // 기존 유저면 메인페이지로 이동
+        navigate("/login/auth/complete");
         sessionStorage.setItem("nickname", nickname);
         sessionStorage.setItem("authToken", accessToken);
       }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import InitHouseImage from "../../../components/InitHouseImage";
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../../constants/componentSize";
@@ -6,15 +6,26 @@ import API_CONFIG from "../../../config/api";
 
 export default function LoginPage() {
   const [isAnimationComplete, setIsAnimationComplete] = useState<boolean>(false);
+  const [yValue, setYValue] = useState(180);
 
   const handleLogin = async (provider: string) => {
     console.log(`${API_CONFIG.BACK_API}/authn/login/${provider}`);
     window.location.href = `${API_CONFIG.BACK_API}/authn/login/${provider}`;
   };
 
+  useEffect(() => {
+    const updateYValue = () => {
+      setYValue(window.innerWidth <= 768 ? 120 : 180);
+    };
+
+    updateYValue();
+    window.addEventListener("resize", updateYValue);
+    return () => window.removeEventListener("resize", updateYValue);
+  }, []);
+
   return (
     <div
-      className="flex-center flex-col pb-10"
+      className="flex-center flex-col md:pb-20 "
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <motion.div
@@ -32,7 +43,7 @@ export default function LoginPage() {
       {isAnimationComplete && (
         <motion.div
           initial={{ opacity: 0, y: 180 }} // 모바일 120, 노트북 180
-          animate={{ opacity: 1, y: 120 }} // 모바일 80 , 노트북 120
+          animate={{ opacity: 1, y: yValue === 120 ? 80 : 120 }} // 모바일 80 , 노트북 120
           transition={{ duration: 0.8 }}
           className="w-full absolute z-10 flex-center flex-col"
         >
@@ -41,11 +52,19 @@ export default function LoginPage() {
               onClick={() => handleLogin("kakao")}
               src={"/images/kakaoLoginButton.png"}
               alt="kakaoLoginButton"
-              width={200}
+              width={yValue === 120 ? 150 : 200}
               height={100}
             />
           </div>
-          <div className="rounded-2xl border-2 border-[#535454] hover:border-[#FEE500] ">
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+//sns 로그인 버튼
+{
+  /* <div className="rounded-xl border-2 border-[#535454] hover:border-[#FEE500] ">
             <button className="flex gap-2 px-10 py-3" type="button" onClick={() => handleLogin("kakao")}>
               <span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,10 +79,12 @@ export default function LoginPage() {
                   </g>
                 </svg>
               </span>
-              <strong>카카오 로그인</strong>
+              <p>카카오 로그인</p>
             </button>
-          </div>
-          {/* <div className=" rounded-2xl border-2  mt-4 hover:border-[#03C75A]">
+          </div> */
+}
+{
+  /* <div className=" rounded-xl border-2  mt-4 hover:border-[#03C75A]">
             <button className="flex gap-2 px-10 py-3" type="button">
               <span>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,11 +97,7 @@ export default function LoginPage() {
                   </g>
                 </svg>
               </span>
-              <strong>네이버 로그인</strong>
+              <p>네이버 로그인</p>
             </button>
-          </div> */}
-        </motion.div>
-      )}
-    </div>
-  );
+          </div> */
 }
