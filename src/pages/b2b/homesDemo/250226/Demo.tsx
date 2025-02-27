@@ -144,8 +144,6 @@ export default function DemoPage() {
   const [scale, setScale] = useState<number | null>(null);
   const [selectedPlanetId, setSelectedPlanetId] = useState<number | null>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [audioData, setAudioData] = useState(null);
-  console.log(audioData);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -187,31 +185,6 @@ export default function DemoPage() {
     return () => window.removeEventListener("resize", updateScale);
   }, []);
 
-  useEffect(() => {
-    const fetchAudioData = async () => {
-      const token = sessionStorage.getItem("authToken");
-
-      try {
-        const response = await fetch(`${API_CONFIG.PUBLIC_AUDIO_LOAD_API}/1`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch audio data");
-        }
-        const data = await response.json();
-        console.log("Fetched Audio Data:", data);
-        setAudioData(data);
-      } catch (error) {
-        console.error("Error fetching audio data:", error);
-      }
-    };
-
-    fetchAudioData();
-  }, []);
   const selectedPlanet = PLANET_LIST.find((planet) => planet.id === selectedPlanetId) || null;
   console.log("selectedPlanet", selectedPlanet);
 
