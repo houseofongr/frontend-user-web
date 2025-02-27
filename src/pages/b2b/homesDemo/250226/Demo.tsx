@@ -162,8 +162,9 @@ export default function DemoPage() {
     const formData = new FormData();
     formData.append("audios", file);
     // dev.file.archiveofongr.site/public/audios
-    https: try {
-      const response = await fetch(`${API_CONFIG.PUBLIC_AUDIO_LOAD_API}`, {
+    try {
+      console.log(API_CONFIG.PUBLIC_AUDIO_LOAD_API, "?");
+      const response = await fetch(`https://dev.file.archiveofongr.site/public/audios`, {
         method: "POST",
         body: formData,
       });

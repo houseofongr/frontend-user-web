@@ -18,7 +18,7 @@ type PreviewContentProp = {
 };
 
 export default function PreviewContentCopy({ data }: { data: PreviewContentProp }) {
-  const { name, description, updatedDate, soundSrc, audioFileId } = data;
+  const { name, description, updatedDate, audioFileId } = data;
   return (
     <div className="flex flex-col md:flex-row gap-5 text-black px-7 min-h-[550px]  md:min-w-[800px] lg:min-w-[1000px]">
       <div className="fixed mt-2 flex  gap-2 items-end">
