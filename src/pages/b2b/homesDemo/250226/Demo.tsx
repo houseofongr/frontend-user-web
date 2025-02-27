@@ -5,11 +5,9 @@ import Modal from "../../../../components/Modal";
 import FileUploadButton from "../../../../components/FileUploadButton";
 import FileNameLabel from "../../../../components/FileNameLabel";
 import { MdCancel } from "react-icons/md";
-
 import CircleButton from "../../../../components/common/CircleButton";
 import { FaSave } from "react-icons/fa";
 import PreviewContentCopy from "../../../../components/PreviewContentCopy";
-
 import { Link } from "react-router-dom";
 
 const PLANET_LIST = [
@@ -163,7 +161,7 @@ export default function DemoPage() {
     formData.append("audios", file);
 
     try {
-      const response = await fetch(`${API_CONFIG.PUBLIC_AUDIO_LOAD_API}`, {
+      const response = await fetch(`http://file.archiveofongr.site/public/audios`, {
         method: "POST",
         headers: {
           // "Content-Type": "application/json",
