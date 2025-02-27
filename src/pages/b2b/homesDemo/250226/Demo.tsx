@@ -8,6 +8,9 @@ import { MdCancel } from "react-icons/md";
 
 import CircleButton from "../../../../components/common/CircleButton";
 import { FaSave } from "react-icons/fa";
+import PreviewContentCopy from "../../../../components/PreviewContentCopy";
+
+import { Link } from "react-router-dom";
 
 const PLANET_LIST = [
   {
@@ -16,7 +19,7 @@ const PLANET_LIST = [
     description: "13살 아랑이가 지구에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v1.png",
     soundSrc: "/audio/HOO_01.mp3",
-    audioFileId: 1,
+    audioFileId: 42,
     x: 2700,
     y: 1730,
     width: 1666,
@@ -31,7 +34,7 @@ const PLANET_LIST = [
     description: "13살 상엽이가 수성에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v2.png",
     soundSrc: "/audio/HOO_02.mp3",
-    audioFileId: 2,
+    audioFileId: 43,
     x: 1200,
     y: 3000,
     width: 962,
@@ -46,7 +49,7 @@ const PLANET_LIST = [
     description: "13살 선영이가 토성에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v3.png",
     soundSrc: "/audio/HOO_03.mp3",
-    audioFileId: 3,
+    audioFileId: 32,
     x: 400,
     y: 2400,
     width: 1100,
@@ -61,7 +64,7 @@ const PLANET_LIST = [
     description: "13살 아진이가 목성에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v4.png",
     soundSrc: "",
-    audioFileId: 4,
+    audioFileId: 33,
     x: 487.42,
     y: 880,
     width: 1294,
@@ -153,8 +156,8 @@ export default function DemoPage() {
   };
 
   const audioFileSaveHandler = async () => {
-    const token = sessionStorage.getItem("authToken");
-    console.log("token", token);
+    // const token = sessionStorage.getItem("authToken");
+
     if (!file) return;
     const formData = new FormData();
     formData.append("audios", file);
@@ -163,8 +166,9 @@ export default function DemoPage() {
       const response = await fetch(`${API_CONFIG.PUBLIC_AUDIO_LOAD_API}`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          // "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+          // Authorization: `Bearer ${token}`,
         },
         body: formData,
       });
@@ -190,8 +194,12 @@ export default function DemoPage() {
 
   if (!scale) return <SpinnerIcon />;
   return (
-    <div className="w-full flex flex-col bg-stone-800 pb-10">
-      <section className="flex-center min-h-screen">
+    <div className="w-full h-full flex flex-col bg-stone-800 ">
+      {/* <HeaderForDarkBackground /> */}
+      <Link to={"/"} className="absolute top-10 left-10">
+        <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={65} height={65} />
+      </Link>
+      <section className="flex-center">
         <div className="relative">
           <img
             alt="public-home-background-image"
@@ -201,18 +209,31 @@ export default function DemoPage() {
           />
 
           {PLANET_LIST.map(({ id, imageId, name, width, height, x, y, z }) => (
-            <div key={imageId} className="">
-              <label
+            <div key={imageId}>
+              {/* <label
                 className="text-xs text-white bg-black"
                 style={{
                   position: "absolute",
                   left: Math.round(x * scale - 20),
                   top: Math.round(y * scale + 90),
-                  zIndex: 100,
+                  zIndex: 3,
                 }}
               >
                 {name}
-              </label>
+              </label> */}
+              {id < 4 && (
+                <label
+                  className="text-xs p-1 bg-yellow-200"
+                  style={{
+                    position: "absolute",
+                    left: Math.round(x * scale - 20),
+                    top: Math.round(y * scale + 90),
+                    zIndex: 10,
+                  }}
+                >
+                  click here!
+                </label>
+              )}
               <img
                 key={name}
                 src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${imageId}`}
@@ -233,20 +254,7 @@ export default function DemoPage() {
           ))}
         </div>
       </section>
-      {/* const {(name, description, audioFileId, updatedDate)} = data; */}
-      {selectedPlanet && (
-        <Modal
-          onClose={() => {
-            setSelectedPlanetId(null);
-          }}
-        >
-          <div>모달</div>
-          {/* <PreviewContent data={selectedPlanet} /> */}
-        </Modal>
-      )}
-
-      {/* 숨김 처리할 컴포넌트 */}
-      <div className="bg-neutral-100 rounded-4xl py-3 flex flex-col w-1/5 gap-3 p-5 absolute top-[10%]">
+      <div className=" bg-neutral-100 rounded-4xl py-3  flex-col w-1/5 gap-3 p-5 absolute top-[20%]">
         <button> 퍼블릭 음원 파일 업로드</button>
         <input id="sound-file" type="file" accept="audio/*" className="hidden" onChange={handleFileUpload} />
         <div>
@@ -260,19 +268,21 @@ export default function DemoPage() {
             </div>
           )}
         </div>
-        <div className="text-center">
+        <div className="text-center mt-4">
           <CircleButton label={<FaSave />} hasBorder text="save" onClick={audioFileSaveHandler} />
         </div>
       </div>
+
+      {selectedPlanet && (
+        <Modal
+          onClose={() => {
+            setSelectedPlanetId(null);
+          }}
+        >
+          {/* <PreviewContent data={selectedPlanet} /> */}
+          <PreviewContentCopy data={selectedPlanet} />
+        </Modal>
+      )}
     </div>
   );
 }
-
-// const formatDataForView = (imageData: { width: number; height: number; scale: number; x: number; y: number }) => {
-//   return {
-//     x: Math.round(imageData.x * imageData.scale),
-//     y: Math.round(imageData.y * imageData.scale),
-//     width: Math.round(imageData.width * imageData.scale),
-//     height: Math.round(imageData.height * imageData.scale),
-//   };
-// };
