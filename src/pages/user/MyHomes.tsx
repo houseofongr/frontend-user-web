@@ -86,13 +86,13 @@ export default function MyHomesPage() {
             />
           </div>
         ) : (
-          <div className="w-full h-full ">
+          <div className="w-full h-full">
             {homeData && <RenderImages homeId={selectedHomeId!} scale={scale} homeData={homeData} />}
           </div>
         )}
       </section>
 
-      <div className="w-full flex-center flex-col">
+      <div className="w-full flex-center flex-col pt-10">
         {hasHomes && homeList.length > 1 && (
           <>
             <span className="text-center font-bold text-white">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>

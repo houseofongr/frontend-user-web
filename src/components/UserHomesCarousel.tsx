@@ -47,7 +47,7 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
       <Slider {...settings}>
         {slides.map((slide, index) => {
           return (
-            <div key={index} className="flex flex-col outline-none pt-4 relative ">
+            <div key={index} className="flex flex-col outline-none mt-4 relative">
               <div className="fixed">
                 <button onClick={() => onHomeSelect(slide.id)}>
                   {slide.id === selectedHomeId ? (
@@ -65,7 +65,7 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
                 className=" object-contain outline-none "
                 src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${slide.basicImageId}`}
               />
-              <p className="text-center text-xs w-[220px] line-clamp-2 overflow-hidden break-words text-gray-400">
+              <p className="text-center text-xs w-[220px] line-clamp-1 overflow-hidden break-words text-stone-50 pt-2">
                 {slide.name}
               </p>
             </div>

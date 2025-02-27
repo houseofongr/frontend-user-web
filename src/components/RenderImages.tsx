@@ -38,6 +38,7 @@ export default function RenderImages({ homeId, scale, homeData }: RenderImagesPr
           height={window.innerHeight}
           src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${homeData.house.borderImageId}`}
           onLoad={handleImageLoad}
+          className="z-20"
         />
 
         {homeData.rooms.map((room) => (

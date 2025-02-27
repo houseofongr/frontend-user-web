@@ -24,7 +24,7 @@ export default function CircleButton({ label, onClick, disabled, hasBorder = tru
       >
         {label}
       </button>
-      {text && <span className="text-xs text-white">{text}</span>}
+      {text && <span className="text-xs">{text}</span>}
     </div>
   );
 }
