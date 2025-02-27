@@ -19,7 +19,7 @@ const PLANET_LIST = [
     description: "13살 아랑이가 지구에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v1.png",
     soundSrc: "/audio/HOO_01.mp3",
-    audioFileId: 460,
+    audioFileId: 460, // 골골
     x: 2700,
     y: 1730,
     width: 1666,
