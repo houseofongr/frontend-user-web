@@ -3,10 +3,11 @@ import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
 export default function AboutPage() {
   return (
     <section
-      className="flex-center text-[15px] leading-7"
+      className="flex-center text-[13px] md:text-[15px] p-3 md:p-0 "
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
-      <div className="">
+      <div className="space-y-1.5">
+        {/* <div> */}
         <p>
           <strong>아카이브 오브 옹알</strong>은
         </p>

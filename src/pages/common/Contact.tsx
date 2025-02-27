@@ -43,9 +43,7 @@ export default function ContactPage() {
     >
       <div className="w-[80%] flex-col md:flex-row flex items-center justify-center m-auto gap-20  py-10">
         {/* 왼쪽 섹션 */}
-        <section className="w-full md:w-2/5 flex-col flex gap-6">
-          {/* contact info */}
-
+        <section className="w-full md:w-2/5 flex-col flex gap-6 pl-10">
           <div>
             <p className="my-1 font-bold">CONTACT</p>
             {contactInfo.map((item, index) => (
@@ -91,7 +89,7 @@ export default function ContactPage() {
           </div>
         </section>
         {/* 오른쪽 섹션 */}
-        <section className="w-full md:w-2/5 shadow-md flex-col flex p-1 md:p-7 bg-white rounded">
+        <section className="md:w-1/2 lg:w-2/5 shadow-md flex-col flex p-2 lg:p-7 bg-white rounded">
           <div className="m-4">
             <p className="text-2xl font-extrabold py-1">CONTACT US</p>
             <p className="text-sm md:text-base font-extralight mb-5">

@@ -31,7 +31,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         }`}
       >
         <div className="p-10 flex justify-between items-center h-[140px]">
-          <span className="text-primary text-lg">MENU</span>
+          <span className="text-primary text-xs md:text-lg">MENU</span>
         </div>
 
         <nav className="px-20 pt-10">
