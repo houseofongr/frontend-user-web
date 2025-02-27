@@ -3,7 +3,7 @@ import { programImages } from "../../constants/programProgressOrder";
 export default function ProgramPage() {
   return (
     <div className="w-full flex flex-col items-center pb-10 ">
-      <section className="w-[70%] py-10">
+      <section className="w-[70%] py-10 md:py-20">
         <span className="text-xl md:text-2xl">프로그램</span>
         <p className="text-sm md:text-base font-extralight">
           아카이브 오브 옹알의 프로그램 순서는 아래와 같이 진행됩니다.

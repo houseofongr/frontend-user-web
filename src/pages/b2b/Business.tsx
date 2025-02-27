@@ -21,10 +21,10 @@ export default function BusinessPage() {
   };
   return (
     <div
-      className="w-full flex flex-col items-center bg-neutral-100"
+      className="w-full flex flex-col justify-between items-center bg-neutral-100"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
-      <section className=" w-[70%] py-10 md:py-20 ">
+      <section className=" w-[70%] py-10 md:py-20">
         <span className="text-xl md:text-2xl">비즈니스</span>
         <p className="text-sm md:text-base font-extralight mb-5">서브 타이틀 </p>
         <div className="text-center space-y-3 text-[15px]">
@@ -40,18 +40,18 @@ export default function BusinessPage() {
           </p>
         </div>
       </section>
-      <section className="w-full">
-        <div className="text-xl md:text-2xl text-center mb-10"></div>
+      <section className="w-full py-8 ">
+        {/* <div className="text-xl md:text-2xl font-extralight text-center mb-10">고객사</div> */}
 
-        <div className="slider-container px-20">
+        <div className="slider-container px-10">
           <Slider {...settings}>
             {CLIENT_LIST.map((slide, index) => {
               return (
                 <div key={index} className="flex flex-col outline-none mt-4 relative">
                   <img
                     alt={slide.name}
-                    width={300}
-                    height={300}
+                    width={250}
+                    height={150}
                     className="object-contain outline-none "
                     src={slide.image}
                   />
