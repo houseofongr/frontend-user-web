@@ -19,7 +19,7 @@ const PLANET_LIST = [
     description: "13살 아랑이가 지구에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v1.png",
     soundSrc: "/audio/HOO_01.mp3",
-    audioFileId: 42,
+    audioFileId: 454,
     x: 2700,
     y: 1730,
     width: 1666,
@@ -34,7 +34,7 @@ const PLANET_LIST = [
     description: "13살 상엽이가 수성에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v2.png",
     soundSrc: "/audio/HOO_02.mp3",
-    audioFileId: 43,
+    audioFileId: 455,
     x: 1200,
     y: 3000,
     width: 962,
@@ -49,7 +49,7 @@ const PLANET_LIST = [
     description: "13살 선영이가 토성에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v3.png",
     soundSrc: "/audio/HOO_03.mp3",
-    audioFileId: 32,
+    audioFileId: 452,
     x: 400,
     y: 2400,
     width: 1100,
@@ -61,10 +61,10 @@ const PLANET_LIST = [
   {
     id: 4,
     name: "목성",
-    description: "13살 아진이가 목성에 담고 싶은 소리",
+    description: "13살 아진이가 목성에 담고 싶은 소리. 아진이가 부르는 노래 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v4.png",
     soundSrc: "",
-    audioFileId: 33,
+    audioFileId: 456,
     x: 487.42,
     y: 880,
     width: 1294,
@@ -76,10 +76,10 @@ const PLANET_LIST = [
   {
     id: 5,
     name: "화성",
-    description: "13살 율리가 지구에 담고 싶은 소리",
+    description: "13살 율리가 지구에 담고 싶은 소리. 율리가 치는 기타 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v5.png",
     soundSrc: "",
-    audioFileId: 5,
+    audioFileId: 457,
     x: 1450,
     y: 1700,
     width: 784,
@@ -91,10 +91,10 @@ const PLANET_LIST = [
   {
     id: 6,
     name: "금성",
-    description: "13살 솔리가 금성에 담고 싶은 소리",
+    description: "13살 솔리가 금성에 담고 싶은 소리. 물 흐르는 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v6.png",
     soundSrc: "",
-    audioFileId: 6,
+    audioFileId: 458,
     x: 2930,
     y: 500,
     width: 998,
@@ -109,7 +109,7 @@ const PLANET_LIST = [
     description: "13살 줄리가 천왕성에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v7.png",
     soundSrc: "",
-    audioFileId: 7,
+    audioFileId: 0,
     x: 2100,
     y: 240,
     width: 708,
@@ -124,7 +124,7 @@ const PLANET_LIST = [
     description: "13살 용창이가 해왕성에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v8.png",
     soundSrc: "",
-    audioFileId: 8,
+    audioFileId: 0,
     x: 3050,
     y: 3600,
     width: 439,
@@ -161,15 +161,10 @@ export default function DemoPage() {
     if (!file) return;
     const formData = new FormData();
     formData.append("audios", file);
-
-    try {
-      const response = await fetch(`https://file.archiveofongr.site/public/audios `, {
+    // dev.file.archiveofongr.site/public/audios
+    https: try {
+      const response = await fetch(`${API_CONFIG.PUBLIC_AUDIO_LOAD_API}`, {
         method: "POST",
-        headers: {
-          // "Content-Type": "application/json",
-          "Content-Type": "multipart/form-data",
-          // Authorization: `Bearer ${token}`,
-        },
         body: formData,
       });
       if (!response.ok) {
@@ -221,19 +216,7 @@ export default function DemoPage() {
               >
                 {name}
               </label> */}
-              {id < 4 && (
-                <label
-                  className="text-xs p-1 bg-yellow-200"
-                  style={{
-                    position: "absolute",
-                    left: Math.round(x * scale - 20),
-                    top: Math.round(y * scale + 90),
-                    zIndex: 10,
-                  }}
-                >
-                  click here!
-                </label>
-              )}
+
               <img
                 key={name}
                 src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${imageId}`}
