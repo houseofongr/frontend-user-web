@@ -205,6 +205,19 @@ export default function DemoPage() {
 
           {PLANET_LIST.map(({ id, imageId, name, width, height, x, y, z }) => (
             <div key={imageId}>
+              {id < 4 && (
+                <label
+                  className="text-xs p-1 bg-yellow-200"
+                  style={{
+                    position: "absolute",
+                    left: Math.round(x * scale - 20),
+                    top: Math.round(y * scale + 90),
+                    zIndex: 10,
+                  }}
+                >
+                  click here!
+                </label>
+              )}
               {/* <label
                 className="text-xs text-white bg-black"
                 style={{
