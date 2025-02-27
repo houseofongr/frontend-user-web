@@ -1,14 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import { PiHouseLine, PiUser, PiCalendarDots } from "react-icons/pi";
-
-// const TABS = [
-//   // { label: "HOME", href: "/main/home" },
-//   // { label: "MY PAGE", href: "/mypage/account" },
-//   { label: "ABOUT", href: "/about" },
-//   { label: "PROGRAM", href: "/program" },
-//   { label: "CONTACT", href: "/contact" },
-// ];
+import { useState } from "react";
+import Sidebar from "./Slidebar";
 
 type Tab = {
   label: string;
@@ -25,39 +19,43 @@ const TABS: Tab[] = [
 export default function Header() {
   const location = useLocation();
   const pathName = location.pathname;
+  const [isOpenSlider, setIsOpenSlider] = useState(false);
 
   return (
-    <header className="w-full flex justify-between items-center sticky top-0  md:py-10 sm:py-2  bg-transparent z-10 border-b border-gray-200 ">
-      <div className="w-[200px] lg:w-[350px] hidden md:flex "></div>
-      <Logo />
-      <ul className="pr-3 md:pr-10 flex gap-5 lg:gap-10 text-sm md:text-base">
-        {TABS.map(({ label, href, icon }) => {
-          const isActive = pathName === href;
-          return (
-            // <li key={label}>
-            //   <Link
-            //     to={href}
-            //     className={`${isActive ? "font-normal cursor-default" : "font-extralight"} hover:font-normal`}
-            //   >
-            //     {label}
-            //   </Link>
-            // </li>
-            <li key={label}>
-              <Link
-                to={href}
-                className={`flex-center flex-col gap-0.5 ${
-                  isActive ? "hover:cursor-default text-[#F5946D]" : "hover:cusor-pointer"
-                }`}
-              >
-                <div>{icon}</div>
-                <span className={`hidden lg:inline text-xs ${isActive ? "font-normal " : "font-extralight "}`}>
-                  {label}
-                </span>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </header>
+    <>
+      <header className="w-full flex justify-between items-center sticky top-0  md:py-10 sm:py-2  bg-transparent z-10 border-b border-gray-200 p-10 ">
+        <div className="w-1/3 flex justify-start">
+          <span className="cursor-pointer text-lg" onClick={() => setIsOpenSlider(true)}>
+            MENU
+          </span>
+        </div>
+        <div className="w-1/3 flex justify-center">
+          <Logo />
+        </div>
+        <ul className="w-1/3 flex justify-end gap-5 lg:gap-10 text-sm md:text-base">
+          {TABS.map(({ label, href, icon }) => {
+            const isActive = pathName === href;
+
+            return (
+              <li key={label}>
+                <Link
+                  to={href}
+                  className={`flex-center flex-col gap-0.5 ${
+                    isActive ? "hover:cursor-default text-[#F5946D]" : "hover:cursor-pointer"
+                  }`}
+                >
+                  <div>{icon}</div>
+                  <span className={`hidden lg:inline text-xs ${isActive ? "font-normal" : "font-extralight"}`}>
+                    {label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </header>
+
+      <Sidebar isOpen={isOpenSlider} onClose={() => setIsOpenSlider(false)} />
+    </>
   );
 }

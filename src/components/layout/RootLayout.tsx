@@ -3,8 +3,11 @@ import Header from "../common/Header";
 import Footer from "../common/Footer";
 import { useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MenuProvider } from "../../context/MenuContext";
 
 const HIDE_LAYOUT_PATHS = ["/main/home", "/common/homes/1/demo"];
+
+// "/main/home/:homeId/rooms/:roomId - 룸 상사 페이지 path
 const HIDE_LAYOUT_REGEX = /^\/main\/home\/[^/]+\/rooms\/[^/]+$/;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -16,12 +19,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // const shouldHideLayout = HIDE_LAYOUT_REGEX.test(currentPath);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {!shouldHideLayout && <Header />}
-      <QueryClientProvider client={queryClient}>
-        <main className="flex-1 ">{children}</main>
-      </QueryClientProvider>
-      <Footer />
-    </div>
+    <MenuProvider>
+      <div className="min-h-screen flex flex-col">
+        {!shouldHideLayout && <Header />}
+        <QueryClientProvider client={queryClient}>
+          <main className="flex-1 ">{children}</main>
+        </QueryClientProvider>
+        <Footer />
+      </div>
+    </MenuProvider>
   );
 }

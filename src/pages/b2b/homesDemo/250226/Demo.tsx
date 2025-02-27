@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import SpinnerIcon from "../../../../components/icons/SpinnerIcon";
+import { Link } from "react-router-dom";
 import API_CONFIG from "../../../../config/api";
+import SpinnerIcon from "../../../../components/icons/SpinnerIcon";
 import Modal from "../../../../components/Modal";
 import FileUploadButton from "../../../../components/FileUploadButton";
 import FileNameLabel from "../../../../components/FileNameLabel";
 import { MdCancel } from "react-icons/md";
-
-import CircleButton from "../../../../components/common/CircleButton";
 import { FaSave } from "react-icons/fa";
+import CircleButton from "../../../../components/common/CircleButton";
 import PreviewContentCopy from "../../../../components/PreviewContentCopy";
-
-import { Link } from "react-router-dom";
 
 const PLANET_LIST = [
   {
@@ -156,8 +154,6 @@ export default function DemoPage() {
   };
 
   const audioFileSaveHandler = async () => {
-    // const token = sessionStorage.getItem("authToken");
-
     if (!file) return;
     const formData = new FormData();
     formData.append("audios", file);
@@ -191,7 +187,6 @@ export default function DemoPage() {
   if (!scale) return <SpinnerIcon />;
   return (
     <div className="w-full h-full flex flex-col bg-stone-800 ">
-      {/* <HeaderForDarkBackground /> */}
       <Link to={"/"} className="absolute top-10 left-10">
         <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={65} height={65} />
       </Link>
@@ -206,7 +201,7 @@ export default function DemoPage() {
 
           {PLANET_LIST.map(({ id, imageId, name, width, height, x, y, z }) => (
             <div key={imageId}>
-              {id < 4 && (
+              {/* {id < 4 && (
                 <label
                   className="text-xs p-1 bg-yellow-200"
                   style={{
@@ -218,18 +213,7 @@ export default function DemoPage() {
                 >
                   click here!
                 </label>
-              )}
-              {/* <label
-                className="text-xs text-white bg-black"
-                style={{
-                  position: "absolute",
-                  left: Math.round(x * scale - 20),
-                  top: Math.round(y * scale + 90),
-                  zIndex: 3,
-                }}
-              >
-                {name}
-              </label> */}
+              )} */}
 
               <img
                 key={name}
@@ -251,7 +235,7 @@ export default function DemoPage() {
           ))}
         </div>
       </section>
-      <div className=" bg-neutral-100 rounded-4xl py-3  flex-col w-1/5 gap-3 p-5 absolute top-[20%]">
+      <div className="hidden bg-neutral-100 rounded-4xl py-3  flex-col w-1/5 gap-3 p-5 absolute top-[20%]">
         <button> 퍼블릭 음원 파일 업로드</button>
         <input id="sound-file" type="file" accept="audio/*" className="hidden" onChange={handleFileUpload} />
         <div>
@@ -276,7 +260,6 @@ export default function DemoPage() {
             setSelectedPlanetId(null);
           }}
         >
-          {/* <PreviewContent data={selectedPlanet} /> */}
           <PreviewContentCopy data={selectedPlanet} />
         </Modal>
       )}

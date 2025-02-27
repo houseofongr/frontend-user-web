@@ -11,17 +11,16 @@ export default function PublicHomesPage() {
         </p>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10  mx-auto">
           {PUBLIC_HOMES.map((home, index) => {
-            console.log(home);
             return (
-              <Link key={index} to={`/common/homes/${home.id}/init`}>
-                <li className="flex flex-col p-1">
+              <li key={index} className="flex flex-col p-1">
+                <Link to={`/common/homes/${home.id}/init`}>
                   <img src={home.thumbnailImg} />
                   <div className="mt-2">
                     <p>{home.brand}</p>
                     <p className="font-extralight text-sm md:text-base line-clamp-2">{home.brandIntroduce}</p>
                   </div>
-                </li>
-              </Link>
+                </Link>
+              </li>
             );
           })}
         </ul>

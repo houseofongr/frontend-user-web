@@ -53,7 +53,6 @@ export default function PreviewContentCopy({ data }: { data: PreviewContentProp 
       {/* 파형 섹션 */}
       <div className="w-1/2 flex-center  ">
         {/* <WaveformWithAudio audioUrl={soundSrc} audioTitle={name} /> */}
-        {/* https://dev.file.archiveofongr.site/public/audios */}
         <WaveformWithAudio
           audioUrl={`https://dev.file.archiveofongr.site/public/audios/${audioFileId}`}
           audioTitle={name}
