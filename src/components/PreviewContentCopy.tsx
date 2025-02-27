@@ -1,4 +1,3 @@
-import API_CONFIG from "../config/api";
 import WaveformWithAudio from "./Waveform";
 
 type PreviewContentProp = {
@@ -18,7 +17,7 @@ type PreviewContentProp = {
 };
 
 export default function PreviewContentCopy({ data }: { data: PreviewContentProp }) {
-  const { name, description, updatedDate, audioFileId } = data;
+  const { name, description, updatedDate } = data;
   return (
     <div className="flex flex-col md:flex-row gap-5 text-black px-7 min-h-[550px]  md:min-w-[800px] lg:min-w-[1000px]">
       <div className="fixed mt-2 flex  gap-2 items-end">
@@ -54,7 +53,9 @@ export default function PreviewContentCopy({ data }: { data: PreviewContentProp 
       {/* 파형 섹션 */}
       <div className="w-1/2 flex-center  ">
         {/* <WaveformWithAudio audioUrl={soundSrc} audioTitle={name} /> */}
-        <WaveformWithAudio audioUrl={`${API_CONFIG.PUBLIC_AUDIO_LOAD_API}/${audioFileId}`} audioTitle={name} />
+        {/* https://dev.file.archiveofongr.site/public/audios */}
+        <WaveformWithAudio audioUrl={`https://dev.file.archiveofongr.site/public/audios/460`} audioTitle={name} />
+        {/* <WaveformWithAudio audioUrl={`${API_CONFIG.PUBLIC_AUDIO_LOAD_API}/${audioFileId}`} audioTitle={name} /> */}
       </div>
     </div>
   );
