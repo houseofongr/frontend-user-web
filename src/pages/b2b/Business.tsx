@@ -11,7 +11,7 @@ const CLIENT_LIST = [
 export default function BusinessPage() {
   const settings = {
     dots: true,
-    speed: 500,
+    speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
     adaptiveHeight: false,

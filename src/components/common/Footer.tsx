@@ -6,7 +6,8 @@ import { useLocation } from "react-router-dom";
 // 아래의 두 경로에서 dark bg 적용
 // <Route path="/main/home" element={<MainHome />} />
 // <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
-const SET_DARK_BG = /^\/main\/home(?:\/[^/]+\/rooms\/[^/]+)?$/;
+//  <Route path="/common/homes/1/demo" element={<DemoPage />} />;
+const SET_DARK_BG = /^\/main\/home(?:\/[^/]+\/rooms\/[^/]+)?$|^\/common\/homes\/1\/demo$/;
 
 export default function Footer() {
   const location = useLocation();
