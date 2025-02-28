@@ -34,7 +34,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <span className="text-primary text-xs md:text-lg">MENU</span>
         </div>
 
-        <nav className="px-20 pt-10">
+        <nav className="px-20 ">
+          {/* 집 로고 이미지 */}
+          <Link to={"/"} className="flex-center cursor-pointer mb-10 w-3/5" onClick={onClose}>
+            <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={70} height={65} />
+          </Link>
           <ul className="flex flex-col gap-10">
             {TABS.map(({ label, href }) => {
               const isActive = pathName === href;

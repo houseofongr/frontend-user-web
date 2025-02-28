@@ -35,7 +35,6 @@ export default function Header() {
         <ul className="w-1/3 flex justify-end gap-2 md:gap-10 text-sm md:text-base">
           {TABS.map(({ label, href, icon }) => {
             const isActive = pathName === href;
-
             return (
               <li key={label}>
                 <Link

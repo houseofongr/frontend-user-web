@@ -14,7 +14,6 @@ export default function WelcomePage() {
 
   useEffect(() => {
     const token = sessionStorage.getItem("authToken");
-    console.log("token", token);
     if (!token) {
       navigate("/login");
     }
@@ -38,7 +37,7 @@ export default function WelcomePage() {
       {userLoading || !user ? (
         <SpinnerIcon />
       ) : (
-        <div className=" md:text-[20px]">
+        <div className="text-center md:text-[20px]">
           <h1 className="">{user.nickname} 님,</h1>
           <h2>다시 오신 걸 환영해요!</h2>
         </div>
