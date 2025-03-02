@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full flex justify-between items-center sticky top-0   p-4 md:p-10 bg-transparent z-10 border-b border-gray-200  ">
+      <header className="w-full flex justify-between items-center sticky top-0  p-4 md:p-10 bg-transparent z-10 border-b border-gray-200  ">
         <div className="w-1/3 flex justify-start">
           <span className="cursor-pointer text-xs md:text-lg" onClick={() => setIsOpenSlider(true)}>
             MENU

@@ -2,7 +2,8 @@ import { Rect } from "react-konva";
 import Konva from "konva";
 import { useRef } from "react";
 import { RectangleData } from "../../types/items";
-// import { Html, useImage } from "react-konva-utils";
+import { Html } from "react-konva-utils";
+import { EFFECT_SIZE } from "../../constants/componentSize";
 
 interface RectangleProps {
   shapeProps: RectangleData["rectangleData"];
@@ -11,27 +12,55 @@ interface RectangleProps {
 
 function RectItem({ shapeProps, onClick }: RectangleProps) {
   const shapeRef = useRef<Konva.Rect | null>(null);
-  // const [isHovered, setIsHovered] = useState(false);
+  // 1. Rectangle 중심 좌표값
+  const centerX = shapeProps.x + shapeProps.width / 2;
+  const centerY = shapeProps.y + shapeProps.height / 2;
+
+  // 2. Rotation 적용을 위한 라디안 값 변환
+  // 0도 : 0 , 45도 : 0.5236, 90도 : 1.5708, 180도 : 3.1416
+  const rotationRad = (shapeProps.rotation * Math.PI) / 180;
+
+  // 3. 회전된 중심 좌표를 계산
+  const rotatedX =
+    shapeProps.x + (centerX - shapeProps.x) * Math.cos(rotationRad) - (centerY - shapeProps.y) * Math.sin(rotationRad);
+  const rotatedY =
+    shapeProps.y + (centerX - shapeProps.x) * Math.sin(rotationRad) + (centerY - shapeProps.y) * Math.cos(rotationRad);
 
   return (
-    <Rect
-      {...shapeProps}
-      // opacity={0.6}
-      // stroke={isHovered ? "white" : "black"}
-      // strokeWidth={isHovered ? 4 : 2}
-      stroke={"red"}
-      strokeWidth={2}
-      ref={shapeRef}
-      onClick={onClick}
-      onMouseEnter={() => {
-        document.body.style.cursor = "pointer";
-        // setIsHovered(true);
-      }}
-      onMouseLeave={() => {
-        document.body.style.cursor = "default";
-        // setIsHovered(false);
-      }}
-    />
+    <>
+      <Rect
+        {...shapeProps}
+        // opacity={0.6}
+        // stroke={"red"}
+        // strokeWidth={2}
+        ref={shapeRef}
+        onClick={onClick}
+        onMouseEnter={() => {
+          document.body.style.cursor = "pointer";
+        }}
+        onMouseLeave={() => {
+          document.body.style.cursor = "default";
+        }}
+      />
+      <Html
+        divProps={{
+          style: {
+            position: "absolute",
+            pointerEvents: "none",
+            top: `${rotatedY - EFFECT_SIZE / 2}px`,
+            left: `${rotatedX - EFFECT_SIZE / 2}px`,
+            // transform: `rotate(${shapeProps.rotation}deg)`,
+            // transformOrigin: `${shapeProps.y + shapeProps.height / 2}px ${shapeProps.x + shapeProps.width / 2}px`,
+          },
+        }}
+      >
+        <img
+          src="/images/effect/03-unscreen.gif"
+          className="bg-transparent opacity-80"
+          style={{ position: "relative", width: `${EFFECT_SIZE}px` }}
+        />
+      </Html>
+    </>
   );
 }
 

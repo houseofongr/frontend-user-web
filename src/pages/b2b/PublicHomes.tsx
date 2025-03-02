@@ -13,7 +13,7 @@ export default function PublicHomesPage() {
           {PUBLIC_HOMES.map((home, index) => {
             return (
               <li key={index} className="flex flex-col p-1">
-                <Link to={`/common/homes/${home.id}/init`}>
+                <Link to={`/common/homes/${home.id}/demo`}>
                   <img src={home.thumbnailImg} />
                   <div className="mt-2">
                     <p>{home.brand}</p>

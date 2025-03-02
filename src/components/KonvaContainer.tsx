@@ -34,10 +34,6 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
           />
         )}
 
-        {/* <Html divProps={{ style: { position: "absolute", pointerEvents: "none" } }}>
-          <GlowingItem />
-        </Html> */}
-
         {shapes.map((shape) => {
           if ("rectangleData" in shape && shape.rectangleData) {
             return <RectItem key={shape.id} shapeProps={shape.rectangleData} onClick={() => onItemClick(shape.id)} />;
@@ -51,28 +47,4 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
       </Layer>
     </Stage>
   );
-}
-
-{
-  /* {shapes.map((shape, index) => {
-          console.log("shpq", shape);
-          let x = 0,
-            y = 0;
-          if ("rectangleData" in shape && shape.rectangleData) {
-            x = shape.rectangleData.x;
-            y = shape.rectangleData.y;
-          } else if ("circleData" in shape && shape.circleData) {
-            x = shape.circleData.x;
-            y = shape.circleData.y;
-          } else if ("ellipseData" in shape && shape.ellipseData) {
-            x = shape.ellipseData.x;
-            y = shape.ellipseData.y;
-          }
-
-          return (
-            <Html key={index} divProps={{ style: { position: "absolute", pointerEvents: "none" } }}>
-              <GlowingItem />
-            </Html>
-          );
-        })} */
 }

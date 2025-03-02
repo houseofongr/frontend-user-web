@@ -3,15 +3,25 @@ import { motion } from "framer-motion";
 import InitHouseImage from "../../../components/InitHouseImage";
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../../constants/componentSize";
 import API_CONFIG from "../../../config/api";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [isAnimationComplete, setIsAnimationComplete] = useState<boolean>(false);
   const [yValue, setYValue] = useState(180);
-
+  const navigate = useNavigate();
   const handleLogin = async (provider: string) => {
     console.log(`${API_CONFIG.BACK_API}/authn/login/${provider}`);
     window.location.href = `${API_CONFIG.BACK_API}/authn/login/${provider}`;
   };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("authToken");
+    if (!token) {
+      navigate("/login");
+    } else {
+      navigate("/main/home");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const updateYValue = () => {

@@ -24,7 +24,7 @@ const AuthPage = () => {
     } else {
       console.log("기존유저");
       if (nickname && accessToken) {
-        navigate("/login/auth/complete");
+        navigate("/main/home");
         sessionStorage.setItem("nickname", nickname);
         sessionStorage.setItem("authToken", accessToken);
       }

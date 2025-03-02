@@ -11,13 +11,13 @@ import RoomDetailPage from "./pages/user/RoomDetail";
 import TermsOfServicePage from "./pages/user/login/TermsOfSevice";
 import WithdrawalAccountPage from "./pages/user/mypage/WithdrawalAccount";
 import RecheckWithdrawalPage from "./pages/user/mypage/RecheckWithdrawal";
-import ReservationPage from "./pages/user/Reservation";
 import RootLayout from "./components/layout/RootLayout";
 import MyHomesPage from "./pages/user/MyHomes";
-import WelcomePage from "./pages/user/login/WelcomePage";
+// import ReservationPage from "./pages/user/Reservation";
+// import WelcomePage from "./pages/user/login/WelcomePage";
 import PublicHomesPage from "./pages/b2b/PublicHomes";
 import BusinessPage from "./pages/b2b/Business";
-import Init from "./pages/b2b/homesDemo/250226/Init";
+// import Init from "./pages/b2b/homesDemo/250226/Init";
 import DemoPage from "./pages/b2b/homesDemo/250226/Demo";
 
 function App() {
@@ -30,29 +30,23 @@ function App() {
           {/* 신규 유저 */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/auth" element={<AuthPage />} />
-          <Route path="/login/auth/complete" element={<WelcomePage />} />
+          {/* <Route path="/login/auth/complete" element={<WelcomePage />} /> */}
           <Route path="/login/terms" element={<TermsOfServicePage />} />
-
           {/* 기존유저 */}
           <Route path="/main/home" element={<MyHomesPage />} />
           <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
-
           <Route path="/mypage/account" element={<Mypage />} />
           <Route path="/mypage/account/withdraw" element={<WithdrawalAccountPage />} />
           <Route path="/mypage/account/withdraw/recheck" element={<RecheckWithdrawalPage />} />
-
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+          {/* <Route path="/reservation" element={<ReservationPage />} /> */}
+          {/* public page */} <Route path="/about" element={<AboutPage />} />
           <Route path="/program" element={<ProgramPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-
-          {/* 진행 예정 페이지 */}
-          <Route path="/reservation" element={<ReservationPage />} />
           <Route path="/common/business" element={<BusinessPage />} />
-          {/* public page */}
           <Route path="/common/homes" element={<PublicHomesPage />} />
           {/* demo page */}
-          <Route path="/common/homes/1/init" element={<Init />} />
+          {/* <Route path="/common/homes/1/init" element={<Init />} /> */}
           <Route path="/common/homes/1/demo" element={<DemoPage />} />
         </Routes>
       </RootLayout>

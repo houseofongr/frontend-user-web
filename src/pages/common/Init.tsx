@@ -10,7 +10,7 @@ export default function InitPage() {
   useEffect(() => {
     const token = sessionStorage.getItem("authToken");
     console.log("token", token);
-    setPath(token ? "/login/auth/complete" : "/login");
+    setPath(token ? "/main/home" : "/login");
   }, []);
   return (
     <div
