@@ -1,24 +1,24 @@
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
 
-const CLIENT_LIST = [
-  { id: 1, name: "한국 백혈병 어린이재단", image: "/images/clientLogo/logo_1.png" },
-  { id: 2, name: "삼성", image: "/images/clientLogo/logo_2.png" },
-  { id: 3, name: "러쉬", image: "/images/clientLogo/logo_3.png" },
-  { id: 4, name: "디올", image: "/images/clientLogo/logo_4.png" },
-  { id: 5, name: "샤넬", image: "/images/clientLogo/logo_5.png" },
-];
+// const CLIENT_LIST = [
+//   { id: 1, name: "한국 백혈병 어린이재단", image: "/images/clientLogo/logo_1.png" },
+//   { id: 2, name: "삼성", image: "/images/clientLogo/logo_2.png" },
+//   { id: 3, name: "러쉬", image: "/images/clientLogo/logo_3.png" },
+//   { id: 4, name: "디올", image: "/images/clientLogo/logo_4.png" },
+//   { id: 5, name: "샤넬", image: "/images/clientLogo/logo_5.png" },
+// ];
 export default function BusinessPage() {
-  const settings = {
-    dots: true,
-    speed: 300,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    adaptiveHeight: false,
-    className: "pl-20",
-    autoplay: true,
-    arrow: false,
-  };
+  // const settings = {
+  //   dots: true,
+  //   speed: 300,
+  //   slidesToShow: 4,
+  //   slidesToScroll: 1,
+  //   adaptiveHeight: false,
+  //   className: "pl-20",
+  //   autoplay: true,
+  //   arrow: false,
+  // };
   return (
     <div
       className="w-full flex flex-col justify-between items-center bg-neutral-100"
@@ -42,8 +42,8 @@ export default function BusinessPage() {
       </section>
       <section className="w-full py-8 ">
         {/* <div className="text-xl md:text-2xl font-extralight text-center mb-10">고객사</div> */}
-
-        <div className="slider-container px-10">
+        {/* 클라이언트 캐러셀 */}
+        {/* <div className="slider-container px-10 ">
           <Slider {...settings}>
             {CLIENT_LIST.map((slide, index) => {
               return (
@@ -59,7 +59,7 @@ export default function BusinessPage() {
               );
             })}
           </Slider>
-        </div>
+        </div> */}
       </section>
     </div>
   );
