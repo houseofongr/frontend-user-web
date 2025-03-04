@@ -41,9 +41,9 @@ export default function ContactPage() {
       className="w-full flex flex-col bg-neutral-100"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
-      <div className="mx-8 md:mx-auto md:w-[70%] flex-col md:flex-row flex items-center justify-center md:gap-30 py-10 md:py-20">
+      <div className="mx-8 lg:mx-auto lg:w-[70%] flex-col lg:flex-row flex items-center justify-center lg:gap-30 py-10 md:py-20">
         {/* 왼쪽 섹션 */}
-        <section className="md:w-1/2 min-h-[500px]">
+        <section className="lg:w-1/2 min-h-[500px]">
           <p className="text-xl md:text-2xl">문의</p>
           <p className="text-sm md:text-base font-extralight mb-10">
             아래의 이메일 주소를 사용하거나 양식을 사용하여 문의 부탁 드립니다.
@@ -53,7 +53,7 @@ export default function ContactPage() {
             {contactInfo.map((item, index) => (
               <li key={index} className="flex gap-4 items-center py-3">
                 <div className="p-3 rounded-full bg-white">{item.icon}</div>
-                <div className="flex flex-col leading-tight">
+                <div className="flex flex-col">
                   <label className="text-[10px] md:text-xs">{item.label}</label>
                   <span className="font-extralight text-sm md:text-base">{item.text}</span>
                 </div>
@@ -77,8 +77,8 @@ export default function ContactPage() {
           </div>
         </section>
         {/* 오른쪽 섹션 */}
-        <section className="md:w-1/2 shadow-md flex-col flex p-3 lg:p-7 bg-white rounded">
-          <p className=" md:hidden font-extrabold text-2xl pb-3">CONTACT US</p>
+        <section className="md:w-2/3 lg:w-1/2 shadow-md flex-col flex p-3 lg:p-7 bg-white rounded">
+          <p className="lg:hidden font-extrabold text-2xl pb-3">CONTACT US</p>
           <div>
             <p className="text-sm md:text-base font-extralight ">
               '아카이브 오브 옹알'에 궁금한 점이나 문의 사항이 있다면 아래 양식을 작성해 주세요.
