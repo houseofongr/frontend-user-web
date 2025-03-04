@@ -25,9 +25,8 @@ export default function AboutPage() {
       className="w-full flex flex-col justify-between items-center bg-neutral-100 "
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
-      <section className=" w-[70%]  py-10 md:py-20">
+      <section className="mx-8 py-10 md:py-20 w-[70%]  flex flex-col">
         <p className="text-xl md:text-2xl mb-5">소개</p>
-        {/* <p className="text-sm md:text-base font-extralight mb-5">서브 타이틀 </p> */}
 
         <div className="space-y-1.5 flex justify-center  text-[15px]">
           <div className="md:max-w-[60%] ">
@@ -53,13 +52,12 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-        <aside className="mt-20 ">
-          <div></div>
+        <aside className="mt-20">
           <p className="text-xl md:text-2xl pb-5 mb-5">서비스 특징</p>
-          <ul className="flex flex-col md:flex-row gap-10  justify-center ">
+          <ul className="flex flex-col md:flex-row md:gap-2 lg:gap-10 justify-center ">
             {SERVICE_FEATURES.map((item, index) => {
               return (
-                <li key={index} className="flex-center flex-col md:w-[22%]  p-3 border-gray-200">
+                <li key={index} className="flex-center flex-col md:w-1/3 lg:w-[22%] p-3 border-gray-200">
                   <img src={item.src} alt={item.text} width={100} height={100} className="mb-5 animate-bounce" />
                   <div className="min-h-32 text-center">
                     <p className="text-sm pb-2 ">{item.title}</p>
