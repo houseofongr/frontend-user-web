@@ -10,5 +10,5 @@ export default function ReservationPage() {
       navigate("/login");
     }
   }, [navigate]);
-  return <div>예약 페이지</div>;
+  return <div className="w-full flex-center mt-[20%]">준비중입니다.</div>;
 }

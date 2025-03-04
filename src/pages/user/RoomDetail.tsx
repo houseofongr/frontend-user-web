@@ -8,8 +8,9 @@ import SpinnerIcon from "../../components/icons/SpinnerIcon";
 import RoomDetailLayout from "../../components/layout/RoomDetailLayout";
 import KonvaContainer from "../../components/KonvaContainer";
 import formatShapeDataForView from "../../utils/formatShapeDataForView";
-import ItemSoundList from "../../components/ItemSoundList";
 import { BaseRoom } from "../../types/home";
+import { BiSolidPlaylist } from "react-icons/bi";
+import ItemSoundList from "../../components/ItemSoundList";
 
 export default function RoomDetailPage() {
   const { homeId, roomId } = useParams<{ homeId: string; roomId: string }>();
@@ -17,9 +18,19 @@ export default function RoomDetailPage() {
   const [shapes, setShapes] = useState<ShapeData[]>([]);
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [itemSounds, setItemSounds] = useState<ItemSoundsData>({ itemName: "", sounds: [] });
-
   const [imageSize, setImageSize] = useState({ width: 0, height: 0, scale: 1, scaleAxis: "" });
   const [backgroundImage, setBackgroundImage] = useState<HTMLImageElement | null>(null);
+  const [showSoundList, setShowSoundList] = useState<boolean>(false);
+  console.log("selectedItemId", selectedItemId);
+  const handleViewSoundList = () => {
+    setShowSoundList((prev) => !prev);
+    if (!showSoundList) {
+      setSelectedItemId(null);
+    }
+    if (!selectedItemId) {
+      setItemSounds({ itemName: "", sounds: [] });
+    }
+  };
 
   const getItemSounds = useCallback(async (itemId: number) => {
     const data = await fetchItemSounds(itemId);
@@ -29,6 +40,7 @@ export default function RoomDetailPage() {
   const handleItemClick = (itemId: number) => {
     setSelectedItemId(itemId);
     getItemSounds(itemId);
+    setShowSoundList(true);
   };
 
   useEffect(() => {
@@ -109,7 +121,23 @@ export default function RoomDetailPage() {
         shapes={shapes}
         onItemClick={handleItemClick}
       />
-      {selectedItemId && itemSounds && <ItemSoundList itemSounds={itemSounds} />}
+      {/* 음원 목록 토글 버튼 */}
+      <div className="fixed top-0 right-0 p-3 cursor-pointer" onClick={handleViewSoundList}>
+        <BiSolidPlaylist size={30} color="white" />
+      </div>
+
+      {showSoundList && (
+        <div className="absolute top-0 right-0 bg-stone-900 z-10 min-w-[300px] min-h-[150px]">
+          <div className="flex justify-end p-3">
+            <BiSolidPlaylist size={30} color="#f5946d" onClick={handleViewSoundList} className="cursor-pointer" />
+          </div>
+          {selectedItemId ? (
+            <ItemSoundList itemSounds={itemSounds} />
+          ) : (
+            <div className="text-white text-center">아이템을 클릭해주세요.</div>
+          )}
+        </div>
+      )}
     </RoomDetailLayout>
   );
 }
