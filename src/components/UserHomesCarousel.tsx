@@ -26,7 +26,6 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
   // const slickRef = useRef(null);
   // const previous = useCallback(() => slickRef?.current?.slickPrev(), []);
   // const next = useCallback(() => slickRef?.current?.slickNext(), []);
-  console.log(selectedHomeId);
 
   const settings = {
     dots: true,
@@ -35,7 +34,6 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    className: "max-w-fit min-w-[220px]",
     // autoplay: true,
     arrow: false,
     // nextArrow: <SampleNextArrow />,
@@ -43,7 +41,7 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
   };
 
   return (
-    <div className="slider-container w-[70%] md:w-[225px] ">
+    <div className="slider-container w-[50%] md:w-[225px] ">
       <Slider {...settings}>
         {slides.map((slide, index) => {
           return (
@@ -65,9 +63,7 @@ export default function UserHomesCarousel({ slides, onHomeSelect, selectedHomeId
                 className=" object-contain outline-none "
                 src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${slide.basicImageId}`}
               />
-              <p className="text-center text-xs w-[220px] line-clamp-1 overflow-hidden break-words text-stone-50 pt-2">
-                {slide.name}
-              </p>
+              <p className="text-center text-xs line-clamp-2 overflow-hidden text-stone-50 pt-2">{slide.name}</p>
             </div>
           );
         })}

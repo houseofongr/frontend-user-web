@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { PiHouseLine, PiUser, PiCalendarDots } from "react-icons/pi";
 import Sidebar from "./Slidebar";
-// import { AiOutlineMenu } from "react-icons/ai"; // 모바일 메뉴 아이콘
+import { AiOutlineMenu } from "react-icons/ai";
 
 type Tab = {
   label: string;
@@ -10,9 +10,9 @@ type Tab = {
   icon?: React.ReactNode;
 };
 const TABS: Tab[] = [
-  { label: "RESERVATION", href: "/reservation", icon: <PiCalendarDots size={30} /> },
-  { label: "MY HOMES", href: "/main/home", icon: <PiHouseLine size={30} /> },
-  { label: "MY PAGE", href: "/mypage/account", icon: <PiUser size={30} /> },
+  { label: "RESERVATION", href: "/reservation", icon: <PiCalendarDots className="text-xl md:text-4xl" /> },
+  { label: "MY HOMES", href: "/main/home", icon: <PiHouseLine className="text-xl md:text-4xl" /> },
+  { label: "MY PAGE", href: "/mypage/account", icon: <PiUser className="text-xl md:text-4xl" /> },
 ];
 
 export default function HeaderForDarkBackground() {
@@ -22,18 +22,17 @@ export default function HeaderForDarkBackground() {
 
   return (
     <>
-      <header className="w-full flex justify-between items-center fixed bg-transparent pt-5 md:pt-10 pl-5 md:pl-10 z-10 text-white">
-        {/* 집 로고 이미지 */}
-        {/* <Link to={"/"} className="flex flex-col items-center md:flex-row cursor-pointer ">
-          <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={65} height={65} />
-        </Link> */}
+      <header className="w-full flex justify-between items-center fixed bg-transparent p-4 md:p-10 pl-5 md:pl-10 z-10 text-white">
         <div className="w-1/3 flex">
-          <span className="cursor-pointer text-lg" onClick={() => setIsOpenSlider(true)}>
-            {/* <AiOutlineMenu size={25} /> // 모바일 */}
+          <span className="cursor-pointer lg:hidden" onClick={() => setIsOpenSlider(true)}>
+            <AiOutlineMenu className="text-xl md:text-4xl" />
+          </span>
+
+          <span className="cursor-pointer hidden lg:block lg:text-lg" onClick={() => setIsOpenSlider(true)}>
             MENU
           </span>
         </div>
-        <ul className="flex gap-5 md:gap-10 text-xs md:text-base pr-5 md:pr-10">
+        <ul className="flex gap-4 md:gap-10">
           {TABS.map(({ label, href, icon }) => {
             const isActive = pathName === href;
 

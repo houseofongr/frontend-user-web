@@ -69,12 +69,11 @@ export default function MyHomesPage() {
   return (
     <div className="w-full flex flex-col bg-stone-800 pb-10">
       <HeaderForDarkBackground />
-      <section className="mt-10 flex-center min-h-screen">
+      <section className="md:mt-10 flex-center min-h-screen">
         {homeDataLoading || isFetching || isPending ? (
           <SpinnerIcon />
         ) : showDefaultHome ? (
           <div className="text-center">
-            {/* 보유한 홈이 없을 경우 보여줘야할 기본 홈 이미지 */}
             <p className="inline bg-stone-700 px-4 py-2 text-gray-100">
               {user.nickname}님, 보유중인 하우스가 존재하지 않거나 메인 하우스 설정을 아직 하지 않았습니다.
             </p>
@@ -92,10 +91,12 @@ export default function MyHomesPage() {
         )}
       </section>
 
-      <div className="w-full flex-center flex-col pt-10">
+      <div className="w-full flex-center flex-col lg:pt-10">
         {hasHomes && homeList.length > 1 && (
           <>
-            <span className="text-center font-bold text-white">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>
+            <div className="text-center  text-white">
+              <span className="font-bold">{user.nickname}</span> 님이 가지고 있는 홈 목록입니다.
+            </div>
             <p className="text-white">좌우로 움직여 메인으로 보여줄 나의 집을 설정해보세요!</p>
             <UserHomesCarousel slides={homeList} onHomeSelect={handleHomeSelect} selectedHomeId={selectedHomeId} />
           </>
@@ -104,8 +105,10 @@ export default function MyHomesPage() {
         {/* 보유한 홈이 1개이면서 - 메인홈 설정이 있는경우 ||  메인홈 설정이 없는경우 */}
         {hasHomes && homeList.length === 1 && (
           <>
-            <span className="text-center font-bold text-white">{user.nickname}님이 가지고 있는 홈 목록입니다.</span>
-            <p className="text-center  text-white mb-10">
+            <div className="text-center text-white">
+              <span className="font-bold">{user.nickname}</span> 님이 가지고 있는 홈 목록입니다.
+            </div>
+            <p className="text-center text-white mb-10">
               {hasMainHome ? "현재 메인 홈으로 설정된 하우스입니다." : "메인 홈으로 설정하여 방으로 이동해보세요!"}
             </p>
             <div className="flex flex-col outline-none relative">
