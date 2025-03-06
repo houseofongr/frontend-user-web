@@ -35,6 +35,7 @@ function RectItem({ shapeProps, onClick }: RectangleProps) {
         // strokeWidth={2}
         ref={shapeRef}
         onClick={onClick}
+        onTap={onClick}
         onMouseEnter={() => {
           document.body.style.cursor = "pointer";
         }}

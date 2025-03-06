@@ -31,6 +31,7 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
             y={(window.innerHeight - imageSize.height * imageSize.scale) / 2}
             width={imageSize.width * imageSize.scale}
             height={imageSize.height * imageSize.scale}
+            listening={true} // 이벤트 감지 활성화
           />
         )}
 

@@ -18,6 +18,7 @@ function CircleItem({ shapeProps, onClick }: CircleProps) {
       <Circle
         {...shapeProps}
         onClick={onClick}
+        onTap={onClick}
         // stroke={"red"}
         // strokeWidth={2}
         ref={shapeRef}

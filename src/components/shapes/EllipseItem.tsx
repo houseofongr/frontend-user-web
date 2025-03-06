@@ -21,6 +21,7 @@ function EllipseItem({ shapeProps, onClick }: EllipseProps) {
         // stroke={"red"}
         // strokeWidth={1}
         onClick={onClick}
+        onTap={onClick}
         ref={shapeRef}
         onMouseEnter={() => {
           document.body.style.cursor = "pointer";
