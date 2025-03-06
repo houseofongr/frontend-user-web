@@ -23,7 +23,7 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
   if (!backgroundImage) return <SpinnerIcon />;
   return (
     // pinch-zoom 가능 속성 추가
-    <Stage width={window.innerWidth} height={window.innerHeight} style={{ touchAction: "pinch-zoom" }}>
+    <Stage width={window.innerWidth} height={window.innerHeight}>
       <Layer>
         {backgroundImage && (
           <KonvaImage
@@ -33,6 +33,7 @@ export default function KonvaContainer({ backgroundImage, imageSize, shapes, onI
             width={imageSize.width * imageSize.scale}
             height={imageSize.height * imageSize.scale}
             listening={true} // 이벤트 감지 활성화
+            style={{ touchAction: "pinch-zoom" }}
           />
         )}
 
