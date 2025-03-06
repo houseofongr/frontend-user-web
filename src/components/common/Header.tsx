@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 import { PiHouseLine, PiUser, PiCalendarDots } from "react-icons/pi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./Slidebar";
 
 type Tab = {
@@ -20,6 +20,10 @@ export default function Header() {
   const location = useLocation();
   const pathName = location.pathname;
   const [isOpenSlider, setIsOpenSlider] = useState(false);
+
+  useEffect(() => {
+    setIsOpenSlider(false);
+  }, [location.pathname]);
 
   return (
     <>
@@ -54,7 +58,7 @@ export default function Header() {
         </ul>
       </header>
 
-      <Sidebar isOpen={isOpenSlider} onClose={() => setIsOpenSlider(false)} />
+      {isOpenSlider && <Sidebar isOpen={isOpenSlider} onClose={() => setIsOpenSlider(false)} />}
     </>
   );
 }

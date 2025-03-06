@@ -32,9 +32,9 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
       progressColor: "#ff6347", // bg light version
       // progressColor: "#F5946D", // bg dark version
       cursorColor: "#F5946D",
-      height: 150,
+      height: 100, //150
       // barHeight: 20,
-      barWidth: 0.5,
+      barWidth: 1,
       cursorWidth: 1,
       barGap: 0.5,
       // barGap: 0,
@@ -146,9 +146,9 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
   };
 
   return (
-    <div className="flex flex-col px-5 max-w-[450px]">
+    <div className="flex flex-col ">
       {/* 파형/오디오 */}
-      <div ref={waveformRef} className=" bg-stone-800/90 " />
+      <div ref={waveformRef} className="bg-stone-800" />
       <div className="mb-8">
         <audio ref={audioRef} controls src={audioUrl} className="hidden" />
       </div>
@@ -171,7 +171,7 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
             <span className="text-xs text-gray-500">{formatTime(duration)}</span>
           </div>
         </div>
-        <div className="w-full flex justify-center pl-18 gap-4">
+        <div className="w-full flex justify-center md:pl-18 gap-4 border border-white">
           {/* 뒤로 10초 */}
           <button onClick={() => handleSkip(-10)}>
             <MdReplay10 size={25} color="#f3f3f3" />
@@ -179,18 +179,18 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
           {/* 재생/일시정지 */}
           <button onClick={handlePlayPause}>
             {isPlaying ? (
-              <TbPlayerPauseFilled size={25} color="#f3f3f3" />
+              <TbPlayerPauseFilled className="text-base md:text-3xl" color="#f3f3f3" />
             ) : (
-              <TbPlayerPlayFilled size={25} color="#f3f3f3" />
+              <TbPlayerPlayFilled className="text-base md:text-3xl" color="#f3f3f3" />
             )}
           </button>
           {/* 정지 */}
           <button onClick={handleStop} className="p-2 ">
-            <TbPlayerStopFilled size={25} color="#f3f3f3" />
+            <TbPlayerStopFilled className="text-base md:text-3xl" color="#f3f3f3" />
           </button>
           {/* 앞으로 10초 */}
           <button onClick={() => handleSkip(10)}>
-            <MdForward10 size={25} color="#f3f3f3" />
+            <MdForward10 className="text-base md:text-3xl" color="#f3f3f3" />
           </button>
           {/* 음소거 */}
           <div className=" flex justify-end items-center">

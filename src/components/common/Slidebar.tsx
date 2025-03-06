@@ -24,7 +24,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <>
-      {isOpen && <div className="fixed inset-0 z-10" onClick={onClose}></div>}
+      {isOpen && <div className="fixed inset-0 z-10 " onClick={onClose}></div>}
       <div
         className={`fixed top-0 left-0 h-full w-44 md:w-64 bg-white shadow-md border border-r border-gray-200 z-50 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"

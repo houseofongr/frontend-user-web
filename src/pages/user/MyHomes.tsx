@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SpinnerIcon from "../../components/icons/SpinnerIcon";
 import RenderImages from "../../components/RenderImages";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import UserHomesCarousel from "../../components/UserHomesCarousel";
 import { useUserData } from "../../hooks/useUserData";
 import { useUserStore } from "../../stores/useUserStore";
@@ -16,7 +16,7 @@ import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 export default function MyHomesPage() {
   const [scale, setScale] = useState<number | null>(null);
   const [selectedHomeId, setSelectedHomeId] = useState<number | null>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { isLoading: userLoading, isError: userError } = useUserData();
   const { user } = useUserStore();
   const { data: homeList, isLoading: homeListLoading, isError: homeListError } = useHomeList();
@@ -45,12 +45,12 @@ export default function MyHomesPage() {
     setScale(window.innerWidth < window.innerHeight ? window.innerWidth / 5000 : window.innerHeight / 5000);
   }, []);
 
-  useEffect(() => {
-    const token = sessionStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const token = sessionStorage.getItem("authToken");
+  //   if (!token) {
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   const handleHomeSelect = (homeId: number) => {
     setSelectedHomeId(homeId);

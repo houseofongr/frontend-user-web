@@ -54,7 +54,7 @@ export default function HeaderForDarkBackground() {
           })}
         </ul>
       </header>
-      <Sidebar isOpen={isOpenSlider} onClose={() => setIsOpenSlider(false)} />
+      {isOpenSlider && <Sidebar isOpen={isOpenSlider} onClose={() => setIsOpenSlider(false)} />}
     </>
   );
 }

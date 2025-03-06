@@ -8,7 +8,7 @@ import FileNameLabel from "../../../../components/FileNameLabel";
 import { MdCancel } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import CircleButton from "../../../../components/common/CircleButton";
-import PreviewContentCopy from "../../../../components/PreviewContentCopy";
+import PreviewContentCopy from "../../../../components/demo/PreviewContentCopy";
 
 const PLANET_LIST = [
   {
@@ -17,7 +17,7 @@ const PLANET_LIST = [
     description: "13살 아랑이가 지구에 담고 싶은 소리",
     imgSrc: "/images/demo/planet/cropped/planet_v1.png",
     soundSrc: "/audio/HOO_01.mp3",
-    audioFileId: 460, // 골골
+    audioFileId: 460,
     x: 2700,
     y: 1730,
     width: 1666,
@@ -186,11 +186,16 @@ export default function DemoPage() {
 
   if (!scale) return <SpinnerIcon />;
   return (
-    <div className="w-full h-full flex flex-col bg-stone-800 ">
-      <Link to={"/"} className="absolute top-10 left-10">
-        <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={65} height={65} />
+    <div className="w-full h-screen flex flex-col bg-stone-800 ">
+      <Link to={"/"} className="absolute w-[50px] md:w-[70px] top-5 left-5 md:top-10 md:left-10">
+        <img
+          src={"/images/logo/logo_for-dark-bg.png"}
+          alt="아카이브오브옹알 로고"
+          className="w-full aspect-square object-cover"
+        />
       </Link>
-      <section className="flex-center">
+
+      <section className="flex-center mt-36 lg:mt-0">
         <div className="relative">
           <img
             alt="public-home-background-image"
@@ -201,24 +206,9 @@ export default function DemoPage() {
 
           {PLANET_LIST.map(({ id, imageId, name, width, height, x, y, z }) => (
             <div key={imageId}>
-              {/* {id < 4 && (
-                <label
-                  className="text-xs p-1 bg-yellow-200"
-                  style={{
-                    position: "absolute",
-                    left: Math.round(x * scale - 20),
-                    top: Math.round(y * scale + 90),
-                    zIndex: 10,
-                  }}
-                >
-                  click here!
-                </label>
-              )} */}
-
               <img
                 key={name}
                 src={`${API_CONFIG.PRIVATE_IMAGE_LOAD_API}/${imageId}`}
-                // src={src}
                 alt={name}
                 width={Math.round(width * scale)}
                 height={Math.round(height * scale)}
@@ -249,7 +239,7 @@ export default function DemoPage() {
             </div>
           )}
         </div>
-        <div className="text-center mt-4">
+        <div className="text-center mt-4 ">
           <CircleButton label={<FaSave />} hasBorder text="save" onClick={audioFileSaveHandler} />
         </div>
       </div>
@@ -261,6 +251,7 @@ export default function DemoPage() {
           }}
         >
           <PreviewContentCopy data={selectedPlanet} />
+          {/* {isMobile ? <MobileModalContent data={selectedPlanet} /> : <PreviewContentCopy data={selectedPlanet} />} */}
         </Modal>
       )}
     </div>
