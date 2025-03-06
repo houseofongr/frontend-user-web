@@ -22,7 +22,8 @@ type KonvaContainerProps = {
 export default function KonvaContainer({ backgroundImage, imageSize, shapes, onItemClick }: KonvaContainerProps) {
   if (!backgroundImage) return <SpinnerIcon />;
   return (
-    <Stage width={window.innerWidth} height={window.innerHeight}>
+    // pinch-zoom 가능 속성 추가
+    <Stage width={window.innerWidth} height={window.innerHeight} style={{ touchAction: "pinch-zoom" }}>
       <Layer>
         {backgroundImage && (
           <KonvaImage
