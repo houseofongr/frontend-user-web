@@ -9,21 +9,21 @@ export default function InitPage() {
 
   useEffect(() => {
     const token = sessionStorage.getItem("authToken");
-    console.log("token", token);
     setPath(token ? "/main/home" : "/login");
   }, []);
+
   return (
     <div
-      className="flex-center flex-col "
+      className="flex-center flex-col"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <InitText />
-      <div className="flex gap-10 md:gap-20">
+      <div className="flex gap-5 md:gap-14  md:pb-44">
         <Link to="/common/homes" className=" text-center">
           <InitHouseImage imgType="public" />
           <span className="text-xs">PUBLIC</span>
         </Link>
-        <Link to={path || "/login"} className=" text-center">
+        <Link to={path || "/login"} className="text-center ">
           <InitHouseImage clickable imgType="private" />
           <span className="text-xs">PRIVATE</span>
         </Link>

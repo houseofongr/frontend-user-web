@@ -83,16 +83,16 @@ type PreviewContentProp = {
 export default function PreviewContentCopy({ data }: { data: PreviewContentProp }) {
   const { name, audioFileId } = data;
   return (
-    <div className="flex flex-col gap-5  text-black min-h-[400px] sm:min-h-[550px] md:min-w-[500px] lg:min-w-[900px] border">
+    <div className="flex flex-col gap-5 text-black min-h-[400px] sm:min-h-[550px] min-w-[280px] md:min-w-[500px] lg:min-w-[900px]">
       {/* 로고 */}
-      <div className="flex p-2 border md:p-4 mt-2 gap-1 items-end ">
+      <div className="flex p-2 md:p-4 mt-2 gap-1 items-end ">
         <img src="/images/logo/logo_for-dark-bg.png" alt="아카이브 오브 옹알 로고" width={30} height={30} />
         <span className="text-xs text-gray-300">아카이브 오브 옹알</span>
       </div>
       {/*  */}
-      <div className="pt-0 flex flex-col lg:flex-row border border-white">
+      <div className="pt-0 flex flex-col lg:flex-row border">
         {/* 포스트잇 */}
-        <div className="w-full lg:w-1/2 relative flex-center border-b md:border-r border-white">
+        <div className="w-full lg:w-1/2 relative flex-center border border-white">
           <div
             className="absolute bg-cover bg-center w-[200px] h-[200px] md:w-[400px] md:h-[400px]"
             style={{
@@ -122,7 +122,7 @@ export default function PreviewContentCopy({ data }: { data: PreviewContentProp 
           </div>
         </div>
         {/* 파형 섹션 */}
-        <div className="w-full lg:w-1/2  flex-center mt-5 border border-pink-300">
+        <div className="w-full lg:w-1/2 flex-center sm:mt-14 md:mt-10 lg:mt-0 border border-white">
           <WaveformWithAudio
             audioUrl={`https://dev.file.archiveofongr.site/public/audios/${audioFileId}`}
             audioTitle={name}

@@ -146,7 +146,7 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
   };
 
   return (
-    <div className="flex flex-col ">
+    <div className="w-full px-0 md:px-14 flex flex-col">
       {/* 파형/오디오 */}
       <div ref={waveformRef} className="bg-stone-800" />
       <div className="mb-8">
@@ -154,7 +154,7 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
       </div>
 
       {/* 컨트롤러 */}
-      <div className="w-full py-5 px-4  bg-stone-800/90">
+      <div className="w-full py-5 bg-stone-800/90">
         <div className="text-center  text-neutral-200">{audioTitle}</div>
         <div className="w-full flex flex-col items-center gap-2 pt-4 ">
           <input
@@ -171,34 +171,42 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
             <span className="text-xs text-gray-500">{formatTime(duration)}</span>
           </div>
         </div>
-        <div className="w-full flex justify-center md:pl-18 gap-4 border border-white">
+        <div className="w-full flex justify-between pt-4">
           {/* 뒤로 10초 */}
-          <button onClick={() => handleSkip(-10)}>
-            <MdReplay10 size={25} color="#f3f3f3" />
-          </button>
-          {/* 재생/일시정지 */}
-          <button onClick={handlePlayPause}>
-            {isPlaying ? (
-              <TbPlayerPauseFilled className="text-base md:text-3xl" color="#f3f3f3" />
-            ) : (
-              <TbPlayerPlayFilled className="text-base md:text-3xl" color="#f3f3f3" />
-            )}
-          </button>
-          {/* 정지 */}
-          <button onClick={handleStop} className="p-2 ">
-            <TbPlayerStopFilled className="text-base md:text-3xl" color="#f3f3f3" />
-          </button>
-          {/* 앞으로 10초 */}
-          <button onClick={() => handleSkip(10)}>
-            <MdForward10 className="text-base md:text-3xl" color="#f3f3f3" />
-          </button>
+          <div className="hidden md:flex w-1/5"></div>
+          <div className="w-3/5 flex justify-center gap-4 border border-white">
+            <button onClick={() => handleSkip(-10)}>
+              <MdReplay10 className="text-xl md:text-3xl" color="#f3f3f3" />
+            </button>
+            {/* 재생/일시정지 */}
+            <button onClick={handlePlayPause}>
+              {isPlaying ? (
+                <TbPlayerPauseFilled className="text-xl md:text-3xl" color="#f3f3f3" />
+              ) : (
+                <TbPlayerPlayFilled className="text-xl md:text-3xl" color="#f3f3f3" />
+              )}
+            </button>
+            {/* 정지 */}
+            <button onClick={handleStop} className="p-2">
+              <TbPlayerStopFilled className="text-xl md:text-3xl" color="#f3f3f3" />
+            </button>
+            {/* 앞으로 10초 */}
+            <button onClick={() => handleSkip(10)}>
+              <MdForward10 className="text-xl md:text-3xl" color="#f3f3f3" />
+            </button>
+          </div>
+
           {/* 음소거 */}
-          <div className=" flex justify-end items-center">
+          <div className="w-2/5 flex-center border border-pink-200">
             <button onClick={toggleMute} className="p-2 ">
-              {isMuted ? <VscMute size={18} color="#f3f3f3" /> : <VscUnmute size={18} color="#f3f3f3" />}
+              {isMuted ? (
+                <VscMute className="text-base md:text-xl" color="#f3f3f3" />
+              ) : (
+                <VscUnmute className="text-base md:text-xl" color="#f3f3f3" />
+              )}
             </button>
 
-            <div className=" w-[35%] flex flex-col items-center gap-2 py-1">
+            <div className="flex flex-col items-center gap-2 py-1">
               <input
                 type="range"
                 min="0"
@@ -206,7 +214,7 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
                 step="0.01"
                 value={volume}
                 onChange={handleVolumeChange}
-                className="w-full h-1.5 bg-[#f3f3f3] rounded-lg appearance-none cursor-pointer "
+                className="max-w-[50px] md:max-w-[60px] h-1.5 bg-[#f3f3f3] rounded-lg appearance-none cursor-pointer"
               />
             </div>
           </div>

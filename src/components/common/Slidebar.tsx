@@ -30,12 +30,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-7 md:p-10 flex justify-between items-center h-[50px] md:h-[140px] mb-5 md:mb-0">
-          <span className="text-primary text-sm md:text-lg">MENU</span>
+        <div className="p-4 md:p-10 flex justify-between items-center h-[50px] md:h-[140px] mb-5 md:mb-0">
+          <span className="text-primary text-xs md:text-lg">MENU</span>
         </div>
 
         <nav className="px-10 md:px-20">
-          {/* 집 로고 이미지 */}
           <Link to={"/"} className="flex-center cursor-pointer mb-10  w-3/5" onClick={onClose}>
             <img src={"/images/logo/logo_for-dark-bg.png"} alt="archive of ongr logo" width={70} height={65} />
           </Link>

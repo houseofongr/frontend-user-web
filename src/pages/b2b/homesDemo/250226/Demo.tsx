@@ -186,7 +186,7 @@ export default function DemoPage() {
 
   if (!scale) return <SpinnerIcon />;
   return (
-    <div className="w-full h-screen flex flex-col bg-stone-800 ">
+    <div className="w-full h-screen flex flex-col bg-stone-900">
       <Link to={"/"} className="absolute w-[50px] md:w-[70px] top-5 left-5 md:top-10 md:left-10">
         <img
           src={"/images/logo/logo_for-dark-bg.png"}
@@ -225,6 +225,7 @@ export default function DemoPage() {
           ))}
         </div>
       </section>
+
       <div className="hidden bg-neutral-100 rounded-4xl py-3  flex-col w-1/5 gap-3 p-5 absolute top-[20%]">
         <button> 퍼블릭 음원 파일 업로드</button>
         <input id="sound-file" type="file" accept="audio/*" className="hidden" onChange={handleFileUpload} />
@@ -239,7 +240,7 @@ export default function DemoPage() {
             </div>
           )}
         </div>
-        <div className="text-center mt-4 ">
+        <div className="text-center mt-4">
           <CircleButton label={<FaSave />} hasBorder text="save" onClick={audioFileSaveHandler} />
         </div>
       </div>
