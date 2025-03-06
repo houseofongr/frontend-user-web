@@ -12,11 +12,8 @@ import TermsOfServicePage from "./pages/user/login/TermsOfSevice";
 import RecheckWithdrawalPage from "./pages/user/mypage/RecheckWithdrawal";
 import RootLayout from "./components/layout/RootLayout";
 import MyHomesPage from "./pages/user/MyHomes";
-
-// import WelcomePage from "./pages/user/login/WelcomePage";
 import PublicHomesPage from "./pages/b2b/PublicHomes";
 import BusinessPage from "./pages/b2b/Business";
-// import Init from "./pages/b2b/homesDemo/250226/Init";
 import DemoPage from "./pages/b2b/homesDemo/250226/Demo";
 import AccountWithdrawalPage from "./pages/user/mypage/AccountWithdrawal";
 import ReservationPage from "./pages/user/Reservation";
@@ -31,7 +28,6 @@ function App() {
           {/* 신규 유저 */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/auth" element={<AuthPage />} />
-          {/* <Route path="/login/auth/complete" element={<WelcomePage />} /> */}
           <Route path="/login/terms" element={<TermsOfServicePage />} />
           {/* 기존유저 */}
           <Route path="/main/home" element={<MyHomesPage />} />
@@ -41,7 +37,8 @@ function App() {
           <Route path="/mypage/account/withdraw/recheck" element={<RecheckWithdrawalPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/reservation" element={<ReservationPage />} />
-          {/* public page */} <Route path="/about" element={<AboutPage />} />
+          {/* public page */}
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/program" element={<ProgramPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/common/business" element={<BusinessPage />} />
