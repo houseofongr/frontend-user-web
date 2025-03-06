@@ -19,7 +19,7 @@ const AuthPage = () => {
         sessionStorage.setItem("tempnickname", nickname);
         sessionStorage.setItem("tempToken", accessToken);
         console.log("신규유저");
-        navigate("/terms");
+        navigate("/login/terms");
       }
     } else {
       console.log("기존유저");
