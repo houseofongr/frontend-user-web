@@ -9,6 +9,7 @@ import { MdCancel } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import CircleButton from "../../../../components/common/CircleButton";
 import PreviewContentCopy from "../../../../components/demo/PreviewContentCopy";
+import { motion } from "framer-motion";
 
 const PLANET_LIST = [
   {
@@ -145,6 +146,9 @@ export default function DemoPage() {
   const [scale, setScale] = useState<number | null>(null);
   const [selectedPlanetId, setSelectedPlanetId] = useState<number | null>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [showVolumeMessage, setShowVolumeMessage] = useState(false);
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 모바일 기능 여부
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -175,6 +179,17 @@ export default function DemoPage() {
   };
 
   useEffect(() => {
+    if (isMobile) {
+      setShowVolumeMessage(true);
+      const timer = setTimeout(() => {
+        setShowVolumeMessage(false);
+      }, 5000); // 5초후 사라짐
+
+      return () => clearTimeout(timer);
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
     const updateScale = () => setScale(calculateScale());
     updateScale();
     window.addEventListener("resize", updateScale);
@@ -182,11 +197,22 @@ export default function DemoPage() {
   }, []);
 
   const selectedPlanet = PLANET_LIST.find((planet) => planet.id === selectedPlanetId) || null;
-  console.log("selectedPlanet", selectedPlanet);
 
   if (!scale) return <SpinnerIcon />;
   return (
     <div className="w-full h-screen flex flex-col bg-stone-900">
+      {/* {isMobile && showVolumeMessage && (
+        <motion.div
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          // exit={{ opacity: 0, scale: 0.6 }} // 페이드아웃 효과 추가
+          transition={{ duration: 0.8 }}
+          className="absolute border z-30 top-5 md:top-15 left-1/3 transform -translate-x-1/2 bg-black text-white px-4 py-1 rounded-md text-xs md:text-lg whitespace-nowrap"
+        >
+          기기 볼륨을 조절하여 소리에 집중해보세요.
+        </motion.div>
+      )} */}
+
       <Link to={"/"} className="absolute w-[50px] md:w-[70px] top-5 left-5 md:top-10 md:left-10">
         <img
           src={"/images/logo/logo_for-dark-bg.png"}
@@ -197,6 +223,19 @@ export default function DemoPage() {
 
       <section className="flex-center mt-36 lg:mt-0">
         <div className="relative">
+          <div className="w-full flex-center">
+            {isMobile && showVolumeMessage && (
+              <motion.div
+                initial={{ opacity: 0, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="absolute border  z-30 top-3 text-center bg-black text-[#F5946D] px-4 py-2 rounded-md text-xs md:text-lg whitespace-nowrap"
+              >
+                기기 볼륨을 조절하여 소리에 집중해 보세요.
+              </motion.div>
+            )}
+          </div>
+
           <img
             alt="public-home-background-image"
             width={Math.round(5000 * scale)}

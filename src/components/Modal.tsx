@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children, bgColor = "dark" }) =>
       <div
         className={clsx(
           "rounded-lg shadow-lg relative overflow-hidden",
-          "md:w-[80%] max-w-[400px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1100px] max-h-[80vh] sm:max-h-[90vh]", // 반응형 width, height 조정
+          "md:w-[80%] max-w-[400px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1100px] max-h-[90vh] sm:max-h-[90vh]", // 반응형 width, height 조정
           {
             "bg-white text-black": bgColor === "white",
             "bg-stone-800/90 text-white": bgColor === "dark",

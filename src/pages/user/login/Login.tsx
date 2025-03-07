@@ -10,18 +10,17 @@ export default function LoginPage() {
   const [yValue, setYValue] = useState(180);
   const navigate = useNavigate();
   const handleLogin = async (provider: string) => {
-    console.log(`${API_CONFIG.BACK_API}/authn/login/${provider}`);
     window.location.href = `${API_CONFIG.BACK_API}/authn/login/${provider}`;
   };
 
   useEffect(() => {
     const token = sessionStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login");
-    } else {
-      navigate("/main/home");
+    if (!token && window.location.pathname !== "/login") {
+      navigate("/login", { replace: true });
+    } else if (token) {
+      navigate("/main/home", { replace: true });
     }
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     const updateYValue = () => {
@@ -42,7 +41,7 @@ export default function LoginPage() {
         initial={{ y: 0 }}
         animate={{ y: -50 }}
         transition={{
-          damping: 25,
+          // damping: 25,
           duration: 0.8,
         }}
         onAnimationComplete={() => setIsAnimationComplete(true)}
@@ -52,8 +51,9 @@ export default function LoginPage() {
 
       {isAnimationComplete && (
         <motion.div
-          initial={{ opacity: 0, y: 180 }} // 모바일 120, 노트북 180
-          animate={{ opacity: 1, y: yValue === 120 ? 80 : 120 }} // 모바일 80 , 노트북 120
+          key={yValue}
+          initial={{ opacity: 0, y: yValue === 120 ? 90 : 150 }} // 모바일 120, 노트북 150
+          animate={{ opacity: 1, y: yValue === 120 ? 60 : 120 }} // 모바일 60 , 노트북 120
           transition={{ duration: 0.8 }}
           className="w-full absolute z-10 flex-center flex-col"
         >
