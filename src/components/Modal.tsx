@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children, bgColor = "dark" }) =>
       <div
         className={clsx(
           "rounded-lg shadow-lg relative overflow-hidden",
-          "md:w-[80%] max-w-[400px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1100px] max-h-[90vh] sm:max-h-[90vh]", // 반응형 width, height 조정
+          "md:w-[80%] max-w-[400px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[1100px] max-h-[90vh] sm:max-h-[90vh]",
           {
             "bg-white text-black": bgColor === "white",
             "bg-stone-800/90 text-white": bgColor === "dark",
@@ -58,17 +58,14 @@ const Modal: React.FC<ModalProps> = ({ onClose, children, bgColor = "dark" }) =>
       >
         <button
           onClick={onClose}
-          className={clsx(
-            "absolute top-5 right-5 cursor-pointer md:text-2xl", // 모바일에서 아이콘 크기 줄이기
-            {
-              "text-gray-500": bgColor === "white",
-              "text-white": bgColor === "dark",
-            }
-          )}
+          className={clsx("absolute top-5 right-5 cursor-pointer md:text-2xl", {
+            "text-gray-500": bgColor === "white",
+            "text-white": bgColor === "dark",
+          })}
         >
           <IoMdClose />
         </button>
-        <div>{children}</div> {/* 모바일에서 폰트 크기 조정 */}
+        <div>{children}</div>
       </div>
     </div>
   );

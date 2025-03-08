@@ -9,6 +9,7 @@ import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
 //   { id: 5, name: "샤넬", image: "/images/clientLogo/logo_5.png" },
 // ];
 export default function BusinessPage() {
+  // 캐러셀 관련 Prop
   // const settings = {
   //   dots: true,
   //   speed: 300,
@@ -21,7 +22,7 @@ export default function BusinessPage() {
   // };
   return (
     <div
-      className="w-full flex flex-col justify-between items-center bg-neutral-100"
+      className="w-full pb-20  flex flex-col justify-between items-center bg-neutral-100"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <section className=" w-[70%] py-10 md:py-20">

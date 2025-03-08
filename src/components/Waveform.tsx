@@ -153,7 +153,7 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
   }, []);
 
   return (
-    <div className="w-full p-2 md:px-14 flex flex-col ">
+    <div className="w-full p-4 md:px-10 flex flex-col ">
       {/* 파형/오디오 */}
       <div ref={waveformRef} className="bg-stone-800" />
       <div className="mb-8">
