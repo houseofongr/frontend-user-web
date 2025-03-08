@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SpinnerIcon from "../../components/icons/SpinnerIcon";
 import RenderImages from "../../components/RenderImages";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserHomesCarousel from "../../components/UserHomesCarousel";
 import { useUserData } from "../../hooks/useUserData";
 import { useUserStore } from "../../stores/useUserStore";
@@ -16,7 +16,7 @@ import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 export default function MyHomesPage() {
   const [scale, setScale] = useState<number | null>(null);
   const [selectedHomeId, setSelectedHomeId] = useState<number | null>(null);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { isLoading: userLoading, isError: userError } = useUserData();
   const { user } = useUserStore();
   const { data: homeList, isLoading: homeListLoading, isError: homeListError } = useHomeList();
@@ -25,18 +25,13 @@ export default function MyHomesPage() {
   useEffect(() => {
     if (homeList && homeList.length > 0) {
       const mainHome = homeList.find((home: HomeListItem) => home.isMain);
-      console.log("main home", mainHome);
 
       if (mainHome) {
-        console.log("홈도 있고 메인홈 설정도 되어있음", mainHome);
         setSelectedHomeId(mainHome.id);
       } else {
-        console.log("홈은 있지만 메인홈 설정은 안되어있음", mainHome);
-        console.log(homeList);
         setSelectedHomeId(homeList[0].basicImageId);
       }
     } else {
-      console.log("보유한 홈이 없음", homeList);
       setSelectedHomeId(null);
     }
   }, [homeList]);
@@ -45,12 +40,12 @@ export default function MyHomesPage() {
     setScale(window.innerWidth < window.innerHeight ? window.innerWidth / 5000 : window.innerHeight / 5000);
   }, []);
 
-  // useEffect(() => {
-  //   const token = sessionStorage.getItem("authToken");
-  //   if (!token) {
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    const token = sessionStorage.getItem("authToken");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleHomeSelect = (homeId: number) => {
     setSelectedHomeId(homeId);

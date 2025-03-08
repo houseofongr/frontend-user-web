@@ -1,12 +1,9 @@
 // 룸상세페이지 - 음원 목록 - 음원 컴포넌트
 export interface SoundSource extends SoundMetadata {
   id: number;
-  // name: string;
-  // description: string;
   createdDate: string;
   updatedDate: string;
   audioFileId: number;
-  // isActive: boolean;
 }
 
 // 룸상세페이지 - 음원 목록

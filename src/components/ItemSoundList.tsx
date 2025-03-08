@@ -92,10 +92,6 @@ export default function ItemSoundList({ itemSounds }: SoundListProps) {
             itemSounds.sounds.map((sound, index) => (
               <SoundItem sound={sound} key={index} index={index} onClick={() => handleSoundClick(sound.id)} />
             ))}
-          {/* {itemSounds.sounds.length > 0 &&
-            ITEM_SOUND_LIST.map((sound, index) => (
-              <SoundItem sound={sound} key={index} index={index} onClick={() => handleSoundClick(sound.id)} />
-            ))} */}
         </ul>
 
         {/* <Pagination currentPage={1} totalPages={4} onPageChange={setCurrentPage} /> */}
@@ -106,7 +102,7 @@ export default function ItemSoundList({ itemSounds }: SoundListProps) {
           {isLoading ? (
             <SpinnerIcon usage="page" />
           ) : error ? (
-            <div className="text-white py-10 mt-4">음원 정보를 가져오지 못했습니다.</div>
+            <div className="text-white p-10 mt-4">음원 정보를 가져오지 못했습니다.</div>
           ) : (
             <PreviewContent data={soundDetail} />
           )}

@@ -12,17 +12,14 @@ const AuthPage = () => {
     const nickname = searchParams.get("nickname");
     const accessToken = searchParams.get("accessToken");
 
-    console.log("isFirstLogin:", isFirstLogin, "nickname:", nickname, "accessToken:", accessToken);
-
     if (isFirstLogin === "true") {
       if (nickname && accessToken) {
         sessionStorage.setItem("tempnickname", nickname);
         sessionStorage.setItem("tempToken", accessToken);
-        console.log("신규유저");
+
         navigate("/login/terms");
       }
     } else {
-      console.log("기존유저");
       if (nickname && accessToken) {
         navigate("/main/home");
         sessionStorage.setItem("nickname", nickname);
