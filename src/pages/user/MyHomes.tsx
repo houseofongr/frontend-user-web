@@ -69,7 +69,7 @@ export default function MyHomesPage() {
           <SpinnerIcon />
         ) : showDefaultHome ? (
           <div className="text-center">
-            <p className="inline bg-stone-700 px-4 py-2 text-gray-100">
+            <p className="inline bg-stone-700 px-4 py-2 text-sm md:text-base text-gray-100">
               {user.nickname}님, 보유중인 하우스가 존재하지 않거나 메인 하우스 설정을 아직 하지 않았습니다.
             </p>
             <img

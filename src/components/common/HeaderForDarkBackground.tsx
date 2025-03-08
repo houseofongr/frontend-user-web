@@ -10,9 +10,9 @@ type Tab = {
   icon?: React.ReactNode;
 };
 const TABS: Tab[] = [
-  { label: "RESERVATION", href: "/reservation", icon: <PiCalendarDots className="text-xl md:text-4xl" /> },
-  { label: "MY HOMES", href: "/main/home", icon: <PiHouseLine className="text-xl md:text-4xl" /> },
-  { label: "MY PAGE", href: "/mypage/account", icon: <PiUser className="text-xl md:text-4xl" /> },
+  { label: "RESERVATION", href: "/reservation", icon: <PiCalendarDots className="text-xl md:text-3xl" /> },
+  { label: "MY HOMES", href: "/main/home", icon: <PiHouseLine className="text-xl md:text-3xl" /> },
+  { label: "MY PAGE", href: "/mypage/account", icon: <PiUser className="text-xl md:text-3xl" /> },
 ];
 
 export default function HeaderForDarkBackground() {
@@ -23,9 +23,9 @@ export default function HeaderForDarkBackground() {
   return (
     <>
       <header className="w-full flex justify-between items-center fixed bg-transparent p-4 md:p-10 pl-5 md:pl-10 z-10 text-white">
-        <div className="w-1/3 flex">
+        <div className="w-1/3">
           <span className="cursor-pointer lg:hidden" onClick={() => setIsOpenSlider(true)}>
-            <AiOutlineMenu className="text-xl md:text-4xl" />
+            <AiOutlineMenu className="text-xl md:text-3xl" />
           </span>
 
           <span className="cursor-pointer hidden lg:block lg:text-lg" onClick={() => setIsOpenSlider(true)}>

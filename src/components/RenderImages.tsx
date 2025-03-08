@@ -28,7 +28,9 @@ export default function RenderImages({ homeId, scale, homeData }: RenderImagesPr
   return (
     <div className="relative flex-center flex-col">
       {!isImagesLoaded && <SpinnerIcon />}
-      <h1 className={` bg-stone-700 px-4 py-2 text-gray-100 ${isImagesLoaded ? "inline" : "hidden"}`}>
+      <h1
+        className={` bg-stone-700 px-4 py-2 text-sm md:text-base text-gray-100 ${isImagesLoaded ? "inline" : "hidden"}`}
+      >
         {homeData.homeName}
       </h1>
       <div className={isImagesLoaded ? "relative" : "hidden"}>

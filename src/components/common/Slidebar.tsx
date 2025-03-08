@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -24,11 +25,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <>
-      {isOpen && <div className="fixed inset-0 z-10 " onClick={onClose}></div>}
-      <div
-        className={`fixed top-0 left-0 h-full w-44 md:w-64 bg-white shadow-md border border-r border-gray-200 z-50 transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+      {isOpen && <div className="fixed inset-0 z-10 bg-black/70 " onClick={onClose}></div>}
+      <motion.div
+        initial={{ x: "-100%" }}
+        animate={{ x: isOpen ? "0%" : "-100%" }}
+        exit={{ x: "-100%" }}
+        transition={{ type: "tween", duration: 0.3 }}
+        className="fixed top-0 left-0 h-full w-44 md:w-64 bg-white shadow-md border border-r border-gray-200 z-50"
       >
         <div className="p-4 md:p-10 flex justify-between items-center h-[50px] md:h-[140px] mb-5 md:mb-0">
           <span className="text-primary text-xs md:text-lg">MENU</span>
@@ -57,7 +60,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             })}
           </ul>
         </nav>
-      </div>
+      </motion.div>
     </>
   );
 }
