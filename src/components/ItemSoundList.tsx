@@ -66,6 +66,7 @@ type SoundListProps = {
 //     updatedDate: "2025.02.15.",
 //   },
 // ];
+
 export default function ItemSoundList({ itemSounds }: SoundListProps) {
   const [openPreview, setOpenPreview] = useState<boolean>(false);
   const [targetSoundId, setTargetSoundId] = useState<number | null>(null);
@@ -85,13 +86,17 @@ export default function ItemSoundList({ itemSounds }: SoundListProps) {
 
   return (
     <>
-      <div className="text-white text-center mb-5">'{itemSounds.itemName}' 에 담겨있는 소리</div>
-      <div className="px-4 py-3  max-w-[300px]" style={{ maxHeight: `${window.innerHeight}px` }}>
+      <div className="text-white text-center md:pt-10 mb-5">'{itemSounds.itemName}' 에 담겨있는 소리 목록</div>
+      <div className="px-4 lg:py-4 mb-10 lg:mb-0" style={{ maxHeight: `${window.innerHeight}px` }}>
         <ul>
           {itemSounds.sounds.length > 0 &&
             itemSounds.sounds.map((sound, index) => (
               <SoundItem sound={sound} key={index} index={index} onClick={() => handleSoundClick(sound.id)} />
             ))}
+          {/* {ITEM_SOUND_LIST.length > 0 &&
+            ITEM_SOUND_LIST.map((sound, index) => (
+              <SoundItem sound={sound} key={index} index={index} onClick={() => handleSoundClick(sound.id)} />
+            ))} */}
         </ul>
 
         {/* <Pagination currentPage={1} totalPages={4} onPageChange={setCurrentPage} /> */}

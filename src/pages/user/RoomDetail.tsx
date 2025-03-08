@@ -121,20 +121,20 @@ export default function RoomDetailPage() {
         shapes={shapes}
         onItemClick={handleItemClick}
       />
-      {/* 음원 목록 토글 버튼 */}
+
       <div className="fixed top-0 right-0 p-3 cursor-pointer" onClick={handleViewSoundList}>
-        <BiSolidPlaylist size={30} color="white" />
+        <BiSolidPlaylist className="text-xl md:text-4xl" color="white" />
       </div>
 
       {showSoundList && (
-        <div className="absolute top-0 right-0 bg-stone-900 z-10 min-w-[300px] min-h-[150px]">
+        <div className="fixed top-0 right-0 bg-stone-900 z-10 min-w-full md:min-w-[350px] md:max-w-[350px] min-h-[100px] md:min-h-[150px]">
           <div className="flex justify-end p-3">
-            <BiSolidPlaylist size={30} color="#f5946d" onClick={handleViewSoundList} className="cursor-pointer" />
+            <BiSolidPlaylist color="#f5946d" onClick={handleViewSoundList} className="text-xl md:text-4xl" />
           </div>
           {selectedItemId ? (
             <ItemSoundList itemSounds={itemSounds} />
           ) : (
-            <div className="text-white text-center">아이템을 클릭해주세요.</div>
+            <div className="text-white text-center text-sm md:text-lg">아이템을 클릭해주세요.</div>
           )}
         </div>
       )}

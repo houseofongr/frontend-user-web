@@ -104,7 +104,7 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
       cursorColor: "#F5946D",
       height: 100, //150
       // barHeight: 20,
-      barWidth: 1,
+      barWidth: 0.5,
       cursorWidth: 1,
       barGap: 0.5,
       // barGap: 0,
