@@ -27,9 +27,6 @@ export default function TermsOfServicePage() {
     const tempToken = sessionStorage.getItem("tempToken");
     const tempNickname = sessionStorage.getItem("tempnickname");
 
-    console.log(tempToken, tempNickname);
-    console.log(termsOfSeviceAgreement, personalInformationAgreement);
-
     if (!tempToken || !tempNickname) return;
     if (!termsOfSeviceAgreement || !personalInformationAgreement) return;
     try {
@@ -79,8 +76,8 @@ export default function TermsOfServicePage() {
   return (
     <div className="flex-center flex-col bg-neutral-100">
       <section className="w-full md:w-[60%] flex flex-col p-10">
-        <span className="text-2xl">약관동의</span>
-        <p className="font-extralight mb-5">
+        <span className="text-xl md:text-2xl">약관동의</span>
+        <p className="text-sm md:text-base font-extralight mb-5">
           '아카이브 오브 옹알'이 처음이신 고객님, 서비스 시작 및 가입을 위해 아래의 약관 내용에 동의해 주세요.
         </p>
         <CustomCheckboxInput
@@ -95,11 +92,11 @@ export default function TermsOfServicePage() {
         {/* 이용약관 */}
         <div className="mb-6 mt-3">
           <div className="flex items-center gap-0.5">
-            <span className="py-1 text-lg">이용약관 동의</span>
+            <span className="py-1 text-base md:text-lg">이용약관 동의</span>
             <FaStarOfLife color="tomato" size={7} />
           </div>
           <article className="border border-gray-200 rounded p-5 bg-white max-h-50  overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-stone-100 [&::-webkit-scrollbar-thumb]:bg-[#ffac8c] ">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]} className="text-sm leading-relaxed">
+            <ReactMarkdown rehypePlugins={[rehypeRaw]} className="text-xs md:text-sm leading-relaxed">
               {terms.terms1}
             </ReactMarkdown>
           </article>
@@ -114,12 +111,12 @@ export default function TermsOfServicePage() {
         {/* 개인정보 수집 및 이용 동의 */}
         <div className="mb-6">
           <div className="flex items-center gap-0.5">
-            <span className="py-1 text-lg">개인정보 수집 및 이용 동의</span>
+            <span className="py-1 text-base md:text-lg">개인정보 수집 및 이용 동의</span>
             <FaStarOfLife color="tomato" size={7} />
           </div>
 
           <article className="border border-gray-200 p-5 rounded bg-white max-h-50  overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-stone-100 [&::-webkit-scrollbar-thumb]:bg-[#ffac8c] ">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]} className="text-sm leading-relaxed">
+            <ReactMarkdown rehypePlugins={[rehypeRaw]} className="text-xs md:text-sm leading-relaxed">
               {terms.terms2}
             </ReactMarkdown>
           </article>
@@ -133,10 +130,10 @@ export default function TermsOfServicePage() {
 
         {/* 민감정보 수집 및 이용 동의 */}
         <div className="flex items-center gap-0.5">
-          <span className="py-1 text-lg">민감정보(건강정보) 수집 및 이용 동의</span>
+          <span className="py-1 text-base md:text-lg">민감정보(건강정보) 수집 및 이용 동의</span>
         </div>
         <article className="border border-gray-200 p-5 rounded bg-white max-h-30  overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-stone-100 [&::-webkit-scrollbar-thumb]:bg-[#ffac8c] ">
-          <ReactMarkdown rehypePlugins={[rehypeRaw]} className="text-sm leading-relaxed">
+          <ReactMarkdown rehypePlugins={[rehypeRaw]} className="text-xs md:text-sm leading-relaxed">
             {terms.terms3}
           </ReactMarkdown>
         </article>

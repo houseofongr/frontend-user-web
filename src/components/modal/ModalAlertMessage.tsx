@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { IoMdClose, IoIosWarning } from "react-icons/io";
-import Button from "./common/Button";
+import Button from "../common/Button";
 
 interface ModalAlertMessageProps {
   onClose: () => void;

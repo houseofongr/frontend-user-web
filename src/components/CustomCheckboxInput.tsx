@@ -20,7 +20,7 @@ export default function CustomCheckboxInput({
 }: CheckboxInputProps) {
   return (
     <div
-      className={clsx(`inline-flex w-full p-2 justify-${justify}`, {
+      className={clsx(`inline-flex w-full p-2 text-sm md:text-base justify-${justify}`, {
         "border p-3 border-gray-300": hasBorder,
       })}
     >

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import API_CONFIG from "../../../../config/api";
 import SpinnerIcon from "../../../../components/icons/SpinnerIcon";
-import Modal from "../../../../components/Modal";
+import Modal from "../../../../components/modal/Modal";
 import FileUploadButton from "../../../../components/FileUploadButton";
 import FileNameLabel from "../../../../components/FileNameLabel";
 import { MdCancel } from "react-icons/md";

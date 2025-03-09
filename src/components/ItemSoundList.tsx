@@ -5,7 +5,7 @@ import SoundItem from "./SoundItem";
 import PreviewContent from "./PreviewContent";
 import { useSoundDetail } from "../hooks/useSoundData";
 import SpinnerIcon from "./icons/SpinnerIcon";
-import Modal from "./Modal";
+import Modal from "./modal/Modal";
 // import Pagination from "./common/Pagination";
 
 type SoundListProps = {

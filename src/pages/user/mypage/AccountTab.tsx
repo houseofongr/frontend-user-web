@@ -7,7 +7,7 @@ import UserInformation from "../../../components/mypage/UserInformation";
 import BorderButton from "../../../components/common/BorderButton";
 import { useState } from "react";
 import { useHomeData } from "../../../hooks/useHomeData";
-import ModalAlertMessage from "../../../components/ModalAlertMessage";
+import ModalAlertMessage from "../../../components/modal/ModalAlertMessage";
 
 export default function AccountTab() {
   const [targetHomeId, setTargetHomeId] = useState<number | null>(null);
