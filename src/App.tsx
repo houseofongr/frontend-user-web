@@ -18,12 +18,14 @@ import DemoPage from "./pages/b2b/homesDemo/250226/Demo";
 import AccountWithdrawalPage from "./pages/user/mypage/AccountWithdrawal";
 import ReservationPage from "./pages/user/Reservation";
 
+import UserSoundListPage from "./pages/user/mypage/UserSoundList";
+import CSPage from "./pages/user/mypage/CSPage";
+
 function App() {
   return (
     <BrowserRouter>
       <RootLayout>
         <Routes>
-          {/* 완료된 페이지 */}
           <Route path="/" element={<InitPage />} />
           {/* 신규 유저 */}
           <Route path="/login" element={<LoginPage />} />
@@ -32,10 +34,16 @@ function App() {
           {/* 기존유저 */}
           <Route path="/main/home" element={<MyHomesPage />} />
           <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
+
+          {/* 마이페이지 */}
           <Route path="/mypage/account" element={<Mypage />} />
+          <Route path="/mypage/sound-list" element={<UserSoundListPage />} />
+          <Route path="/mypage/cscenter" element={<CSPage />} />
+
+          {/* 마이페이지 - 서비스 탈퇴 */}
           <Route path="/mypage/account/withdraw" element={<AccountWithdrawalPage />} />
           <Route path="/mypage/account/withdraw/recheck" element={<RecheckWithdrawalPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          {/* 예약 페이지 - 내용x */}
           <Route path="/reservation" element={<ReservationPage />} />
           {/* public page */}
           <Route path="/about" element={<AboutPage />} />
@@ -45,6 +53,8 @@ function App() {
           <Route path="/common/homes" element={<PublicHomesPage />} />
           {/* demo page */}
           <Route path="/common/homes/1/demo" element={<DemoPage />} />
+          {/* 404 page */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>

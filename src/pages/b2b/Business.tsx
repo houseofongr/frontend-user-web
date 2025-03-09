@@ -26,7 +26,7 @@ export default function BusinessPage() {
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <section className=" w-[70%] py-10 md:py-20">
-        <span className="text-xl md:text-2xl">비즈니스</span>
+        <h3 className="text-xl md:text-2xl">비즈니스</h3>
         <p className="text-sm md:text-base font-extralight mb-5">서브 타이틀 </p>
         <div className="text-center space-y-3 text-[15px]">
           <p>

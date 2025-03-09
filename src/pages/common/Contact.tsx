@@ -44,7 +44,7 @@ export default function ContactPage() {
       <div className="mx-8 lg:mx-auto lg:w-[70%] flex-col lg:flex-row flex items-center justify-center lg:gap-30 py-10 md:py-20">
         {/* 왼쪽 섹션 */}
         <section className="lg:w-1/2 min-h-[500px]">
-          <p className="text-xl md:text-2xl">문의</p>
+          <h3 className="text-xl md:text-2xl">문의</h3>
           <p className="text-sm md:text-base font-extralight mb-10">
             아래의 이메일 주소를 사용하거나 양식을 사용하여 문의 부탁 드립니다.
           </p>

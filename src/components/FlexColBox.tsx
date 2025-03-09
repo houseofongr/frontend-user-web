@@ -11,7 +11,7 @@ type FlexColBoxProps = {
 
 export default function FlexColBox({ label, content, fill = false, hasPadding = false }: FlexColBoxProps) {
   return (
-    <div className="py-3 flex flex-col gap-1 w-[25%]">
+    <div className="py-3 flex flex-col gap-1">
       <label className="min-w-40 font-extralight text-sm">{label}</label>
 
       <div

@@ -1,53 +1,47 @@
-import AccountTab from "./AccountTab";
-import CustomerServiceTab from "./CustomerServiceTab";
-import SoundsTab from "./SoundsTab";
+import { Link } from "react-router-dom";
 
 const TABS = [
   {
     label: "나의 계정",
     subTabs: ["회원정보", "보유 홈 목록"],
-    content: <AccountTab />,
+    path: "/mypage/account",
   },
   {
-    label: "나의 소리 기록실",
-    subTabs: ["나의 소리 모음"],
-    content: <SoundsTab />,
+    label: "소리 모음",
+    subTabs: ["소리 모음"],
+    path: "/mypage/sound-list",
   },
 
   {
     label: "고객지원",
     subTabs: ["1:1 문의", "공지사항", "FAQ"],
-    content: <CustomerServiceTab />,
+    path: "/mypage/cscenter",
   },
 ];
 
 type TabControllerProps = {
   activeTabIndex: number;
-  onTabChange: (index: number) => void;
+  onTabChange?: (index: number) => void;
 };
 
-export default function TabController({ activeTabIndex, onTabChange }: TabControllerProps) {
+export default function TabController({ activeTabIndex }: TabControllerProps) {
   return (
-    <aside className="min-w-[240px] border-rborder-gray-200">
-      <ul className=" flex flex-col gap-10 px-10 py-15">
+    <aside className="lg:min-w-[240px] bg-white">
+      <ul className="flex flex-row lg:flex-col ">
         {TABS.map((tab, idx) => (
-          <li key={tab.label} className="w-full ">
-            <button
-              key={idx}
-              type="button"
-              className={`w-full text-left transition-colors duration-300 cursor-pointer ${
-                idx === activeTabIndex ? "text-stone-800" : "hover:bg-gray-200"
-              }`}
-              onClick={() => onTabChange(idx)}
-            >
-              {tab.label}
-            </button>
-
-            <div className="text-gray-400 flex flex-col gap-2 mt-3">
-              {tab.subTabs.map((subTab) => (
-                <p key={subTab}>{subTab}</p>
-              ))}
-            </div>
+          <li
+            key={tab.label}
+            className={`w-full text-sm md:text-lg lg:p-10 lg:flex  ${idx === activeTabIndex ? "bg-neutral-100 " : ""}`}
+          >
+            <Link to={tab.path}>
+              <div
+                className={`w-full text-center  lg:text-left py-3 lg transition-colors duration-300 cursor-pointer ${
+                  idx === activeTabIndex ? "" : "hover:font-base font-extralight"
+                }`}
+              >
+                {tab.label}
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

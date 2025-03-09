@@ -2,10 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../../components/common/Button";
 import CustomCheckboxInput from "../../../components/CustomCheckboxInput";
-("");
+
 const CHECK_LIST: { id: string; text: string; suggest: string }[] = [
-  { id: "check-1", text: "탈퇴 후 재가입을 하고싶습니다.", suggest: "탈퇴 시 30일동안 재가입을 할 수 없습니다." },
-  { id: "check-2", text: "이 서비스를 자주 사용하지 않습니다.", suggest: "ㅠㅠ" },
+  { id: "check-1", text: "탈퇴 후 재가입을 하고 싶습니다.", suggest: "탈퇴 시 30일 동안 재가입을 할 수 없습니다." },
+  {
+    id: "check-2",
+    text: "이 서비스를 자주 사용하지 않습니다.",
+    suggest: "아카이브 오브 옹알은 더 나은 서비스를 제공하기 위해 항상 노력 중입니다. 언제든지 다시 찾아주세요!",
+  },
   {
     id: "check-3",
     text: "서비스 이용 가격이 너무 비싸다고 느껴집니다.",
@@ -18,8 +22,8 @@ const CHECK_LIST: { id: string; text: string; suggest: string }[] = [
   },
   {
     id: "check-5",
-    text: "해당 사이트에 등록하고 싶은 소리가 없습니다.",
-    suggest: "꼭 특별하지 않아도 좋습니다. 자신의 목소리를 이용해 오늘 하루를 기록해보세요.",
+    text: "저장하고 싶은 소리가 없습니다.",
+    suggest: "꼭 특별하지 않아도 좋습니다. 자신의 목소리를 이용해 오늘 하루를 기록해보세요!",
   },
   {
     id: "check-6",
@@ -38,10 +42,12 @@ export default function AccountWithdrawalPage() {
 
   return (
     <div className="flex-center flex-col bg-neutral-100">
-      <section className="w-full md:w-[50%] flex flex-col p-10">
-        <span className="text-2xl">탈퇴 사유</span>
-        <p className="font-extralight mt-3">그동안 아카이브 오브 옹알 웹사이트를 이용해 주셔서 감사합니다.</p>
-        <p className="font-extralight mb-3">아래 해당되는 탈퇴 사유를 선택하여 주세요.</p>
+      <section className="px-5 md:px-14 py-10 md:py-20 w-full lg:w-[50%] flex flex-col">
+        <h3 className="text-xl md:text-2xl">회원 탈퇴 사유</h3>
+        <p className="text-sm md:text-base font-extralight mb-5">
+          그동안 아카이브 오브 옹알 웹사이트를 이용해 주셔서 감사합니다. 아래 해당되는 탈퇴 사유를 선택하여 주세요.
+        </p>
+
         <ul className="flex flex-col gap-3">
           {CHECK_LIST.map((item, index) => (
             <li key={index} className="px-2 py-4 bg-white ">

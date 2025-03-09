@@ -201,18 +201,6 @@ export default function DemoPage() {
   if (!scale) return <SpinnerIcon />;
   return (
     <div className="w-full h-screen flex flex-col bg-stone-900">
-      {/* {isMobile && showVolumeMessage && (
-        <motion.div
-          initial={{ opacity: 0, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          // exit={{ opacity: 0, scale: 0.6 }} // 페이드아웃 효과 추가
-          transition={{ duration: 0.8 }}
-          className="absolute border z-30 top-5 md:top-15 left-1/3 transform -translate-x-1/2 bg-black text-white px-4 py-1 rounded-md text-xs md:text-lg whitespace-nowrap"
-        >
-          기기 볼륨을 조절하여 소리에 집중해보세요.
-        </motion.div>
-      )} */}
-
       <Link to={"/"} className="absolute w-[50px] md:w-[70px] top-5 left-5 md:top-10 md:left-10">
         <img
           src={"/images/logo/logo_for-dark-bg.png"}
@@ -291,7 +279,6 @@ export default function DemoPage() {
           }}
         >
           <PreviewContentCopy data={selectedPlanet} />
-          {/* {isMobile ? <MobileModalContent data={selectedPlanet} /> : <PreviewContentCopy data={selectedPlanet} />} */}
         </Modal>
       )}
     </div>

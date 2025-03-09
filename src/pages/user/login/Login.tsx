@@ -41,7 +41,6 @@ export default function LoginPage() {
         initial={{ y: 0 }}
         animate={{ y: -50 }}
         transition={{
-          // damping: 25,
           duration: 0.8,
         }}
         onAnimationComplete={() => setIsAnimationComplete(true)}
@@ -53,9 +52,9 @@ export default function LoginPage() {
         <motion.div
           key={yValue}
           initial={{ opacity: 0, y: yValue === 120 ? 90 : 150 }} // 모바일 120, 노트북 150
-          animate={{ opacity: 1, y: yValue === 120 ? 60 : 120 }} // 모바일 60 , 노트북 120
+          animate={{ opacity: 1, y: yValue === 120 ? 50 : 110 }} // 모바일 60 , 노트북 120
           transition={{ duration: 0.8 }}
-          className="w-full absolute z-10 flex-center flex-col"
+          className="w-full absolute z-1 flex-center flex-col"
         >
           <div className="cursor-pointer pb-5">
             <img

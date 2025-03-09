@@ -86,7 +86,9 @@ export default function ItemSoundList({ itemSounds }: SoundListProps) {
 
   return (
     <>
-      <div className="text-white text-center md:pt-10 mb-5">'{itemSounds.itemName}' 에 담겨있는 소리 목록</div>
+      <div className="text-white text-center md:pt-10 mb-5 text-sm md:text-lg">
+        '{itemSounds.itemName}' 에 담겨있는 소리 목록
+      </div>
       <div className="px-4 lg:py-4 mb-10 lg:mb-0" style={{ maxHeight: `${window.innerHeight}px` }}>
         <ul>
           {itemSounds.sounds.length > 0 &&

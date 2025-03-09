@@ -26,7 +26,7 @@ export default function AboutPage() {
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <section className="mx-8 py-10 md:py-20 w-[70%]  flex flex-col">
-        <p className="text-xl md:text-2xl mb-5">소개</p>
+        <h3 className="text-xl md:text-2xl mb-5">소개</h3>
 
         <div className="space-y-1.5 flex justify-center  text-[15px]">
           <div className="md:max-w-[60%] ">

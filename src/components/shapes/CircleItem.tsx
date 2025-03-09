@@ -1,9 +1,8 @@
 import Konva from "konva";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Circle } from "react-konva";
 import { CircleData } from "../../types/items";
 import { Html } from "react-konva-utils";
-import { EFFECT_SIZE } from "../../constants/componentSize";
 
 interface CircleProps {
   shapeProps: CircleData["circleData"];
@@ -12,6 +11,16 @@ interface CircleProps {
 
 function CircleItem({ shapeProps, onClick }: CircleProps) {
   const shapeRef = useRef<Konva.Circle | null>(null);
+  const [effectSize, setEffectSize] = useState(window.innerWidth <= 768 ? 50 : 90);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setEffectSize(window.innerWidth <= 768 ? 50 : 90);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -19,7 +28,7 @@ function CircleItem({ shapeProps, onClick }: CircleProps) {
         {...shapeProps}
         onClick={onClick}
         onTap={onClick}
-        // stroke={"red"}
+        // stroke={"blue"}
         // strokeWidth={2}
         ref={shapeRef}
         onMouseEnter={() => {
@@ -34,8 +43,8 @@ function CircleItem({ shapeProps, onClick }: CircleProps) {
           style: {
             position: "absolute",
             pointerEvents: "none",
-            top: `${shapeProps.y - EFFECT_SIZE / 2}px `,
-            left: `${shapeProps.x - EFFECT_SIZE / 2}px`,
+            top: `${shapeProps.y - effectSize / 2}px `,
+            left: `${shapeProps.x - effectSize / 2}px`,
             // left: `${shapeProps.rotation === 0 ? shapeProps.x + shapeProps.width - 30 : shapeProps.x - 30}px`,
             // transform: `rotate(${shapeProps.rotation}deg)`,
             // transformOrigin: `${shapeProps.radiusY}px ${shapeProps.radiusX}px`,
@@ -45,7 +54,7 @@ function CircleItem({ shapeProps, onClick }: CircleProps) {
         <img
           src="/images/effect/03-unscreen.gif"
           className="bg-transparent opacity-80"
-          style={{ position: "relative", width: `${EFFECT_SIZE}px` }}
+          style={{ position: "relative", width: `${effectSize}px` }}
         />
       </Html>
     </>

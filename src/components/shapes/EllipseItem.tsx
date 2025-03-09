@@ -1,9 +1,8 @@
 import { Ellipse } from "react-konva";
 import Konva from "konva";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EllipseData } from "../../types/items";
 import { Html } from "react-konva-utils";
-import { EFFECT_SIZE } from "../../constants/componentSize";
 
 interface EllipseProps {
   shapeProps: EllipseData["ellipseData"];
@@ -12,6 +11,16 @@ interface EllipseProps {
 
 function EllipseItem({ shapeProps, onClick }: EllipseProps) {
   const shapeRef = useRef<Konva.Ellipse | null>(null);
+  const [effectSize, setEffectSize] = useState(window.innerWidth <= 768 ? 50 : 90);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setEffectSize(window.innerWidth <= 768 ? 50 : 90);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -35,8 +44,8 @@ function EllipseItem({ shapeProps, onClick }: EllipseProps) {
           style: {
             position: "absolute",
             pointerEvents: "none",
-            top: `${shapeProps.y - EFFECT_SIZE / 2}px `,
-            left: `${shapeProps.x - EFFECT_SIZE / 2}px`,
+            top: `${shapeProps.y - effectSize / 2}px `,
+            left: `${shapeProps.x - effectSize / 2}px`,
 
             // left: `${shapeProps.rotation === 0 ? shapeProps.x + shapeProps.width - 30 : shapeProps.x - 30}px`,
             // transform: `rotate(${shapeProps.rotation}deg)`,
@@ -47,7 +56,7 @@ function EllipseItem({ shapeProps, onClick }: EllipseProps) {
         <img
           src="/images/effect/03-unscreen.gif"
           className="bg-transparent opacity-80"
-          style={{ position: "relative", width: `${EFFECT_SIZE}px` }}
+          style={{ position: "relative", width: `${effectSize}px` }}
         />
       </Html>
     </>

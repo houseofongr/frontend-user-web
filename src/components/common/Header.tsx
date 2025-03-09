@@ -19,7 +19,7 @@ const TABS: Tab[] = [
 
 export default function Header() {
   const location = useLocation();
-  const pathName = location.pathname;
+  // const pathName = location.pathname;
   const [isOpenSlider, setIsOpenSlider] = useState(false);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function Header() {
         </div>
         <ul className="w-1/3 flex justify-end gap-4 md:gap-10">
           {TABS.map(({ label, href, icon }) => {
-            const isActive = pathName === href;
+            const isActive = href.includes("mypage");
             return (
               <li key={label}>
                 <Link

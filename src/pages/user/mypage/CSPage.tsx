@@ -1,10 +1,10 @@
-import AccountTab from "./AccountTab";
 import MypageLayout from "../../../components/layout/MypageLayout";
+import CustomerServiceTab from "./CustomerServiceTab";
 
-export default function Mypage() {
+export default function CSPage() {
   return (
     <MypageLayout>
-      <AccountTab />
+      <CustomerServiceTab />
     </MypageLayout>
   );
 }

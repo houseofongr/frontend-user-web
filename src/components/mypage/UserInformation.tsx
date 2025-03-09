@@ -42,47 +42,50 @@ export default function UserInformation() {
 
   if (userLoading || !user) return <SpinnerIcon />;
   return (
-    <div className="w-full ">
-      <p className="text-2xl mb-5">회원 정보</p>
-      <div className="w-full rounded-md bg-stone-700 p-12 text-white flex justify-between min-h-32">
-        <div className="flex flex-col gap-0.5  justify-center">
-          <div className="flex items-center gap-3">
-            <strong className="text-lg">{user.nickname} 님,</strong>
+    <div>
+      <h3 className="text-xl md:text-2xl mb-5">회원 정보</h3>
+      <section className="w-full rounded-md bg-stone-700  md:p-6 lg:p-12 text-white flex flex-col  lg:flex-row lg:justify-between min-h-32">
+        <div className="flex flex-col gap-0.5 items-center md:items-start  justify-center p-6 md:p-4">
+          <div className="flex items-center gap-3  ">
+            <strong className="text-sm md:text-lg">{user.nickname} 님,</strong>
             <p>안녕하세요.</p>
           </div>
-          <p className="text-sm"> 아카이브 오브 옹알의 일반회원입니다.</p>
+          <p className="text-sm md:text-base"> 아카이브 오브 옹알의 [일반회원] 입니다.</p>
         </div>
-        <div className="flex">
+        <div className="flex justify-around p-4 lg:p-0">
           {/* 집 개수 */}
-          <div className="flex-center gap-5 border-r px-10  ">
-            <BiHomeAlt size={50} color="#F5946D" />
+          <div className="flex-center gap-1 lg:gap-5  lg:border-r md:px-10 lg:px-15  ">
+            <BiHomeAlt color="#F5946D" className="text-2xl md:text-5xl " />
             <div className="flex flex-col items-center">
-              <strong className="text-2xl">{user.myHomeCount} 개</strong>
-              <span className="text-xs">내가 보유한 집</span>
+              <strong className="text-sm md:text-2xl">{user.myHomeCount} 개</strong>
+              <span className="text-[10px] md:text-sm">보유 집</span>
             </div>
           </div>
           {/* 음원 개수 */}
-          <div className="flex-center gap-5 px-10 border-r ">
-            <MdAudiotrack size={50} color="#F5946D" />
+          <div className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-15">
+            <MdAudiotrack color="#F5946D" className="text-2xl md:text-5xl" />
             <div className="flex flex-col items-center">
-              <strong className="text-2xl">{user.mySoundSourceCount} 개</strong>
-              <span className="text-xs">내가 보유한 소리</span>
+              <strong className="text-sm md:text-2xl">{user.mySoundSourceCount} 개</strong>
+              <span className="text-[10px] md:text-sm">보유 소리</span>
             </div>
           </div>
           {/* 예약 */}
-          <div className="flex-center gap-5 px-10 cursor-pointer" onClick={() => navigate("/reservation")}>
-            <MdCalendarMonth size={50} color="#F5946D" />
+          <div
+            className="flex-center gap-1 lg:gap-5  cursor-pointer md:px-10 lg:px-15"
+            onClick={() => navigate("/reservation")}
+          >
+            <MdCalendarMonth color="#F5946D" className="text-2xl md:text-5xl" />
             <div className="flex flex-col items-center">
-              <strong className="text-2xl">- </strong>
-              <span className="text-xs">나의 예약 현황</span>
+              <strong className="text-sm md:text-2xl">- 개 </strong>
+              <span className="text-[10px] md:text-sm">예약 현황</span>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <section className="py-10">
-        <>
-          <div className="py-3 flex flex-col gap-1 w-[25%]">
+      <section className="md:py-10  md:w-1/2 lg:w-1/3">
+        <div>
+          <div className="py-3 flex flex-col gap-1">
             <label className="min-w-40 font-extralight text-sm">닉네임</label>
 
             <div
@@ -100,7 +103,7 @@ export default function UserInformation() {
             </div>
           </div>
 
-          <div className="w-[25%] flex justify-end">
+          <div className=" flex justify-end">
             {isEditing ? (
               <div className="flex gap-2">
                 <BorderButton label="확인" onClick={handleConfirmNicknameChange} />
@@ -110,10 +113,13 @@ export default function UserInformation() {
               <BorderButton type="submit" label="닉네임 변경" onClick={toggleNicknameField} />
             )}
           </div>
-        </>
+        </div>
 
-        <FlexColBox label="이메일" content={user.email} fill hasPadding />
-        <FlexColBox label="가입 일자" content={user.registeredDate} fill hasPadding />
+        <div>
+          <FlexColBox label="이메일" content={user.email} fill hasPadding />
+          <FlexColBox label="가입 일자" content={user.registeredDate} fill hasPadding />
+        </div>
+
         <FlexColBox
           label="SNS 계정 정보"
           content={

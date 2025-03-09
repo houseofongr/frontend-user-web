@@ -1,13 +1,13 @@
 import { MdOutlineRadioButtonChecked } from "react-icons/md";
-import API_CONFIG from "../../config/api";
-import { useHomeList } from "../../hooks/useHomeList";
-import { HomeListItem } from "../../types/home";
-import SpinnerIcon from "../icons/SpinnerIcon";
-import UserInformation from "./UserInformation";
-import BorderButton from "../common/BorderButton";
+import API_CONFIG from "../../../config/api";
+import { useHomeList } from "../../../hooks/useHomeList";
+import { HomeListItem } from "../../../types/home";
+import SpinnerIcon from "../../../components/icons/SpinnerIcon";
+import UserInformation from "../../../components/mypage/UserInformation";
+import BorderButton from "../../../components/common/BorderButton";
 import { useState } from "react";
-import { useHomeData } from "../../hooks/useHomeData";
-import ModalAlertMessage from "../ModalAlertMessage";
+import { useHomeData } from "../../../hooks/useHomeData";
+import ModalAlertMessage from "../../../components/ModalAlertMessage";
 
 export default function AccountTab() {
   const [targetHomeId, setTargetHomeId] = useState<number | null>(null);
@@ -52,24 +52,24 @@ export default function AccountTab() {
   };
 
   return (
-    <section className="py-5 px-24 ">
+    <main className="md:py-5 lg:px-24">
       <UserInformation />
       <div>
-        <p className="text-2xl">보유 홈 목록</p>
+        <h3 className="text-xl md:text-2xl">보유 홈 목록</h3>
         <div className="flex gap-1 py-1 mb-5">
-          <MdOutlineRadioButtonChecked size={20} className="text-primary " />
+          <MdOutlineRadioButtonChecked size={20} className="text-primary" />
           <p className="text-sm">: 현재 메인 하우스로 설정되어 있는 집입니다.</p>
         </div>
         <div>
           {homeListLoading && <SpinnerIcon />}
           {homeListError && <div>홈 목록을 불러올 수 없습니다.</div>}
           {/* <ul className="flex gap-5"> */}
-          <ul className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 px-5 md:px-0">
             {homeList &&
               homeList.map((home: HomeListItem) => {
                 return (
                   <div key={home.id}>
-                    <li className="bg-white px-3 pt-2 pb-6 shadow relative flex flex-col items-center">
+                    <li className="bg-white px-3 pt-2 pb-6 shadow relative flex flex-col items-center ">
                       {home.isMain && (
                         <MdOutlineRadioButtonChecked size={20} className="text-primary absolute top-3 left-3" />
                       )}
@@ -119,6 +119,6 @@ export default function AccountTab() {
           {updateNameError && <div className="text-red-500 text-xs ">홈 이름 변경에 실패했습니다.</div>}
         </div>
       </div>
-    </section>
+    </main>
   );
 }

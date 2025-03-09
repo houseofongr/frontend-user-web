@@ -1,9 +1,8 @@
 import { Rect } from "react-konva";
 import Konva from "konva";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RectangleData } from "../../types/items";
 import { Html } from "react-konva-utils";
-import { EFFECT_SIZE } from "../../constants/componentSize";
 
 interface RectangleProps {
   shapeProps: RectangleData["rectangleData"];
@@ -12,6 +11,8 @@ interface RectangleProps {
 
 function RectItem({ shapeProps, onClick }: RectangleProps) {
   const shapeRef = useRef<Konva.Rect | null>(null);
+  const [effectSize, setEffectSize] = useState(window.innerWidth <= 768 ? 50 : 90);
+
   // 1. Rectangle 중심 좌표값
   const centerX = shapeProps.x + shapeProps.width / 2;
   const centerY = shapeProps.y + shapeProps.height / 2;
@@ -25,6 +26,15 @@ function RectItem({ shapeProps, onClick }: RectangleProps) {
     shapeProps.x + (centerX - shapeProps.x) * Math.cos(rotationRad) - (centerY - shapeProps.y) * Math.sin(rotationRad);
   const rotatedY =
     shapeProps.y + (centerX - shapeProps.x) * Math.sin(rotationRad) + (centerY - shapeProps.y) * Math.cos(rotationRad);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // 모바일에서 50 / 그 이상 디바이스에서는 90으로 effect size 설정
+      setEffectSize(window.innerWidth <= 768 ? 50 : 90);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -48,8 +58,8 @@ function RectItem({ shapeProps, onClick }: RectangleProps) {
           style: {
             position: "absolute",
             pointerEvents: "none",
-            top: `${rotatedY - EFFECT_SIZE / 2}px`,
-            left: `${rotatedX - EFFECT_SIZE / 2}px`,
+            top: `${rotatedY - effectSize / 2}px`,
+            left: `${rotatedX - effectSize / 2}px`,
             // transform: `rotate(${shapeProps.rotation}deg)`,
             // transformOrigin: `${shapeProps.y + shapeProps.height / 2}px ${shapeProps.x + shapeProps.width / 2}px`,
           },
@@ -58,7 +68,7 @@ function RectItem({ shapeProps, onClick }: RectangleProps) {
         <img
           src="/images/effect/03-unscreen.gif"
           className="bg-transparent opacity-80"
-          style={{ position: "relative", width: `${EFFECT_SIZE}px` }}
+          style={{ position: "relative", width: `${effectSize}px` }}
         />
       </Html>
     </>

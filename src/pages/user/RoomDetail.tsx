@@ -11,6 +11,7 @@ import formatShapeDataForView from "../../utils/formatShapeDataForView";
 import { BaseRoom } from "../../types/home";
 import { BiSolidPlaylist } from "react-icons/bi";
 import ItemSoundList from "../../components/ItemSoundList";
+import { motion } from "framer-motion";
 
 export default function RoomDetailPage() {
   const { homeId, roomId } = useParams<{ homeId: string; roomId: string }>();
@@ -21,7 +22,10 @@ export default function RoomDetailPage() {
   const [imageSize, setImageSize] = useState({ width: 0, height: 0, scale: 1, scaleAxis: "" });
   const [backgroundImage, setBackgroundImage] = useState<HTMLImageElement | null>(null);
   const [showSoundList, setShowSoundList] = useState<boolean>(false);
-  console.log("selectedItemId", selectedItemId);
+  const [showVolumeMessage, setShowVolumeMessage] = useState(false);
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 모바일 기능 여부
+
   const handleViewSoundList = () => {
     setShowSoundList((prev) => !prev);
     if (!showSoundList) {
@@ -112,6 +116,17 @@ export default function RoomDetailPage() {
     }
   }, [selectedItemId]);
 
+  useEffect(() => {
+    if (isMobile) {
+      setShowVolumeMessage(true);
+      const timer = setTimeout(() => {
+        setShowVolumeMessage(false);
+      }, 5000); // 5초후 사라짐
+
+      return () => clearTimeout(timer);
+    }
+  }, [isMobile]);
+
   if (!roomData) return <SpinnerIcon />;
   return (
     <RoomDetailLayout>
@@ -121,7 +136,20 @@ export default function RoomDetailPage() {
         shapes={shapes}
         onItemClick={handleItemClick}
       />
+      {isMobile && showVolumeMessage && (
+        <div className="w-full flex-center p-10 ">
+          <motion.div
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="absolute border top-10 z-30 bg-black text-[#F5946D] px-4 py-2 rounded-md text-xs md:text-lg whitespace-nowrap"
+          >
+            기기 볼륨을 조절하여 소리에 집중해 보세요.
+          </motion.div>
+        </div>
+      )}
 
+      {/* 상단 리스트 토글 아이콘 */}
       <div className="fixed top-0 right-0 p-3 cursor-pointer" onClick={handleViewSoundList}>
         <BiSolidPlaylist className="text-xl md:text-4xl" color="white" />
       </div>

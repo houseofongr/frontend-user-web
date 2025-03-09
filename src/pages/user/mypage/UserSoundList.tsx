@@ -1,10 +1,10 @@
-import AccountTab from "./AccountTab";
 import MypageLayout from "../../../components/layout/MypageLayout";
+import SoundsTab from "./SoundsTab";
 
-export default function Mypage() {
+export default function UserSoundListPage() {
   return (
     <MypageLayout>
-      <AccountTab />
+      <SoundsTab />
     </MypageLayout>
   );
 }

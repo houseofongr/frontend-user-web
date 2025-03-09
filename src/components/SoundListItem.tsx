@@ -52,22 +52,6 @@ export default function SoundListItem({ sound, currentPage, size, index }: Sound
         {name}
       </div>
 
-      {/* <div className=" flex justify-center" style={{ width: soundListHeaderTitles[5].width }}>
-        {isActive === true ? <BiToggleLeft size={25} color="#F5946D" /> : <BiToggleRight size={25} color="gray" />}
-      </div> */}
-      {/* <div style={{ width: soundListHeaderTitles[6].width }}>
-        <a
-          href={`${API_CONFIG.PRIVATE_AUDIO_LOAD_API}/${audioFileId}`}
-          // target="_blank"
-        >
-          <CircleButton
-            hasBorder={false}
-            label={<FaCloudDownloadAlt size={18} color="#5f5c5d" className="hover:text-white" />}
-            onClick={() => {}}
-          />
-        </a>
-      </div> */}
-
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
