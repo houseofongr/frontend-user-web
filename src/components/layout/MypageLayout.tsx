@@ -7,20 +7,17 @@ const TABS = [
     label: "나의 계정",
     subTabs: ["회원정보", "보유 홈 목록"],
     path: "/mypage/account",
-    // component: <AccountTab />,
   },
   {
     label: "소리 모음",
     subTabs: ["소리 모음"],
     path: "/mypage/sound-list",
-    // component: <SoundsTab />,
   },
 
   {
     label: "고객지원",
     subTabs: ["1:1 문의", "공지사항", "FAQ"],
     path: "/mypage/cscenter",
-    // component: <CustomerServiceTab />,
   },
 ];
 
