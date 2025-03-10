@@ -75,7 +75,7 @@ export default function TermsOfServicePage() {
 
   return (
     <div className="flex-center flex-col bg-neutral-100">
-      <section className="w-full md:w-[60%] flex flex-col p-10">
+      <section className="w-full md:w-[70%] lg:w-[60%] flex flex-col p-10">
         <span className="text-xl md:text-2xl">약관동의</span>
         <p className="text-sm md:text-base font-extralight mb-5">
           '아카이브 오브 옹알'이 처음이신 고객님, 서비스 시작 및 가입을 위해 아래의 약관 내용에 동의해 주세요.
