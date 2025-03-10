@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import ContactForm from "../../components/ContactForm";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
 import { SlSocialInstagram } from "react-icons/sl";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
+import PageLayout from "../../components/layout/PageLayout";
 
 const contactInfo = [
   { icon: <IoMail size={20} color="#f5946d" />, label: "메일 주소", text: "contact@archiveofongr.com" },
@@ -37,13 +37,10 @@ const snsLinks = [
 
 export default function ContactPage() {
   return (
-    <div
-      className="w-full flex flex-col bg-neutral-100"
-      style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
-    >
-      <div className="mx-8 lg:mx-auto lg:w-[70%] flex-col lg:flex-row flex items-center justify-center lg:gap-30 py-10 md:py-20">
+    <PageLayout>
+      <div className="flex flex-col items-center lg:flex-row lg:gap-30  py-10 md:py-20">
         {/* 왼쪽 섹션 */}
-        <section className="lg:w-1/2 min-h-[500px]">
+        <section className="w-[70%] lg:w-1/2 min-h-[600px]">
           <h3 className="text-xl md:text-2xl">문의</h3>
           <p className="text-sm md:text-base font-extralight mb-10">
             아래의 이메일 주소를 사용하거나 양식을 사용하여 문의 부탁 드립니다.
@@ -77,17 +74,16 @@ export default function ContactPage() {
           </div>
         </section>
         {/* 오른쪽 섹션 */}
-        <section className="md:w-2/3 lg:w-1/2 shadow-md flex-col flex p-3 lg:p-7 bg-white rounded">
-          <p className="lg:hidden font-extrabold text-2xl pb-3">CONTACT US</p>
-          <div>
-            <p className="text-sm md:text-base font-extralight ">
-              '아카이브 오브 옹알'에 궁금한 점이나 문의 사항이 있다면 아래 양식을 작성해 주세요.
-            </p>
-          </div>
+        <section className="w-4/5 lg:w-1/2 shadow-md flex-col flex p-5 lg:p-7 bg-white rounded">
+          {/* <p className="lg:hidden font-extrabold text-2xl pb-3">CONTACT US</p> */}
+
+          <p className="text-sm md:text-base font-extralight mb-3">
+            '아카이브 오브 옹알'에 궁금한 점이나 문의 사항이 있다면 아래 양식을 작성해 주세요.
+          </p>
 
           <ContactForm />
         </section>
       </div>
-    </div>
+    </PageLayout>
   );
 }

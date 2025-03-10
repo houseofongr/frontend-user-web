@@ -34,7 +34,7 @@ export default function LoginPage() {
 
   return (
     <div
-      className="flex-center flex-col md:pb-20 "
+      className="flex-center flex-col md:pb-20"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <motion.div

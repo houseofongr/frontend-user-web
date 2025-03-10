@@ -1,5 +1,5 @@
 // import Slider from "react-slick";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
+import PageLayout from "../../components/layout/PageLayout";
 
 // const CLIENT_LIST = [
 //   { id: 1, name: "한국 백혈병 어린이재단", image: "/images/clientLogo/logo_1.png" },
@@ -21,11 +21,8 @@ export default function BusinessPage() {
   //   arrow: false,
   // };
   return (
-    <div
-      className="w-full pb-20  flex flex-col justify-between items-center bg-neutral-100"
-      style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
-    >
-      <section className=" w-[70%] py-10 md:py-20">
+    <PageLayout>
+      <section className="w-[70%] py-10 md:py-20 h-screen">
         <h3 className="text-xl md:text-2xl">비즈니스</h3>
         <p className="text-sm md:text-base font-extralight mb-5">서브 타이틀 </p>
         <div className="text-center space-y-3 text-[15px]">
@@ -62,6 +59,6 @@ export default function BusinessPage() {
           </Slider>
         </div> */}
       </section>
-    </div>
+    </PageLayout>
   );
 }

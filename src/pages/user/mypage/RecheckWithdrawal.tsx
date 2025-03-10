@@ -41,7 +41,6 @@ export default function RecheckWithdrawalPage() {
 
   return (
     <div className="flex-center flex-col bg-neutral-100">
-      {/* <section className="w-full md:w-[50%] flex flex-col p-10"> */}
       <section className="px-5 md:px-14 py-10 md:py-20 w-full lg:w-[50%] flex flex-col">
         <h3 className="text-xl md:text-2xl">회원 탈퇴</h3>
         <p className="text-sm md:text-base font-extralight mb-5">회원 탈퇴 신청 시 아래 내용을 반드시 확인해주세요. </p>

@@ -14,7 +14,7 @@ function ContactInput({ label, type, name, placeholder, onChange, value }: Props
   const COMMON_STYLE = "p-2 bg-white border border-gray-300 rounded-md";
 
   return (
-    <div className="m-4 flex flex-col">
+    <div className="m-0 md:m-4 flex flex-col py-2 md:py-0">
       <label htmlFor={name} className="pb-1 font-light text-xs">
         {label}
       </label>

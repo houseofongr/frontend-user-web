@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import PageLayout from "../../components/layout/PageLayout";
 
 export default function ReservationPage() {
   const navigate = useNavigate();
@@ -10,5 +11,11 @@ export default function ReservationPage() {
       navigate("/login");
     }
   }, [navigate]);
-  return <div className="w-full flex-center mt-[20%]">준비중입니다.</div>;
+  return (
+    <PageLayout>
+      <div className="py-20">
+        <p>준비중입니다.</p>
+      </div>
+    </PageLayout>
+  );
 }

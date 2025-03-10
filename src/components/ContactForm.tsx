@@ -60,7 +60,7 @@ export default function ContactForm() {
           {status.message}
         </div>
       )}
-      <form ref={formRef} className="text-sm" onSubmit={sendEmail}>
+      <form ref={formRef} className="text-sm pt-5" onSubmit={sendEmail}>
         <ContactInput
           label="이메일"
           type="email"

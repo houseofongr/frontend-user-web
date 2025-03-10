@@ -1,4 +1,4 @@
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
+import PageLayout from "../../components/layout/PageLayout";
 
 const SERVICE_FEATURES = [
   {
@@ -21,10 +21,7 @@ const SERVICE_FEATURES = [
 
 export default function AboutPage() {
   return (
-    <div
-      className="w-full flex flex-col justify-between items-center bg-neutral-100 "
-      style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
-    >
+    <PageLayout>
       <section className="mx-8 py-10 md:py-20 w-[70%]  flex flex-col">
         <h3 className="text-xl md:text-2xl mb-5">소개</h3>
 
@@ -69,6 +66,6 @@ export default function AboutPage() {
           </ul>
         </aside>
       </section>
-    </div>
+    </PageLayout>
   );
 }
