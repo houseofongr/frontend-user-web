@@ -62,7 +62,10 @@ export default function UserInformation() {
             </div>
           </div>
           {/* 음원 개수 */}
-          <div className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-15">
+          <div
+            className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-15 cursor-pointer"
+            onClick={() => navigate("/mypage/sound-list")}
+          >
             <MdAudiotrack color="#F5946D" className="text-2xl md:text-5xl" />
             <div className="flex flex-col items-center">
               <strong className="text-sm md:text-2xl">{user.mySoundSourceCount} 개</strong>
@@ -71,7 +74,7 @@ export default function UserInformation() {
           </div>
           {/* 예약 */}
           <div
-            className="flex-center gap-1 lg:gap-5  cursor-pointer md:px-10 lg:px-15"
+            className="flex-center gap-1 lg:gap-5 md:px-10 lg:px-15 cursor-pointer "
             onClick={() => navigate("/reservation")}
           >
             <MdCalendarMonth color="#F5946D" className="text-2xl md:text-5xl" />

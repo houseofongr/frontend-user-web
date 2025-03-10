@@ -18,7 +18,7 @@ export default function InitPage() {
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <InitText />
-      <div className="flex gap-5 md:gap-14  md:pb-44">
+      <div className="flex gap-5 md:gap-14  md:pb-44 lg:pb-0">
         <Link to="/common/homes" className=" text-center">
           <InitHouseImage imgType="public" />
           <span className="text-xs">PUBLIC</span>

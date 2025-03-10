@@ -14,18 +14,18 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={`px-3 py-1  ${
+        className={`pr-3 ${
           currentPage === 1 ? "text-gray-400 border-gray-300 cursor-not-allowed" : "hover:  hover:text-[#f5946d]"
         }`}
       >
-        <GrPrevious size={20} />
+        <GrPrevious className="text-sm md:text-lg" />
       </button>
 
       {pages.map((page) => (
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-3 py-1 border-[#f5946d] rounded-full ${
+          className={`px-2 py-0.5 md:px-3 md:py-1 border-[#f5946d] rounded-full text-sm md:text-base ${
             currentPage === page ? "bg-[#f5946d] text-white" : "text-slate-700 hover:bg-[#f5946d] hover:text-white"
           }`}
         >
@@ -35,11 +35,11 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={`px-3 py-1  ${
+        className={`pl-3 ${
           currentPage === totalPages ? "text-gray-400 border-gray-300 cursor-not-allowed" : "hover:text-[#f5946d]"
         }`}
       >
-        <GrNext size={20} />
+        <GrNext className="text-sm md:text-lg" />
       </button>
     </div>
   );

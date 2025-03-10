@@ -31,11 +31,13 @@ export default function TabController({ activeTabIndex }: TabControllerProps) {
         {TABS.map((tab, idx) => (
           <li
             key={tab.label}
-            className={`w-full text-sm md:text-lg lg:p-10 lg:flex  ${idx === activeTabIndex ? "bg-neutral-100 " : ""}`}
+            className={`w-full text-sm md:text-lg lg:p-10 lg:flex-center   ${
+              idx === activeTabIndex ? "bg-neutral-100 " : ""
+            }`}
           >
             <Link to={tab.path}>
               <div
-                className={`w-full text-center  lg:text-left py-3 lg transition-colors duration-300 cursor-pointer ${
+                className={`w-full flex-center lg:text-left py-3 lg transition-colors duration-300 cursor-pointer ${
                   idx === activeTabIndex ? "" : "hover:font-base font-extralight"
                 }`}
               >

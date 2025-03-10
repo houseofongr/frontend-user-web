@@ -18,6 +18,7 @@ export default function SoundsTab() {
   const totalPages: number = data?.pagination?.totalPages || 0;
 
   if (soundSources.length === 0 || !data) return <SpinnerIcon />;
+
   return (
     <main className="md:py-5 lg:px-24">
       <section className="w-full flex flex-col ">
@@ -35,7 +36,7 @@ export default function SoundsTab() {
           </ul>
         )}
 
-        <div className="w-full md:hidden ">
+        <div className="w-full md:hidden">
           <div className="pb-5">
             <div className="flex items-center text-xs gap-1">
               <IoMdInformationCircleOutline color="tomato" />
@@ -66,11 +67,14 @@ export default function SoundsTab() {
                     <div className="px-3 flex-center border-r border-gray-200">{index + 1}</div>
                     <div className="w-full">
                       <div className="w-full p-1  flex-center gap-1">
-                        <p className="line-clamp-1 text-center w-full">{sound.homeName}</p>
+                        {/* <p className="line-clamp-1 text-center w-full">{sound.homeName}</p> */}
+                        <p className="line-clamp-1 text-center w-full">윤선영의 시그니처 메인 하우스</p>
+
                         <IoIosArrowForward color="#F5946D" />
                       </div>
                       <div className="flex items-center p-1">
                         <p className="text-center w-[45%] ">{sound.roomName}</p>
+                        {/* <p className="text-center w-[45%] ">매우긴이름을 가진 방이름</p> */}
 
                         <IoIosArrowForward color="#F5946D" className="w-[5%] " />
 
@@ -79,7 +83,7 @@ export default function SoundsTab() {
                       </div>
 
                       <p className="p-1 w-full text-center ">{sound.name}</p>
-                      <p className="p-1 w-full text-start text-gray-500 border-t border-gray-200">
+                      <p className="p-1 w-full text-center text-gray-500 border-t border-gray-200">
                         생성 날짜 : {formatDate(sound.updatedDate)}
                       </p>
                     </div>
