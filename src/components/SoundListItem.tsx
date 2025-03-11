@@ -34,21 +34,27 @@ export default function SoundListItem({ sound, currentPage, size, index }: Sound
     <li className="relative py-2 flex items-center text-center rounded-md bg-[#fbfafa] shadow ">
       <span style={{ width: soundListHeaderTitles[0].width }}>{listNumber}</span>
 
-      <div className="flex justify-between items-center" style={{ width: soundListHeaderTitles[1].width }}>
-        <span className="overflow-hidden line-clamp-1 w-[90%]">{homeName}</span>
-        <IoIosArrowForward color="#F5946D" />
+      <div className="flex-center" style={{ width: soundListHeaderTitles[1].width }}>
+        <p className="text-center w-full">{homeName}</p>
+        <div className="w-5 h-5 flex items-center  justify-center flex-shrink-0 mx-2">
+          <IoIosArrowForward color="#F5946D" size={20} />
+        </div>
       </div>
-      <div className="flex justify-between items-center" style={{ width: soundListHeaderTitles[2].width }}>
-        <span className="overflow-hidden line-clamp-1 w-[90%]">{roomName}</span>
-        <IoIosArrowForward color="#F5946D" />
+      <div className="flex-center" style={{ width: soundListHeaderTitles[2].width }}>
+        <p className="text-center w-full">{roomName}</p>
+        <div className="w-5 h-5 flex items-center justify-center flex-shrink-0 mx-2">
+          <IoIosArrowForward color="#F5946D" size={20} />
+        </div>
       </div>
 
-      <div className="flex justify-between items-center " style={{ width: soundListHeaderTitles[3].width }}>
-        <span className="overflow-hidden line-clamp-1 w-[90%]">{itemName}</span>
-        <IoIosArrowForward color="#F5946D" />
+      <div className="flex-center" style={{ width: soundListHeaderTitles[3].width }}>
+        <p className="text-center w-full">{itemName}</p>
+        <div className="w-5 h-5 flex items-center justify-center flex-shrink-0 mx-2">
+          <IoIosArrowForward color="#F5946D" size={20} />
+        </div>
       </div>
 
-      <div className=" overflow-hidden line-clamp-1 text-stone-600" style={{ width: soundListHeaderTitles[4].width }}>
+      <div className="w-full text-center" style={{ width: soundListHeaderTitles[4].width }}>
         {name}
       </div>
 

@@ -66,23 +66,27 @@ export default function SoundsTab() {
                   <li className="flex bg-white text-xs md:text-sm ">
                     <div className="px-3 flex-center border-r border-gray-200">{index + 1}</div>
                     <div className="w-full">
-                      <div className="w-full p-1  flex-center gap-1">
+                      <div className="w-full p-1  flex-center gap-1 border-b border-gray-200">
                         {/* <p className="line-clamp-1 text-center w-full">{sound.homeName}</p> */}
-                        <p className="line-clamp-1 text-center w-full">윤선영의 시그니처 메인 하우스</p>
+                        <p className="line-clamp-1 text-center w-full ">{sound.homeName}</p>
 
                         <IoIosArrowForward color="#F5946D" />
                       </div>
-                      <div className="flex items-center p-1">
+                      <div className="flex items-center p-1  border-b border-gray-200">
+                        {/* <p className="text-center w-[45%] ">{sound.roomName}</p> */}
                         <p className="text-center w-[45%] ">{sound.roomName}</p>
-                        {/* <p className="text-center w-[45%] ">매우긴이름을 가진 방이름</p> */}
 
                         <IoIosArrowForward color="#F5946D" className="w-[5%] " />
 
                         <p className="text-center w-[45%] ">{sound.itemName}</p>
+                        {/* <p className="text-center w-[45%] ">매우 매우 매우 긴 긴 이름을 가진 아이템의 이름</p> */}
+
                         <IoIosArrowForward color="#F5946D" className="w-[5%] " />
                       </div>
 
                       <p className="p-1 w-full text-center ">{sound.name}</p>
+                      {/* <p className="p-1 w-full text-center  ">매우 매우 매우 긴 이름을 가진 음원의 이름</p> */}
+
                       <p className="p-1 w-full text-center text-gray-500 border-t border-gray-200">
                         생성 날짜 : {formatDate(sound.updatedDate)}
                       </p>
