@@ -14,7 +14,7 @@ export default function InitPage() {
 
   return (
     <div
-      className="flex-center flex-col"
+      className="flex-center flex-col md:pb-20"
       style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
     >
       <InitText />
