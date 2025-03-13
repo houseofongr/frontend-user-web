@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import InitHouseImage from "../../../components/InitHouseImage";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../../constants/componentSize";
-import API_CONFIG from "../../../config/api";
 import { useNavigate } from "react-router-dom";
+import API_CONFIG from "../../config/api";
+
+import InitHouseImage from "../../components/InitHouseImage";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/size";
 
 export default function LoginPage() {
   const [isAnimationComplete, setIsAnimationComplete] = useState<boolean>(false);
@@ -52,7 +53,7 @@ export default function LoginPage() {
           <div className="cursor-pointer pb-5">
             <img
               onClick={() => handleLogin("kakao")}
-              src={"/images/kakaoLoginButton.png"}
+              src={"/images/loginButton/kakaoLogin.png"}
               alt="kakaoLoginButton"
               className="w-36 md:w-[200px] h-auto"
             />

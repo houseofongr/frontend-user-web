@@ -16,7 +16,7 @@ type PreviewContentProp = {
   z?: number;
 };
 
-export default function PreviewContentCopy({ data }: { data: PreviewContentProp }) {
+export default function ModalContent({ data }: { data: PreviewContentProp }) {
   const { name, description, audioFileId, updatedDate } = data;
   return (
     <div className="flex flex-col gap-5 text-black min-h-[400px] sm:min-h-[550px] min-w-[330px] md:min-w-[500px] lg:min-w-[900px]">

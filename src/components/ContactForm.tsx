@@ -26,7 +26,6 @@ export default function ContactForm() {
     e.preventDefault();
 
     if (!formRef.current) return;
-    console.log(formRef.current);
 
     emailjs
       .sendForm(

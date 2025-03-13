@@ -49,7 +49,7 @@ export async function deleteUser(agreement: {
     },
     body: JSON.stringify(agreement),
   });
-  console.log("res", response);
+
   if (!response.ok) throw new Error("Failed to delete user account");
   return response.json();
 }

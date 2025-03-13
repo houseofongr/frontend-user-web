@@ -1,21 +1,23 @@
 import { useState } from "react";
-import { useAllSound } from "../../../hooks/useSoundData";
-import GridHeader from "../../../components/GridHeader";
-import SoundListItem from "../../../components/SoundListItem";
-import Pagination from "../../../components/common/Pagination";
-import { soundListHeaderTitles } from "../../../constants/headerList";
-import { SoundListItem as SoundData } from "../../../types/sound";
-import SpinnerIcon from "../../../components/icons/SpinnerIcon";
+import { useAllSound } from "../../hooks/useSoundData";
+import SoundListItem from "../SoundListItem";
+import Pagination from "../common/Pagination";
+import { soundListHeaderTitles } from "../../constants/headerList";
+import { SoundListItem as SoundData } from "../../types/sound";
+import SpinnerIcon from "../icons/SpinnerIcon";
 import { IoIosArrowForward } from "react-icons/io";
-import { formatDate } from "../../../utils/formatDate";
+import { formatDate } from "../../utils/formatDate";
 import { Link } from "react-router-dom";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import ListHeader from "../ListHeader";
 
 export default function SoundsTab() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { data } = useAllSound(currentPage);
   const soundSources: SoundData[] = data?.soundSources || [];
   const totalPages: number = data?.pagination?.totalPages || 0;
+
+  console.log("soundsouces", data);
 
   if (soundSources.length === 0 || !data) return <SpinnerIcon />;
 
@@ -25,8 +27,8 @@ export default function SoundsTab() {
         {/* <SearchComponent onSearch={() => {}} options={soundSouceSearchOptions} /> */}
 
         <h3 className="text-xl md:text-2xl mb-5">소리 목록 및 경로</h3>
-        {/* 모바일에서는 grid header hidden */}
-        <GridHeader headerTitles={soundListHeaderTitles} />
+        {/* 모바일에서는 hidden 처리 */}
+        <ListHeader headerTitles={soundListHeaderTitles} />
 
         {soundSources.length > 0 && (
           <ul className="hidden md:flex flex-col gap-5  ">
@@ -67,26 +69,17 @@ export default function SoundsTab() {
                     <div className="px-3 flex-center border-r border-gray-200">{index + 1}</div>
                     <div className="w-full">
                       <div className="w-full p-1  flex-center gap-1 border-b border-gray-200">
-                        {/* <p className="line-clamp-1 text-center w-full">{sound.homeName}</p> */}
                         <p className="line-clamp-1 text-center w-full ">{sound.homeName}</p>
-
                         <IoIosArrowForward color="#F5946D" />
                       </div>
                       <div className="flex items-center p-1  border-b border-gray-200">
-                        {/* <p className="text-center w-[45%] ">{sound.roomName}</p> */}
                         <p className="text-center w-[45%] ">{sound.roomName}</p>
-
                         <IoIosArrowForward color="#F5946D" className="w-[5%] " />
-
                         <p className="text-center w-[45%] ">{sound.itemName}</p>
-                        {/* <p className="text-center w-[45%] ">매우 매우 매우 긴 긴 이름을 가진 아이템의 이름</p> */}
-
                         <IoIosArrowForward color="#F5946D" className="w-[5%] " />
                       </div>
 
                       <p className="p-1 w-full text-center ">{sound.name}</p>
-                      {/* <p className="p-1 w-full text-center  ">매우 매우 매우 긴 이름을 가진 음원의 이름</p> */}
-
                       <p className="p-1 w-full text-center text-gray-500 border-t border-gray-200">
                         생성 날짜 : {formatDate(sound.updatedDate)}
                       </p>

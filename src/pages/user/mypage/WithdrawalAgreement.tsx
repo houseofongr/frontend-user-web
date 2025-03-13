@@ -4,7 +4,7 @@ import { useDeleteUser } from "../../../hooks/useUserData";
 import CustomCheckboxInput from "../../../components/CustomCheckboxInput";
 import Button from "../../../components/common/Button";
 
-export default function RecheckWithdrawalPage() {
+export default function WithdrawalAgreementPage() {
   const [agreements, setAgreements] = useState({
     termsOfDeletionAgreement: false,
     personalInformationDeletionAgreement: false,
@@ -12,7 +12,6 @@ export default function RecheckWithdrawalPage() {
   const deleteUser = useDeleteUser();
 
   const navigate = useNavigate();
-  console.log(agreements);
 
   const handleAgreementChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAgreements((prev) => ({

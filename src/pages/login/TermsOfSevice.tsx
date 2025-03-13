@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { FaStarOfLife } from "react-icons/fa6";
-import CustomCheckboxInput from "../../../components/CustomCheckboxInput";
-import Button from "../../../components/common/Button";
-import API_CONFIG from "../../../config/api";
+import API_CONFIG from "../../config/api";
+import CustomCheckboxInput from "../../components/CustomCheckboxInput";
+import Button from "../../components/common/Button";
 
 export default function TermsOfServicePage() {
   const navigate = useNavigate();

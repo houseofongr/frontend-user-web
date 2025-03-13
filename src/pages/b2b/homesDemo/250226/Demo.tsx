@@ -8,8 +8,9 @@ import FileNameLabel from "../../../../components/FileNameLabel";
 import { MdCancel } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import CircleButton from "../../../../components/common/CircleButton";
-import PreviewContentCopy from "../../../../components/demo/PreviewContentCopy";
+
 import { motion } from "framer-motion";
+import ModalContent from "../../../../components/demo/ModalContent";
 
 const PLANET_LIST = [
   {
@@ -161,7 +162,6 @@ export default function DemoPage() {
     if (!file) return;
     const formData = new FormData();
     formData.append("audios", file);
-    // dev.file.archiveofongr.site/public/audios
     try {
       console.log(API_CONFIG.PUBLIC_AUDIO_LOAD_API, "?");
       const response = await fetch(`https://dev.file.archiveofongr.site/public/audios`, {
@@ -278,7 +278,7 @@ export default function DemoPage() {
             setSelectedPlanetId(null);
           }}
         >
-          <PreviewContentCopy data={selectedPlanet} />
+          <ModalContent data={selectedPlanet} />
         </Modal>
       )}
     </div>

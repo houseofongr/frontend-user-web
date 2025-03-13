@@ -8,23 +8,49 @@ import FlexColBox from "../FlexColBox";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BorderButton from "../common/BorderButton";
+import ModalAlertMessage from "../modal/ModalAlertMessage";
+import { MAX_NICKNAME } from "../../constants/size";
 
 export default function UserInformation() {
   const { user } = useUserStore();
   const [nickname, setNickname] = useState(user?.nickname || "");
   const [isEditing, setIsEditing] = useState(false);
+  const [showMessage, setShowMessage] = useState({ show: false, message: "" });
+
   const { isLoading: userLoading } = useUserData();
   const updateUser = useUpdateUser();
   const navigate = useNavigate();
 
   const toggleNicknameField = () => {
     setIsEditing((prev) => !prev);
+    if (user?.nickname) {
+      setNickname(user.nickname);
+    }
   };
 
   const handleConfirmNicknameChange = async () => {
+    if (nickname.trim() === "") {
+      setShowMessage({
+        show: true,
+        message: "공란입니다. 닉네임 값을 입력해주세요.",
+      });
+      return;
+    }
+    if (nickname.trim().length > MAX_NICKNAME) {
+      setShowMessage({
+        show: true,
+        message: `입력한 닉네임 길이가 현재 ${nickname.length}자 입니다. 닉네임은 최대 20자까지 설정 가능합니다.`,
+      });
+      return;
+    }
+
     try {
       await updateUser.mutateAsync({ nickname });
       setIsEditing(false);
+      setShowMessage({
+        show: true,
+        message: `닉네임이 성공적으로 변경되었습니다.`,
+      });
     } catch (error) {
       console.error("닉네임 변경 실패:", error);
     }
@@ -149,6 +175,11 @@ export default function UserInformation() {
           </span>
         </div>
       </section>
+      {showMessage.show && (
+        <ModalAlertMessage onClose={() => setShowMessage({ show: false, message: "" })}>
+          <p className="text-white">{showMessage.message}</p>
+        </ModalAlertMessage>
+      )}
     </div>
   );
 }

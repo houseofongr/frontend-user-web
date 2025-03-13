@@ -28,7 +28,7 @@ export default function Footer() {
         )}
       >
         <div className="w-[200px]"></div>
-        <p>&copy; 2022 ARCHIVE OF ONGR Co. ALL RIGHT RESERVED.</p>
+        <p>&copy; 2025 ARCHIVE OF ONGR Co. ALL RIGHT RESERVED.</p>
         <div className="flex gap-5 md:pr-10 justify-evenly">
           <span className="cursor-pointer hover:underline" onClick={() => setIsTermsOpen(true)}>
             이용약관

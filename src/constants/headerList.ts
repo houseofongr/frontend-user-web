@@ -1,3 +1,5 @@
+// 마이페이지 - 소리모음 탭 - ListHeader 컴포넌트
+
 export const soundListHeaderTitles = [
   { name: "NO.", width: "10%" },
   { name: "홈", width: "20%" },

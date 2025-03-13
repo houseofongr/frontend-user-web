@@ -1,9 +1,11 @@
 import { ShapeData } from "../types/items";
 
 const formatShapeDataForView = (shape: ShapeData, imageSize: { width: number; height: number; scale: number }) => {
+  // 1. 이미지의 중앙 정렬을 위한 오프셋 계산
   const offsetX = (window.innerWidth - imageSize.width * imageSize.scale) / 2;
   const offsetY = (window.innerHeight - imageSize.height * imageSize.scale) / 2;
 
+  // 2. 도형 유형별 좌표 및 크기 계산
   if ("circleData" in shape && shape.circleData) {
     return {
       ...shape,

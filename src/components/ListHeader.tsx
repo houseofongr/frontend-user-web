@@ -11,7 +11,7 @@ type List = {
   width: string;
 };
 
-export default function GridHeader({ headerTitles }: HeaderProps) {
+export default function ListHeader({ headerTitles }: HeaderProps) {
   const gridTemplate = headerTitles.map((item) => item.width).join(" ");
 
   return (

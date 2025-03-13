@@ -1,7 +1,7 @@
 import InitHouseImage from "../../components/InitHouseImage";
 import InitText from "../../components/InitText";
 import { Link } from "react-router-dom";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/size";
 import { useEffect, useState } from "react";
 
 export default function InitPage() {

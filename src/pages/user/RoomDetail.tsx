@@ -121,7 +121,7 @@ export default function RoomDetailPage() {
       setShowVolumeMessage(true);
       const timer = setTimeout(() => {
         setShowVolumeMessage(false);
-      }, 5000); // 5초후 사라짐
+      }, 5000);
 
       return () => clearTimeout(timer);
     }

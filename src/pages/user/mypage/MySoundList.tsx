@@ -1,10 +1,10 @@
 import MypageLayout from "../../../components/layout/MypageLayout";
-import CustomerServiceTab from "./CustomerServiceTab";
+import SoundsTab from "../../../components/mypage/SoundsTab";
 
-export default function CSPage() {
+export default function MySoundListPage() {
   return (
     <MypageLayout>
-      <CustomerServiceTab />
+      <SoundsTab />
     </MypageLayout>
   );
 }

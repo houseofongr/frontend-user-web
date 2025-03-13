@@ -1,4 +1,4 @@
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/componentSize";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/size";
 
 // 사용된 페이지 - 퍼블릭 홈즈, 비즈니스, 어바웃, 컨텍트 페이지
 export default function PageLayout({ children }: { children: React.ReactNode }) {

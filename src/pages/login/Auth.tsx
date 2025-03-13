@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import SpinnerIcon from "../../../components/icons/SpinnerIcon";
+import SpinnerIcon from "../../components/icons/SpinnerIcon";
 
 const AuthPage = () => {
   const location = useLocation();

@@ -3,6 +3,7 @@ import WaveSurfer from "wavesurfer.js";
 import { TbPlayerPauseFilled, TbPlayerStopFilled, TbPlayerPlayFilled } from "react-icons/tb";
 import { VscUnmute, VscMute } from "react-icons/vsc";
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
+import { formatTime } from "../utils/formatTime";
 
 interface WaveformProps {
   audioUrl: string;
@@ -57,20 +58,6 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
     }
   };
 
-  // const toggleMute = () => {
-  //   if (!audioRef.current) return;
-
-  //   if (isMuted) {
-  //     audioRef.current.volume = 0.5;
-  //     setVolume(0.5);
-  //     setIsMuted(false);
-  //   } else {
-  //     audioRef.current.volume = 0;
-  //     setVolume(0);
-  //     setIsMuted(true);
-  //   }
-  // };
-
   const toggleMute = () => {
     if (!audioRef.current) return;
 
@@ -99,18 +86,14 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
     const waveSurferInstance = WaveSurfer.create({
       container: waveformRef.current,
       waveColor: "gray",
-      progressColor: "#ff6347", // bg light version
-      // progressColor: "#F5946D", // bg dark version
+      progressColor: "#ff6347",
       cursorColor: "#F5946D",
       height: 100, //150
       // barHeight: 20,
       barWidth: 0.5,
       cursorWidth: 1,
       barGap: 0.5,
-      // barGap: 0,
-      // barGap: 1, //default
       backend: "MediaElement",
-      // crossOrigin: "use-credentials",
       mediaControls: true,
       media: audioRef.current, // Sync with audio element
     });
@@ -173,8 +156,8 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
             className="w-full h-1.5 bg-[#f3f3f3] rounded-full appearance-none cursor-pointer "
           />
           <div className="w-full flex justify-between text-neutral-200">
-            <span className="text-xs ">{formatTime(currentTime)}</span>
-            <span className="text-xs ">{formatTime(duration)}</span>
+            <span className="text-xs">{formatTime(currentTime)}</span>
+            <span className="text-xs">{formatTime(duration)}</span>
           </div>
         </div>
         <div className="w-full flex justify-between pt-4">
@@ -202,7 +185,6 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
           </div>
 
           {/* 음소거 */}
-
           {!isMobile && (
             <div className="w-1/4 flex-center">
               <button onClick={toggleMute} className="p-2 ">
@@ -230,14 +212,6 @@ const WaveformWithAudio: React.FC<WaveformProps> = ({ audioUrl, audioTitle }) =>
       </div>
     </div>
   );
-};
-
-const formatTime = (time: number) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60)
-    .toString()
-    .padStart(2, "0");
-  return `${minutes}:${seconds}`;
 };
 
 export default WaveformWithAudio;

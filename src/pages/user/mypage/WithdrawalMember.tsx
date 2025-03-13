@@ -32,7 +32,7 @@ const CHECK_LIST: { id: string; text: string; suggest: string }[] = [
   },
 ];
 
-export default function AccountWithdrawalPage() {
+export default function WithdrawalMemberPage() {
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
 
   const handleCheckboxChange = (id: string): void => {

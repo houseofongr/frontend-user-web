@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// 데모페이지 진입
 export default function Init() {
   return (
     <div className="mt-[10%] flex-center">

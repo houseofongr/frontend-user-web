@@ -1,13 +1,14 @@
 import { MdOutlineRadioButtonChecked } from "react-icons/md";
-import API_CONFIG from "../../../config/api";
-import { useHomeList } from "../../../hooks/useHomeList";
-import { HomeListItem } from "../../../types/home";
-import SpinnerIcon from "../../../components/icons/SpinnerIcon";
-import UserInformation from "../../../components/mypage/UserInformation";
-import BorderButton from "../../../components/common/BorderButton";
+import API_CONFIG from "../../config/api";
+import { useHomeList } from "../../hooks/useHomeList";
+import { HomeListItem } from "../../types/home";
+import SpinnerIcon from "../icons/SpinnerIcon";
+import UserInformation from "./UserInformation";
+import BorderButton from "../common/BorderButton";
 import { useState } from "react";
-import { useHomeData } from "../../../hooks/useHomeData";
-import ModalAlertMessage from "../../../components/modal/ModalAlertMessage";
+import { useHomeData } from "../../hooks/useHomeData";
+import ModalAlertMessage from "../modal/ModalAlertMessage";
+import { MAX_HOMENAME } from "../../constants/size";
 
 export default function AccountTab() {
   const [targetHomeId, setTargetHomeId] = useState<number | null>(null);
@@ -26,17 +27,15 @@ export default function AccountTab() {
   };
 
   const handleConfirmHomeNameChange = () => {
-    if (homeNameValue.trim().length > 50) {
+    if (homeNameValue.trim().length > MAX_HOMENAME) {
       setShowMessage({
         show: true,
-        message: `입력한 홈 네임 길이가 현재 ${
-          homeNameValue.trim().length
-        }자 입니다. 홈 네임은 최대 50자까지 설정 가능합니다!`,
+        message: `입력한 홈 네임 길이가 현재 ${homeNameValue.length}자 입니다. 홈 네임은 최대 50자까지 설정 가능합니다.`,
       });
       return;
     }
     if (!targetHomeId || homeNameValue.trim() === "") {
-      setShowMessage({ show: true, message: "홈 네임 값을 입력해주세요!" });
+      setShowMessage({ show: true, message: "홈 네임 값을 입력해주세요." });
       return;
     }
     //기존의 홈 네임 값과 변동 여부 체크
