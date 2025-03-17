@@ -22,7 +22,7 @@ const SERVICE_FEATURES = [
 export default function AboutPage() {
   return (
     <PageLayout>
-      <section className="mx-8 py-10 md:py-20 w-[70%]  flex flex-col">
+      <section className="mx-8 py-10 md:py-20 w-[70%] flex flex-col">
         <h3 className="text-xl md:text-2xl mb-5">소개</h3>
 
         <div className="space-y-1.5 flex justify-center  text-[15px]">
@@ -51,7 +51,7 @@ export default function AboutPage() {
         </div>
         <aside className="mt-20">
           <p className="text-xl md:text-2xl pb-5 mb-5">서비스 특징</p>
-          <ul className="flex flex-col md:flex-row md:gap-2 lg:gap-10 justify-center ">
+          <ul className="flex flex-col md:flex-row md:gap-2 lg:gap-10 justify-center">
             {SERVICE_FEATURES.map((item, index) => {
               return (
                 <li key={index} className="flex-center flex-col md:w-1/3 lg:w-[22%] p-3 border-gray-200">

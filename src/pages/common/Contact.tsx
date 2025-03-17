@@ -16,7 +16,7 @@ const contactInfo = [
     text: "2, Dongil-ro 2-gil, Gwangjin-gu, Seoul Republic of Korea",
   },
   {
-    icon: <IoTime size={20} color="#f5946d" />,
+    icon: <IoTime size={22} color="#f5946d" />,
     label: "영업 시간",
     text: "Week : 10:00 - 20:00  /  Lunch : 12:00 - 13:00 ",
   },
@@ -38,9 +38,9 @@ const snsLinks = [
 export default function ContactPage() {
   return (
     <PageLayout>
-      <div className="flex flex-col items-center lg:flex-row lg:gap-30  py-10 md:py-20">
+      <div className="flex flex-col lg:flex-row w-[90%] md:w-[70%] px-5 py-10 md:py-20 items-center lg:gap-30">
         {/* 왼쪽 섹션 */}
-        <section className="w-[70%] lg:w-1/2 min-h-[600px]">
+        <section className="w-full lg:w-1/2">
           <h3 className="text-xl md:text-2xl">문의</h3>
           <p className="text-sm md:text-base font-extralight mb-10">
             아래의 이메일 주소를 사용하거나 양식을 사용하여 문의 부탁 드립니다.
@@ -74,9 +74,7 @@ export default function ContactPage() {
           </div>
         </section>
         {/* 오른쪽 섹션 */}
-        <section className="w-4/5 lg:w-1/2 shadow-md flex-col flex p-5 lg:p-7 bg-white rounded">
-          {/* <p className="lg:hidden font-extrabold text-2xl pb-3">CONTACT US</p> */}
-
+        <section className="w-full md:w-[90%] lg:w-1/2  mt-10 shadow-md p-5 lg:p-7 bg-white rounded ">
           <p className="text-sm md:text-base font-extralight mb-3">
             '아카이브 오브 옹알'에 궁금한 점이나 문의 사항이 있다면 아래 양식을 작성해 주세요.
           </p>

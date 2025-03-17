@@ -40,7 +40,7 @@ export default function Header() {
         <div className="w-1/3 flex justify-center">
           <Logo />
         </div>
-        <ul className="w-1/3 flex justify-end gap-4 md:gap-10">
+        <ul className="w-1/3 flex justify-end gap-3 md:gap-8">
           {TABS.map(({ label, href, icon }) => {
             let isActive = pathName === href;
             if (href.startsWith("/mypage") && pathName.startsWith("/mypage")) {

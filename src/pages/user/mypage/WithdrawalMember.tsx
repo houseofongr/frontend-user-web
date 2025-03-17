@@ -80,7 +80,7 @@ export default function WithdrawalMemberPage() {
             <Button
               label="다음"
               disabled={!selectedReason}
-              onClick={() => navigate("/mypage/account/withdraw/recheck")}
+              onClick={() => navigate("/mypage/account/withdraw/agreement")}
             />
           </div>
         </div>

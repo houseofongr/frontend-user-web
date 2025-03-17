@@ -32,7 +32,7 @@ export default function HeaderForDarkBackground() {
             MENU
           </span>
         </div>
-        <ul className="flex gap-4 md:gap-10">
+        <ul className="flex gap-3 md:gap-8">
           {TABS.map(({ label, href, icon }) => {
             const isActive = pathName === href;
 
