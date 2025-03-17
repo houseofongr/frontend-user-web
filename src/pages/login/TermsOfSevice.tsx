@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${tempToken}`,
         },
-        body: JSON.stringify({ termsOfSeviceAgreement, personalInformationAgreement }),
+        body: JSON.stringify({ termsOfUseAgreement: termsOfSeviceAgreement, personalInformationAgreement }),
       });
 
       if (response.ok) {

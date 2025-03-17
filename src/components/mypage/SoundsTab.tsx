@@ -19,7 +19,7 @@ export default function SoundsTab() {
 
   console.log("soundsouces", data);
 
-  if (soundSources.length === 0 || !data) return <SpinnerIcon />;
+  if (!data) return <SpinnerIcon />;
 
   return (
     <main className="md:py-5 lg:px-24">
@@ -90,6 +90,8 @@ export default function SoundsTab() {
             })}
           </ul>
         </div>
+
+        {soundSources.length === 0 && <div className="text-center py-10">보유하고 있는 소리가 없습니다.</div>}
 
         {totalPages > 0 && (
           <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
