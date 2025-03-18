@@ -27,7 +27,10 @@ export default function TermsOfServicePage() {
     const tempToken = sessionStorage.getItem("tempToken");
     const tempNickname = sessionStorage.getItem("tempnickname");
 
-    if (!tempToken || !tempNickname) return;
+    if (!tempToken || !tempNickname) {
+      alert("이미 계정이 존재합니다.");
+      navigate("/login");
+    }
     if (!termsOfSeviceAgreement || !personalInformationAgreement) return;
     try {
       const response = await fetch(`${API_CONFIG.BACK_API}/authn/regist`, {
@@ -51,7 +54,6 @@ export default function TermsOfServicePage() {
       }
     } catch (error) {
       console.error("동의 처리 오류:", error);
-      alert("동의 처리 중 문제가 발생했습니다.");
     }
   };
 

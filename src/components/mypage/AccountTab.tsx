@@ -64,6 +64,7 @@ export default function AccountTab() {
           {homeListError && <div>홈 목록을 불러올 수 없습니다.</div>}
           {/* <ul className="flex gap-5"> */}
           <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 px-5 md:px-0">
+            {homeList.length === 0 && <p>보유하고 있는 집이 없습니다.</p>}
             {homeList &&
               homeList.map((home: HomeListItem) => {
                 return (
