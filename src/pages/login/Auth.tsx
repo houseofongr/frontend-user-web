@@ -16,7 +16,6 @@ const AuthPage = () => {
       if (nickname && accessToken) {
         sessionStorage.setItem("tempnickname", nickname);
         sessionStorage.setItem("tempToken", accessToken);
-
         navigate("/login/terms");
       }
     } else {
