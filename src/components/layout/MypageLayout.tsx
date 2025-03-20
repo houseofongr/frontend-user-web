@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TabController from "../mypage/TabController";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const TABS = [
   {
@@ -24,20 +24,12 @@ const TABS = [
 export default function MypageLayout({ children }: { children: React.ReactNode }) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const location = useLocation();
-  const navigate = useNavigate();
 
   // 현재 경로를 기반으로 activeTabIndex 설정
   useEffect(() => {
     const currentIndex = TABS.findIndex((tab) => location.pathname.includes(tab.path));
     setActiveTabIndex(currentIndex !== -1 ? currentIndex : 0);
   }, [location.pathname]);
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login");
-    }
-  }, [navigate]);
 
   return (
     <div className="bg-neutral-100 h-screen border-b border-gray-200">

@@ -10,9 +10,11 @@ import { useNavigate } from "react-router-dom";
 import BorderButton from "../common/BorderButton";
 import ModalAlertMessage from "../modal/ModalAlertMessage";
 import { MAX_NICKNAME } from "../../constants/size";
+import { logoutUser } from "../../service/userService";
 
 export default function UserInformation() {
-  const { user } = useUserStore();
+  const { user, clearUser } = useUserStore();
+
   const [nickname, setNickname] = useState(user?.nickname || "");
   const [isEditing, setIsEditing] = useState(false);
   const [showMessage, setShowMessage] = useState({ show: false, message: "" });
@@ -58,6 +60,20 @@ export default function UserInformation() {
 
   const navigatePage = () => {
     navigate("/mypage/account/withdraw");
+  };
+
+  const logoutHandler = () => {
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      try {
+        logoutUser();
+        clearUser();
+        alert("로그아웃 완료!");
+        navigate("/");
+      } catch (error) {
+        console.error("로그아웃 실패");
+        alert("로그아웃에 실패했습니다. 다시 시도해 주세요.");
+      }
+    }
   };
 
   useEffect(() => {
@@ -169,9 +185,12 @@ export default function UserInformation() {
             </ul>
           }
         />
-        <div className="text-end">
-          <span onClick={navigatePage} className="text-gray-300 text-end border p-1 text-sm cursor-pointer">
+        <div className="flex justify-end gap-1">
+          <span onClick={navigatePage} className="text-gray-300 border p-1 text-xs cursor-pointer">
             회원탈퇴
+          </span>
+          <span onClick={logoutHandler} className="text-gray-300 border p-1 text-xs cursor-pointer">
+            로그아웃
           </span>
         </div>
       </section>

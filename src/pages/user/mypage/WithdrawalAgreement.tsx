@@ -29,8 +29,9 @@ export default function WithdrawalAgreementPage() {
     if (window.confirm("정말로 회원 탈퇴하시겠습니까?")) {
       try {
         await deleteUser.mutateAsync(agreements);
+
         alert("회원 탈퇴가 완료되었습니다.");
-        // navigate("/");
+        navigate("/");
       } catch (error) {
         console.error("회원 탈퇴 실패:", error);
         alert("회원 탈퇴에 실패했습니다. 다시 시도해 주세요.");

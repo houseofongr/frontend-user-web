@@ -45,6 +45,7 @@ export async function deleteUser(agreement: {
   const response = await fetch(`${API_CONFIG.BACK_API}/users`, {
     method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(agreement),
@@ -57,4 +58,5 @@ export async function deleteUser(agreement: {
 // 유저 로그아웃 (토큰 삭제)
 export function logoutUser() {
   sessionStorage.removeItem("authToken");
+  sessionStorage.removeItem("nickname");
 }

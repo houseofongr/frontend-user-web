@@ -46,7 +46,6 @@ export const fetchHomeData = async (homeId: number) => {
 // 유저의 메인 홈 설정(수정)
 export const setupMainhome = async (homeId: number) => {
   const token = sessionStorage.getItem("authToken");
-
   if (!token) throw new Error("Authentication token is missing");
 
   const response = await fetch(`${API_CONFIG.BACK_API}/homes/${homeId}/main`, {

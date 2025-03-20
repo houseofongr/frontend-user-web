@@ -53,6 +53,7 @@ export function useDeleteUser() {
     mutationFn: deleteUser,
     onSuccess: () => {
       clearUser();
+      logoutUser();
       queryClient.invalidateQueries({
         queryKey: ["user"],
       });

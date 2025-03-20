@@ -27,10 +27,13 @@ export default function TermsOfServicePage() {
     const tempToken = sessionStorage.getItem("tempToken");
     const tempNickname = sessionStorage.getItem("tempnickname");
 
+    // const accessToken = sessionStorage.getItem("accessToken");
+    // const username = sessionStorage.getItem("username");
+
     if (!tempToken || !tempNickname) {
-      alert("이미 계정이 존재합니다.");
       navigate("/login");
     }
+
     if (!termsOfSeviceAgreement || !personalInformationAgreement) return;
     try {
       const response = await fetch(`${API_CONFIG.BACK_API}/authn/regist`, {
@@ -44,10 +47,11 @@ export default function TermsOfServicePage() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("data", data);
         sessionStorage.removeItem("tempnickname");
         sessionStorage.removeItem("tempToken");
-        sessionStorage.setItem("accessToken", data.accessToken);
-        sessionStorage.setItem("username", data.nickname);
+        sessionStorage.setItem("nickname", data.nickname);
+        sessionStorage.setItem("authToken", data.accessToken);
         navigate("/main/home");
       } else {
         throw new Error("동의 처리 실패");
