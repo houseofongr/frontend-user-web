@@ -61,7 +61,8 @@ const PLANET_LIST = [
   {
     id: 4,
     name: "목성",
-    description: "13살 아진이가 목성에 담고 싶은 소리. 아진이가 부르는 노래 소리",
+    description:
+      "13살 아진이가 목성에 담고 싶은 소리. \n\n아진이가 부르는 노래 소리 아진이가 목성에 담고 싶은 소리. \n\n아진이가 부르는 노래 소리 13살 아진이가 목성에 담고 싶은 소리.\n ",
     imgSrc: "/images/demo/planet/cropped/planet_v4.png",
     soundSrc: "",
     audioFileId: 456,
