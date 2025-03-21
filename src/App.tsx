@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AboutPage from "./pages/common/About";
-import NotFoundPage from "./pages/NotFound";
+
 import ProgramPage from "./pages/common/Program";
 import ContactPage from "./pages/common/Contact";
 import InitPage from "./pages/common/Init";
@@ -19,6 +19,8 @@ import MySoundListPage from "./pages/user/mypage/MySoundList";
 import MyAccount from "./pages/user/mypage/MyAccount";
 import WithdrawalMemberPage from "./pages/user/mypage/WithdrawalMember";
 import WithdrawalAgreementPage from "./pages/user/mypage/WithdrawalAgreement";
+import NotFoundPage from "./pages/common/NotFound";
+import ForbiddenPage from "./pages/common/Forbidden";
 
 function App() {
   return (
@@ -55,6 +57,8 @@ function App() {
           <Route path="/common/homes/1/demo" element={<DemoPage />} />
           {/* 404 page */}
           <Route path="*" element={<NotFoundPage />} />
+          {/* 403 page */}
+          <Route path="/forbidden" element={<ForbiddenPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>

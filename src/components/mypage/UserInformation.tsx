@@ -86,42 +86,42 @@ export default function UserInformation() {
   return (
     <div>
       <h3 className="text-xl md:text-2xl mb-5">회원 정보</h3>
-      <section className="w-full rounded-md bg-stone-700  md:p-6 lg:p-12 text-white flex flex-col  lg:flex-row lg:justify-between min-h-32">
-        <div className="flex flex-col gap-0.5 items-center md:items-start  justify-center p-6 md:p-4">
+      <section className="w-full rounded-md bg-stone-700  md:p-6 lg:p-5 2xl:p-12 text-white flex flex-col lg:flex-row lg:justify-between min-h-32">
+        <div className="flex flex-col gap-0.5 items-center lg:items-start justify-center p-6 md:p-4">
           <div className="flex items-center gap-3  ">
-            <strong className="text-sm md:text-lg">{user.nickname} 님,</strong>
+            <strong className="text-sm md:text-base">{user.nickname} 님,</strong>
             <p>안녕하세요.</p>
           </div>
           <p className="text-sm md:text-base"> 아카이브 오브 옹알의 [일반회원] 입니다.</p>
         </div>
         <div className="flex justify-around p-4 lg:p-0">
           {/* 집 개수 */}
-          <div className="flex-center gap-1 lg:gap-5  lg:border-r md:px-10 lg:px-15  ">
-            <BiHomeAlt color="#F5946D" className="text-2xl md:text-5xl " />
+          <div className="flex-center gap-1 lg:gap-5  lg:border-r md:px-10 2xl:px-15">
+            <BiHomeAlt color="#F5946D" className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl" />
             <div className="flex flex-col items-center">
-              <strong className="text-sm md:text-2xl">{user.myHomeCount} 개</strong>
+              <strong className="text-sm md:text-xl">{user.myHomeCount} 개</strong>
               <span className="text-[10px] md:text-sm">보유 집</span>
             </div>
           </div>
           {/* 음원 개수 */}
           <div
-            className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-15 cursor-pointer"
+            className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-10 cursor-pointer"
             onClick={() => navigate("/mypage/sound-list")}
           >
-            <MdAudiotrack color="#F5946D" className="text-2xl md:text-5xl" />
+            <MdAudiotrack color="#F5946D" className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl" />
             <div className="flex flex-col items-center">
-              <strong className="text-sm md:text-2xl">{user.mySoundSourceCount} 개</strong>
+              <strong className="text-sm md:text-xl">{user.mySoundSourceCount} 개</strong>
               <span className="text-[10px] md:text-sm">보유 소리</span>
             </div>
           </div>
           {/* 예약 */}
           <div
-            className="flex-center gap-1 lg:gap-5 md:px-10 lg:px-15 cursor-pointer "
+            className="flex-center gap-1 lg:gap-5 md:px-10 lg:px-10 cursor-pointer "
             onClick={() => navigate("/reservation")}
           >
-            <MdCalendarMonth color="#F5946D" className="text-2xl md:text-5xl" />
+            <MdCalendarMonth color="#F5946D" className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl" />
             <div className="flex flex-col items-center">
-              <strong className="text-sm md:text-2xl">- 개 </strong>
+              <strong className="text-sm md:text-xl">- 개 </strong>
               <span className="text-[10px] md:text-sm">예약 현황</span>
             </div>
           </div>

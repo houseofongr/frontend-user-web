@@ -22,7 +22,7 @@ export default function SoundsTab() {
   if (!data) return <SpinnerIcon />;
 
   return (
-    <main className="md:py-5 lg:px-24">
+    <main className="md:py-5 lg:px-10 2xl:px-24">
       <section className="w-full flex flex-col ">
         {/* <SearchComponent onSearch={() => {}} options={soundSouceSearchOptions} /> */}
 

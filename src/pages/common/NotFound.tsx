@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import InitHouseImage from "../components/InitHouseImage";
-import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../constants/size";
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/size";
+import InitHouseImage from "../../components/InitHouseImage";
 
 export default function NotFoundPage() {
   return (
@@ -13,11 +13,9 @@ export default function NotFoundPage() {
         <p className="text-[15px] md:text-lg pb-5 font-extralight text-center">
           죄송합니다. 현재 찾을 수 없는 페이지를 요청하셨습니다.
         </p>
-        <div className="text-center lg:text-start">
-          <p className="text-sm md:text-base font-extralight">페이지의 주소가 잘못 입력되었거나,</p>
-          <p className="text-sm md:text-base font-extralight">
-            주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.
-          </p>
+        <div className="text-center lg:text-start text-sm md:text-base font-extralight">
+          <p>페이지의 주소가 잘못 입력되었거나,</p>
+          <p>주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.</p>
         </div>
       </div>
 

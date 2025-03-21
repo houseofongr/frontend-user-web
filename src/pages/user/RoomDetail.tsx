@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShapeData } from "../../types/items";
 import { fetchItemSounds } from "../../service/soundService";
 import { ItemSoundsData } from "../../types/sound";
@@ -24,6 +24,7 @@ export default function RoomDetailPage() {
   const [showSoundList, setShowSoundList] = useState<boolean>(false);
   const [showVolumeMessage, setShowVolumeMessage] = useState(false);
 
+  const navigate = useNavigate();
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); // 모바일 기능 여부
 
   const handleViewSoundList = () => {
@@ -62,6 +63,11 @@ export default function RoomDetailPage() {
             Authorization: `Bearer ${token}`,
           },
         });
+
+        if (response.status === 403) {
+          navigate("/forbidden");
+        }
+
         if (!response.ok) {
           throw new Error("Failed to fetch room data");
         }
