@@ -11,7 +11,9 @@ const ModalAlertMessage = ({ onClose, children }: ModalAlertMessageProps) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={onClose}>
       <div
-        className={"rounded-lg shadow-lg p-4 relative overflow-hidden md:min-w-[40%] bg-stone-800/90"}
+        className={
+          "rounded-lg shadow-lg p-4 relative overflow-hidden min-w-[50%] lg:min-w-[30%] max-w-[80%] lg:max-w-[50%] bg-stone-800/90"
+        }
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={onClose} className="absolute top-5 right-5 text-white hover:cursor-pointer">
