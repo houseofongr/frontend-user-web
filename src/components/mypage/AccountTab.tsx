@@ -5,7 +5,7 @@ import { HomeListItem } from "../../types/home";
 import SpinnerIcon from "../icons/SpinnerIcon";
 import UserInformation from "./UserInformation";
 import BorderButton from "../common/BorderButton";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useHomeData } from "../../hooks/useHomeData";
 import ModalAlertMessage from "../modal/ModalAlertMessage";
 import { MAX_HOMENAME } from "../../constants/size";
@@ -16,6 +16,11 @@ export default function AccountTab() {
   const [showMessage, setShowMessage] = useState({ show: false, message: "" });
   const { data: homeList, isLoading: homeListLoading, isError: homeListError } = useHomeList();
   const { updateHomeName, isUpdatingName, updateNameError } = useHomeData(targetHomeId);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const toggleHomeNameField = (homeId: number, currendName: string) => {
     if (targetHomeId === homeId) {
@@ -52,8 +57,8 @@ export default function AccountTab() {
 
   return (
     <main className="md:py-5 lg:px-10 2xl:px-24">
-      <UserInformation />
-      <div>
+      <UserInformation scrollToBottom={scrollToBottom} />
+      <div className="my-10" ref={bottomRef}>
         <h3 className="text-xl md:text-2xl">보유 홈 목록</h3>
         <div className="flex gap-1 py-1 mb-5">
           <MdOutlineRadioButtonChecked size={20} className="text-primary" />

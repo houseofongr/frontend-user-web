@@ -12,7 +12,7 @@ import ModalAlertMessage from "../modal/ModalAlertMessage";
 import { MAX_NICKNAME } from "../../constants/size";
 import { logoutUser } from "../../service/userService";
 
-export default function UserInformation() {
+export default function UserInformation({ scrollToBottom }: { scrollToBottom: () => void }) {
   const { user, clearUser } = useUserStore();
 
   const [nickname, setNickname] = useState(user?.nickname || "");
@@ -42,6 +42,15 @@ export default function UserInformation() {
       setShowMessage({
         show: true,
         message: `입력한 닉네임 길이가 현재 ${nickname.length}자 입니다. 닉네임은 최대 20자까지 설정 가능합니다.`,
+      });
+      return;
+    }
+
+    if (nickname === user?.nickname) {
+      setIsEditing(false);
+      setShowMessage({
+        show: true,
+        message: "변경된 값이 없습니다. 기존 닉네임 그대로 유지합니다.",
       });
       return;
     }
@@ -96,7 +105,10 @@ export default function UserInformation() {
         </div>
         <div className="flex justify-around p-4 lg:p-0">
           {/* 집 개수 */}
-          <div className="flex-center gap-1 lg:gap-5  lg:border-r md:px-10 2xl:px-15">
+          <div
+            className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-10 2xl:px-15 cursor-pointer hover:bg-amber-100/20"
+            onClick={scrollToBottom}
+          >
             <BiHomeAlt color="#F5946D" className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl" />
             <div className="flex flex-col items-center">
               <strong className="text-sm md:text-xl">{user.myHomeCount} 개</strong>
@@ -105,7 +117,7 @@ export default function UserInformation() {
           </div>
           {/* 음원 개수 */}
           <div
-            className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-10 cursor-pointer"
+            className="flex-center gap-1 lg:gap-5 lg:border-r md:px-10 lg:px-10 2xl:px-15 cursor-pointer hover:bg-amber-100/20"
             onClick={() => navigate("/mypage/sound-list")}
           >
             <MdAudiotrack color="#F5946D" className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl" />
@@ -116,7 +128,7 @@ export default function UserInformation() {
           </div>
           {/* 예약 */}
           <div
-            className="flex-center gap-1 lg:gap-5 md:px-10 lg:px-10 cursor-pointer "
+            className="flex-center gap-1 lg:gap-5 md:px-10 lg:px-10 2xl:px-15 cursor-pointer hover:bg-amber-100/20"
             onClick={() => navigate("/reservation")}
           >
             <MdCalendarMonth color="#F5946D" className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl" />
