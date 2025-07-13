@@ -21,6 +21,7 @@ import WithdrawalMemberPage from "./pages/user/mypage/WithdrawalMember";
 import WithdrawalAgreementPage from "./pages/user/mypage/WithdrawalAgreement";
 import NotFoundPage from "./pages/common/NotFound";
 import ForbiddenPage from "./pages/common/Forbidden";
+import UniverseDetailPage from "./pages/universe/UniverseDetailPage";
 
 function App() {
   return (
@@ -46,6 +47,10 @@ function App() {
 
           {/* 예약 페이지 - 내용x */}
           <Route path="/reservation" element={<ReservationPage />} />
+
+          {/* 유니버스 - 상세 페이지 */}
+          <Route path="/universe/:universeId" element={<UniverseDetailPage />} />
+
 
           {/* public page */}
           <Route path="/about" element={<AboutPage />} />
