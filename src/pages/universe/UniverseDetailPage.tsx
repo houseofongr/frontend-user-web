@@ -124,11 +124,7 @@ export default function UniverseDetailPage() {
 
         {/* 오른쪽 영역 */}
         <div className="w-full md:w-1/3 flex flex-col gap-1">
-          {/* 상단 2/5 */}
-          <div className="h-40 md:h-2/5 flex items-center justify-center border-1">
-            <UniverseDetailInfo />
-          </div>
-          {/* 하단 3/5 */}
+          <UniverseDetailInfo />
           <div className="flex-1 flex items-center justify-center border-1">
             Right Bottom (3/5)
           </div>

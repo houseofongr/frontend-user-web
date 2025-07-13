@@ -1,4 +1,4 @@
-export interface Universe {
+export interface UniverseInfoType {
   id?: number;
 
   thumbnailId: number;

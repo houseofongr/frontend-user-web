@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { getUniverseTree } from "../../service/universeService";
 import { SpaceType, useSpaceStore } from "./useSpaceStore";
 import { PieceType, usePieceStore } from "./usePieceStore";
+import { UniverseInfoType } from "../../types/universe";
 
 export interface UniverseType {
   universeId: number;
@@ -15,11 +16,14 @@ export type SaveTargetType = null | "universe" | "space";
 
 interface UniverseStore {
   universeId: number | null;
+  universeInfo: UniverseInfoType | null;
   rootUniverse: UniverseType | null;
   activeInnerImageId: number | null;
 
   setUniverseId: (id: number) => void;
   setRootUniverse: (data: UniverseType) => void;
+  setUniverseInfo: (data: UniverseInfoType) => void;
+
 
   setUniverseData: (
     innerImgId: number,
@@ -34,11 +38,13 @@ interface UniverseStore {
 
 export const useUniverseStore = create<UniverseStore>((set, get) => ({
   universeId: null,
+  universeInfo: null,
   rootUniverse: null,
   activeInnerImageId: null,
-  editStep: null,
 
   setUniverseId: (id) => set({ universeId: id }),
+
+  setUniverseInfo: (universeInfo) => set({ universeInfo }),
 
   setRootUniverse: (data) => {
     set({ rootUniverse: data });

@@ -2,92 +2,96 @@ import { useEffect, useState } from 'react';
 import { IoIosHeartEmpty } from 'react-icons/io';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import { useUniverseStore } from '../../../hooks/admin/useUniverseStore';
-import { Universe } from '../../../types/universe';
 import { useParams } from 'react-router-dom';
 import { getUniverseDetail } from '../../../service/universeService';
 import { convertUnixToDate } from '../../../utils/formatDate';
 
-
 export default function UniverseDetailInfo() {
+  // 라우터 파라미터 및 전역 상태 접근
   const { universeId } = useParams();
-  const universeIdParsed = parseInt(universeId || "", 10);
-  const { setUniverseId } = useUniverseStore();
+  const universeIdParsed = parseInt(universeId || '', 10);
+  const { setUniverseId, setUniverseInfo, universeInfo } = useUniverseStore();
 
-  const [showMore, setShowMore] = useState<boolean>(false);
-  const [universe, setUniverse] = useState<Universe>({
-    id: 0,
-    thumbnailId: -1,
-    thumbMusicId: -1,
-    innerImageId: -1,
-    createdTime: Date.now(),
-    updatedTime: Date.now(),
-    view: 0,
-    like: 0,
-    title: "",
-    description: "",
-    category: {
-      id: -1,
-      eng: "",
-      kor: "",
-    },
-    publicStatus: "PRIVATE",
-    hashtags: [],
-    authorId: 0,
-    author: "",
-  });
+  // 내부 상태
+  const [showMore, setShowMore] = useState(false);
+  const [maxDescriptionLength, setMaxDescriptionLength] = useState(200);
 
+  // 화면 높이에 따라 설명 길이 설정
   useEffect(() => {
-    if (!universeId) return;
+    const updateDescriptionLength = () => {
+      const height = window.innerHeight;
+      if (height > 1000) setMaxDescriptionLength(300);
+      else if (height > 900) setMaxDescriptionLength(200);
+      else if (height > 800) setMaxDescriptionLength(120);
+      else if (height > 700) setMaxDescriptionLength(80);
+      else setMaxDescriptionLength(30);
+    };
+
+    updateDescriptionLength();
+    window.addEventListener('resize', updateDescriptionLength);
+    return () => window.removeEventListener('resize', updateDescriptionLength);
+  }, []);
+
+  // 유니버스 상세 데이터 가져오기
+  useEffect(() => {
+    if (!universeIdParsed) return;
 
     const fetchUniverse = async () => {
       try {
         const data = await getUniverseDetail(universeIdParsed);
-        setUniverseId(data.id!);
-        setUniverse(data);
-        console.log(data);
+        data.description = "도자기를 굽는 데는 1,000°C 이상의 고온이 필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의" +
+          "연료를 사용하여 최고의 온도를 얻을 수 있도록 고안되어 있다.도자기를 굽는 데는 1,000°C 이상의 고온이" +
+          "필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의 연료를 사용하여 최고의 온도를 얻을 수 있도록" +
+          "고안되어 있다..도자기를 굽는 데는 1,000°C 이상의 고온이 필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의연료."
 
+        setUniverseInfo(data);
+        setUniverseId(data.id!);
       } catch (error) {
-        console.error("유니버스 조회 실패:", error);
+        console.error('유니버스 조회 실패:', error);
       }
     };
 
     fetchUniverse();
-  }, [universeId]);
+  }, [universeIdParsed]);
 
+  // null 체크 후 반환
+  if (!universeInfo) return null;
 
-  const maxDescriptionLength = 2;
-  const isLong = universe?.description!.length > maxDescriptionLength;
-  const shortDesc = universe?.description!.slice(0, maxDescriptionLength);
+  // description 계산
+  const description = universeInfo.description ?? '';
+  const isLong = description.length > maxDescriptionLength;
+  const shortDesc = description.slice(0, maxDescriptionLength);
 
+  // JSX 반환
   return (
-    <div className="w-full flex flex-col gap-2 text-gray-800 pt-10">
+    <div className="w-full flex flex-col gap-1 text-gray-800 px-2">
       {/* 제목 */}
-      <h2 className="text-2xl font-bold">{universe.title}123</h2>
+      <span className="text-2xl font-bold">{universeInfo.title}</span>
 
       {/* 메타 정보 */}
-      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-        <span>{universe.author}</span>
-        <div className='flex flex-col'>
-          <span>{convertUnixToDate(universe.createdTime).default}</span>
-          <span>조회수 {universe.view}회</span>
+      <div className="flex flex-wrap justify-between gap-4 text-gray-5400">
+        <span className="text-lg font-bold">{universeInfo.author}</span>
+        <div className="flex gap-4 self-end">
+          <div className="flex flex-col gap-1 justify-center text-center text-xs">
+            <span className='text-xs'>조회수 {universeInfo.view}회</span>
+            <span>{convertUnixToDate(universeInfo.createdTime).default}</span>
+          </div>
+          <button className="flex flex-col items-center gap-1.5">
+            <IoIosHeartEmpty size={16} color="red" />
+            <span className='text-xs'>{universeInfo.like}</span>
+          </button>
+          <button className="flex flex-col items-center gap-1.5">
+            <IoShareSocialOutline size={16} />
+            <div className='text-xs'>공유</div>
+          </button>
         </div>
-
-        <button className="flex flex-col items-center">
-          <IoIosHeartEmpty size={16} color='red' />
-          <span>{universe.like}</span>
-
-        </button>
-        <button className="flex flex-col items-center gap-1">
-          <IoShareSocialOutline size={16} />
-          공유
-        </button>
       </div>
 
       {/* 해시태그 */}
       <div className="flex flex-wrap gap-2 text-sm">
-        {universe.hashtags.map((hashtag: string) => {
-          return <span>#{hashtag}</span>
-        })}
+        {universeInfo.hashtags.map((tag: string, idx: number) => (
+          <span key={idx}>#{tag}</span>
+        ))}
         <span>#SF</span>
         <span>#우주</span>
         <span>#모험</span>
@@ -95,7 +99,7 @@ export default function UniverseDetailInfo() {
 
       {/* 설명 */}
       <div className="text-base leading-relaxed whitespace-pre-wrap">
-        {isLong && !showMore ? `${shortDesc}...` : universe.description}
+        {isLong && !showMore ? `${shortDesc}...` : description}
         {isLong && (
           <button
             onClick={() => setShowMore(!showMore)}

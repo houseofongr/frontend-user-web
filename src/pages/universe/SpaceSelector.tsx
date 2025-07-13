@@ -20,7 +20,7 @@ interface SpaceSelectorProps {
 export default function SpaceSelector({
   innerImageId,
 }: SpaceSelectorProps) {
-  const { rootUniverse } = useUniverseStore();
+  const { rootUniverse, universeInfo } = useUniverseStore();
 
   const {
     currentSpaceId,
@@ -198,11 +198,17 @@ export default function SpaceSelector({
 
       {!loading && (
         <>
+          {universeInfo != null &&
+            <div className="absolute top-2 px-4 py-2 z-10 text-white/60 text-sm ">
+              {universeInfo.title}
+            </div>
+
+          }
           {/* 뒤로가기 */}
           {currentSpaceId !== rootUniverse?.universeId &&
             currentSpaceId !== -1 && (
               <div
-                className="absolute top-2 left-2 px-4 py-2 z-10 text-white cursor-pointer hover:opacity-90"
+                className="absolute bottom-2 px-4 py-2 z-10 text-white cursor-pointer hover:opacity-90"
                 onClick={handleBackClick}
               >
                 <IoIosArrowBack size={24} />
