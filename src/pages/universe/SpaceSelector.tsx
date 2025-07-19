@@ -125,8 +125,8 @@ export default function SpaceSelector({
 
   const handleMoveToPiece = (piece: PieceType) => {
     setCurrentPiece(piece);
-    console.log(piece);
-
+    console.log("dd", piece);
+    
   };
   const handleSpaceMouseEnter = (index: number) => {
     const space = existingSpaces[index];

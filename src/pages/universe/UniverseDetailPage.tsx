@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PageLayout from "../../components/layout/PageLayout";
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/size";
 import { usePieceStore } from "../../hooks/admin/usePieceStore";
@@ -8,6 +8,9 @@ import SpaceSelector from "./SpaceSelector";
 import ModalAlertMessage from "../../components/modal/ModalAlertMessage";
 import { getUniverseTree } from "../../service/universeService";
 import UniverseDetailInfo from "./detail/UniverseDetailInfo";
+import { PiPuzzlePiece } from "react-icons/pi";
+import { BiFullscreen } from "react-icons/bi";
+import PieceDetailPanel from "../piece/PieceDetailPanel";
 
 
 export default function UniverseDetailPage() {
@@ -39,8 +42,6 @@ export default function UniverseDetailPage() {
 
   // currentSpaceId 변경 시마다 화면 데이터 설정
   useEffect(() => {
-    console.log(rootUniverse);
-
     if (rootUniverse == null) {
       loadInitialData(null);
       return;
@@ -72,6 +73,7 @@ export default function UniverseDetailPage() {
     }
   }, [currentSpaceId, rootUniverse, universeId]);
 
+
   // 초기 데이터 로딩 함수
   const loadInitialData = async (spaceID: number | null) => {
     try {
@@ -92,32 +94,55 @@ export default function UniverseDetailPage() {
           setUniverseData(space.innerImageId, space.spaces, space.pieces);
         }
       }
-
-      console.log(data);
-
-
     } catch (error: any) {
       setAlert("유니버스 조회 중 오류가 발생했습니다.");
     }
   };
 
+  const spaceContainerRef = useRef<HTMLDivElement>(null);
 
+  const handleFullScreen = () => {
+    if (spaceContainerRef.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        spaceContainerRef.current.requestFullscreen().catch((err) => {
+          console.error("전체화면 전환 실패:", err);
+        });
+      }
+    }
+  };
+    const closePiecePanel = () => {
+      setCurrentPiece(null);
+    };
 
   return (
     <PageLayout>
       {alert && (
-        <ModalAlertMessage onClose={() => setAlert("")}>
-          안내
-        </ModalAlertMessage>
+        <ModalAlertMessage onClose={() => setAlert("")}>안내</ModalAlertMessage>
       )}
-      <div className="w-full flex flex-col md:flex-row gap-1 p-1"
-        style={{ height: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)` }}
+      <div
+        className="w-full flex flex-col md:flex-row gap-1 p-1"
+        style={{
+          height: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)`,
+        }}
       >
         {/* 스페이스 영역 */}
-        <div className="w-full md:w-2/3 aspect-square bg-black rounded-[10px]">
-          <div className="flex items-center justify-center h-full">
-            <SpaceSelector
-              innerImageId={activeInnerImageId}
+        <div
+          ref={spaceContainerRef}
+          className="w-full md:w-2/3 aspect-square bg-black rounded-[10px]"
+        >
+          <div className="relative flex items-center justify-center h-full group">
+            <button
+              onClick={handleFullScreen}
+              className="z-10 absolute cursor-pointer bottom-3 right-3 w-9 h-9 flex items-center justify-center backdrop-blur-sm rounded-full text-white hover:opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+              <BiFullscreen size={20} />
+            </button>
+            <SpaceSelector innerImageId={activeInnerImageId} />
+            <PieceDetailPanel
+              piece={currentPiece}
+              onClose={closePiecePanel}
             />
           </div>
         </div>
