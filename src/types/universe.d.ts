@@ -28,3 +28,9 @@ export type Category = {
   kor: string;
 };
 
+export type RandomUniverse = {
+  id: number;
+  thumbnailId: number;
+  title: string;
+  author: string;
+};

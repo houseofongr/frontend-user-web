@@ -4,7 +4,7 @@ export const fetchUser = async () => {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/users/me`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export async function updateUserProfile(updatedUserData: { nickname: string }) {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/users/me`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export async function deleteUser(agreement: {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/users`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/users`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

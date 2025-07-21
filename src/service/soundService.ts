@@ -5,7 +5,7 @@ export const fetchItemSounds = async (itemId: number) => {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/homes/items/sound-sources?itemId=${itemId}`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/homes/items/sound-sources?itemId=${itemId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export const fetchSoundDetail = async (soundSourceId: number) => {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/homes/sound-sources?soundSourceId=${soundSourceId}`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/homes/sound-sources?soundSourceId=${soundSourceId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const fetchAllSoundPath = async (pageNum: number) => {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/sound-sources/path?page=${pageNum}&size=${SIZE}`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/sound-sources/path?page=${pageNum}&size=${SIZE}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

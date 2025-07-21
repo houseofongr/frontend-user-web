@@ -3,7 +3,7 @@ import { IoIosHeartEmpty } from 'react-icons/io';
 import { IoShareSocialOutline } from 'react-icons/io5';
 import { useUniverseStore } from '../../../hooks/admin/useUniverseStore';
 import { useParams } from 'react-router-dom';
-import { getUniverseDetail } from '../../../service/universeService';
+import { public_getUniverseDetail } from '../../../service/user_universeService';
 import { convertUnixToDate } from '../../../utils/formatDate';
 
 export default function UniverseDetailInfo() {
@@ -38,7 +38,7 @@ export default function UniverseDetailInfo() {
 
     const fetchUniverse = async () => {
       try {
-        const data = await getUniverseDetail(universeIdParsed);
+        const data = await public_getUniverseDetail(universeIdParsed);
         data.description = "도자기를 굽는 데는 1,000°C 이상의 고온이 필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의" +
           "연료를 사용하여 최고의 온도를 얻을 수 있도록 고안되어 있다.도자기를 굽는 데는 1,000°C 이상의 고온이" +
           "필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의 연료를 사용하여 최고의 온도를 얻을 수 있도록" +

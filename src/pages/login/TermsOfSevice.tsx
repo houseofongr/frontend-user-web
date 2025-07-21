@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
 
     if (!termsOfSeviceAgreement || !personalInformationAgreement) return;
     try {
-      const response = await fetch(`${API_CONFIG.BACK_API}/authn/regist`, {
+      const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/authn/regist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

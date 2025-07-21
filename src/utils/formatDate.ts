@@ -26,3 +26,22 @@ export const convertUnixToDate = (unixTimestamp: number) => {
           .padStart(2, "0")}`, // "2025-06-27 09:25:15"
   };
 }
+
+export const formatRelativeDate = (createdTime: number): string => {
+  const now = new Date();
+  const createdDate = new Date(createdTime * 1000); // Unix timestamp → ms 단위로 변환
+  const diff = now.getTime() - createdDate.getTime();
+
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const days = Math.floor(diff / msPerDay);
+
+  if (days < 1) return "오늘";
+  if (days < 7) return `${days}일 전`;
+  if (days < 14) return `1주 전`;
+  if (days < 21) return `2주 전`;
+  if (days < 28) return `3주 전`;
+  if (days < 35) return `4주 전`;
+
+  const months = Math.floor(days / 30);
+  return `${months}개월 전`;
+}

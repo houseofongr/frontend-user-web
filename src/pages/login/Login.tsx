@@ -10,7 +10,7 @@ export default function LoginPage() {
   const [isAnimationComplete, setIsAnimationComplete] = useState<boolean>(false);
   const navigate = useNavigate();
   const handleLogin = async (provider: string) => {
-    window.location.href = `${API_CONFIG.BACK_API}/authn/login/${provider}`;
+    window.location.href = `${API_CONFIG.BACK_ADMIN_API}/authn/login/${provider}`;
   };
 
   useEffect(() => {

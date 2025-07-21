@@ -9,7 +9,7 @@ export const fetchRoomItems = async (
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/homes/rooms/items?homeId=${homeId}&roomId=${roomId}`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/homes/rooms/items?homeId=${homeId}&roomId=${roomId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

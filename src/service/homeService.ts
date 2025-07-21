@@ -5,7 +5,7 @@ export const fetchHomeList = async () => {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/homes`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/homes`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const fetchHomeData = async (homeId: number) => {
 
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/homes/rooms?homeId=${homeId}`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/homes/rooms?homeId=${homeId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const setupMainhome = async (homeId: number) => {
   const token = sessionStorage.getItem("authToken");
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/homes/${homeId}/main`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/homes/${homeId}/main`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export const setupHomeName = async (homeId: number, newName: string) => {
 
   if (!token) throw new Error("Authentication token is missing");
 
-  const response = await fetch(`${API_CONFIG.BACK_API}/homes/${homeId}`, {
+  const response = await fetch(`${API_CONFIG.BACK_ADMIN_API}/homes/${homeId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

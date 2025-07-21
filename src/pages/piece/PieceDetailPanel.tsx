@@ -67,7 +67,6 @@ const PieceDetailPanel: React.FC<PieceDetailPanelProps> = ({
 
   // ⚙️ 이벤트 핸들러
   const handlePageChange = (newPage: number) => fetchPieceDetail(newPage);
-console.log("piece", piece);
 
   if (!piece) return null;
   return (
