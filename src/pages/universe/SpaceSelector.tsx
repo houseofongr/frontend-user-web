@@ -17,9 +17,7 @@ interface SpaceSelectorProps {
   innerImageId: number | null;
 }
 
-export default function SpaceSelector({
-  innerImageId,
-}: SpaceSelectorProps) {
+export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
   const { rootUniverse, universeInfo } = useUniverseStore();
 
   const {
@@ -35,8 +33,12 @@ export default function SpaceSelector({
   const { existingPieces, setCurrentPiece } = usePieceStore();
 
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
-  const [hoveredSpaceIndex, setHoveredSpaceIndex] = useState<number | null>(null);
-  const [hoveredPieceIndex, setHoveredPieceIndex] = useState<number | null>(null);
+  const [hoveredSpaceIndex, setHoveredSpaceIndex] = useState<number | null>(
+    null
+  );
+  const [hoveredPieceIndex, setHoveredPieceIndex] = useState<number | null>(
+    null
+  );
   const [popupData, setPopupData] = useState<{
     x: number;
     y: number;
@@ -73,25 +75,28 @@ export default function SpaceSelector({
   }, [imgSrc]); // ← innerImageId가 아니라 imgSrc로 변경
 
   // 이미지 로딩
-  useEffect(() => {
-    if (innerImageId === -1 || innerImageId === null) {
-      setImgSrc(null);
-      return;
-    }
+useEffect(() => {
+  if (innerImageId === -1 || innerImageId === null) {
+    setImgSrc(null);
+    setLoading(false); // 이미지가 없으면 바로 false
+    return;
+  }
 
-    const url = `${API_CONFIG.PUBLIC_IMAGE_LOAD_API}/${innerImageId}`;
-    const img = new Image();
+  setLoading(true); // 이미지 로딩 시작 시점에 true 세팅
 
-    img.src = url;
-    img.onload = () => {
-      setImgSrc(url);
-      setLoading(false);
-    };
-    img.onerror = () => {
-      setImgSrc(null);
-      setLoading(false);
-    };
-  }, [innerImageId]);
+  const url = `${API_CONFIG.PUBLIC_IMAGE_LOAD_API}/${innerImageId}`;
+  const img = new Image();
+
+  img.src = url;
+  img.onload = () => {
+    setImgSrc(url);
+    setLoading(false);
+  };
+  img.onerror = () => {
+    setImgSrc(null);
+    setLoading(false);
+  };
+}, [innerImageId]);
 
   // 유틸 함수
   const toPixel = (point: PercentPoint) => ({
@@ -126,7 +131,6 @@ export default function SpaceSelector({
   const handleMoveToPiece = (piece: PieceType) => {
     setCurrentPiece(piece);
     console.log("dd", piece);
-    
   };
   const handleSpaceMouseEnter = (index: number) => {
     const space = existingSpaces[index];
@@ -187,9 +191,7 @@ export default function SpaceSelector({
   };
 
   return (
-    <div
-      className="relative w-full h-full"
-    >
+    <div className="relative w-full h-full">
       {loading && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70">
           <ScaleLoader width={2} height={40} color="#F5946D" />
@@ -198,12 +200,11 @@ export default function SpaceSelector({
 
       {!loading && (
         <>
-          {universeInfo != null &&
+          {universeInfo != null && (
             <div className="absolute top-2 px-4 py-2 z-10 text-white/60 text-sm ">
               {universeInfo.title}
             </div>
-
-          }
+          )}
           {/* 뒤로가기 */}
           {currentSpaceId !== rootUniverse?.universeId &&
             currentSpaceId !== -1 && (
@@ -241,8 +242,9 @@ export default function SpaceSelector({
               onMouseLeave={handleSpaceMouseLeave}
             >
               <div
-                className={`w-full h-full border-3 border-amber-600 bg-white/70 cursor-pointer transition-opacity duration-300 ${hoveredSpaceIndex === index ? "opacity-100" : "opacity-30"
-                  }`}
+                className={`w-full h-full border-3 border-amber-600 bg-white/70 cursor-pointer transition-opacity duration-300 ${
+                  hoveredSpaceIndex === index ? "opacity-100" : "opacity-30"
+                }`}
                 onClick={() => handleMoveToSpace(space)}
               />
             </div>
@@ -260,8 +262,9 @@ export default function SpaceSelector({
               onMouseLeave={handlePieceMouseLeave}
             >
               <div
-                className={`w-full h-full border-3 border-blue-600 bg-white/70 cursor-pointer transition-opacity duration-300 ${hoveredPieceIndex === index ? "opacity-100" : "opacity-30"
-                  }`}
+                className={`w-full h-full border-3 border-blue-600 bg-white/70 cursor-pointer transition-opacity duration-300 ${
+                  hoveredPieceIndex === index ? "opacity-100" : "opacity-30"
+                }`}
                 onClick={() => handleMoveToPiece(piece)}
               />
             </div>

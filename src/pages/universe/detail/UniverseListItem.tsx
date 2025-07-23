@@ -17,10 +17,10 @@ export default function UniverseListItem({
   thumbnailId,
   title,
   author,
-  view = 3201,
-  createdTime = 1752494426,
+  view,
+  createdTime,
 }: UniverseListItemProps) {
-  const { setUniverseId, resetUniverse } = useUniverseStore();
+  const { setUniverseId, resetUniverseStore: resetUniverse } = useUniverseStore();
 
   const navigate = useNavigate();
 

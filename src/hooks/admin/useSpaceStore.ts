@@ -37,6 +37,7 @@ interface SpaceStore {
   getParentSpaceInnerImageId: () => number | null;
   getChildrenSpaces: (parentId: number | null) => SpaceType[];
   updateExistingSpacesByCurrentSpace: () => void;
+  resetSpaceStore: () => void;
 }
 
 export const useSpaceStore = create<SpaceStore>((set, get) => ({
@@ -44,7 +45,6 @@ export const useSpaceStore = create<SpaceStore>((set, get) => ({
   currentSpaceId: null,
   parentSpaceId: -1,
   existingSpaces: [],
-
 
   setCurrentSpace: (space) => set({ currentSpace: space }),
 
@@ -123,5 +123,14 @@ export const useSpaceStore = create<SpaceStore>((set, get) => ({
     const { currentSpaceId, getChildrenSpaces } = get();
     const childrenSpaces = getChildrenSpaces(currentSpaceId);
     set({ existingSpaces: childrenSpaces });
+  },
+
+  resetSpaceStore: () => {
+    set({
+      currentSpace: null,
+      currentSpaceId: null,
+      parentSpaceId: -1,
+      existingSpaces: [],
+    });
   },
 }));

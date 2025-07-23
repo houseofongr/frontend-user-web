@@ -4,6 +4,7 @@ import { getUniverseTree } from "../../service/universeService";
 import { SpaceType, useSpaceStore } from "./useSpaceStore";
 import { PieceType, usePieceStore } from "./usePieceStore";
 import { UniverseInfoType } from "../../types/universe";
+import { useSoundStore } from "./useSoundStore";
 
 export interface UniverseType {
   universeId: number;
@@ -24,7 +25,6 @@ interface UniverseStore {
   setRootUniverse: (data: UniverseType) => void;
   setUniverseInfo: (data: UniverseInfoType) => void;
 
-
   setUniverseData: (
     innerImgId: number,
     existingSpaces: SpaceType[],
@@ -32,7 +32,7 @@ interface UniverseStore {
   ) => void;
   setActiveInnerImageId: (id: number) => void;
   setRootUniverseInnerImageId: (id: number) => void;
-  resetUniverse: () => void;
+  resetUniverseStore: () => void;
   refreshUniverseData: () => Promise<void>;
 }
 
@@ -72,11 +72,14 @@ export const useUniverseStore = create<UniverseStore>((set, get) => ({
       },
     })),
 
-  resetUniverse: () => {
+  resetUniverseStore: () => {
     set({ universeId: null });
     set({ universeInfo: null });
     set({ rootUniverse: null });
     set({ activeInnerImageId: null });
+    useSpaceStore.getState().resetSpaceStore();
+    useSoundStore.getState().resetSoundStore();
+    usePieceStore.getState().resetPieceStore();
   },
 
   refreshUniverseData: async () => {
@@ -87,4 +90,3 @@ export const useUniverseStore = create<UniverseStore>((set, get) => ({
     set({ rootUniverse: data });
   },
 }));
-

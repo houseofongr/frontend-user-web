@@ -28,6 +28,7 @@ interface SoundStore {
 
   addSound: (sound: SoundType) => void;
   removeSound: (soundId: number) => void;
+  resetSoundStore: () => void;
 }
 
 export const useSoundStore = create<SoundStore>((set) => ({
@@ -64,4 +65,10 @@ export const useSoundStore = create<SoundStore>((set) => ({
       currentSound:
         state.currentSound?.soundId === soundId ? null : state.currentSound,
     })),
+
+  resetSoundStore: () =>
+    set({
+      sounds: [],
+      currentSound: null,
+    }),
 }));

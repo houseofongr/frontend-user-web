@@ -62,7 +62,7 @@ function App() {
 
           <Route path="/universe" element={<UniverseListPage />} />
           <Route
-            path="/universe/:universeId"
+            path="/universe/:id"
             element={<UniverseDetailPage />}
           />
 

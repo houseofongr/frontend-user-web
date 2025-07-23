@@ -8,8 +8,8 @@ import { convertUnixToDate } from '../../../utils/formatDate';
 
 export default function UniverseDetailInfo() {
   // 라우터 파라미터 및 전역 상태 접근
-  const { universeId } = useParams();
-  const universeIdParsed = parseInt(universeId || '', 10);
+  const { id } = useParams();
+  const universeIdParsed = parseInt(id || "", 10);
   const { setUniverseId, setUniverseInfo, universeInfo } = useUniverseStore();
 
   // 내부 상태

@@ -10,7 +10,7 @@ import SearchComponent from "../../components/SearchComponent";
 const PAGE_SIZE = 3;
 
 export default function UniverseListPage() {
-  const { resetUniverse } = useUniverseStore();
+  const { resetUniverseStore: resetUniverse } = useUniverseStore();
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 

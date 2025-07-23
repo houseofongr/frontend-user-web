@@ -20,6 +20,10 @@ import { useParams } from "react-router-dom";
 export default function UniverseDetailPage() {
   const spaceContainerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const { id } = useParams();
+  const universeIdParsed = parseInt(id || "", 10);
 
   const {
     universeId,
@@ -79,23 +83,29 @@ export default function UniverseDetailPage() {
     }
   }, [currentSpaceId, rootUniverse, universeId]);
 
+  useEffect(() => {
+    if (!contentRef.current || !scrollContainerRef.current) return;
+
+    const observer = new ResizeObserver(() => {
+      const contentHeight = contentRef.current?.offsetHeight || 0;
+      const containerHeight = scrollContainerRef.current?.offsetHeight || 0;
+
+      if (contentHeight < containerHeight && hasMore && !loading) {
+        loadMoreSuggestUniverses();
+      }
+    });
+
+    observer.observe(contentRef.current);
+
+    return () => observer.disconnect();
+  }, [suggestUniverses, hasMore, loading]);
+
   // 초기 데이터 로딩 함수
   const loadInitialData = async (spaceID: number | null) => {
     try {
-      console.log(universeId);
-
-      if (universeId == null) {
-        console.log("이건?");
-        
-        const { universeId } = useParams();
-        console.log("universeId");
-        
-        const universeIdParsed = parseInt(universeId || "", 10);
-
+      if (universeId || universeId == null) {
         if (universeIdParsed != null) setUniverseId(universeIdParsed);
         else return;
-
-        console.log(universeIdParsed);
       }
 
       // 현재 유니버스 조회
@@ -118,12 +128,9 @@ export default function UniverseDetailPage() {
         }
       }
 
-      console.log("여기는?");
-
       // 추천 유니버스 호출 (초기)
       const initialExceptIds = [universeId!];
       const initialSuggest = await public_getUniverseRandom(initialExceptIds);
-      console.log(initialSuggest);
 
       // API 응답 구조에 따라 수정
       const newUniverses = initialSuggest.universes || [];
@@ -140,10 +147,6 @@ export default function UniverseDetailPage() {
   const loadMoreSuggestUniverses = async () => {
     if (loading || !hasMore) return;
 
-    console.log(
-      "무한스크롤 실행 - 현재 유니버스 개수:",
-      suggestUniverses.length
-    );
     setLoading(true);
 
     try {
@@ -180,15 +183,6 @@ export default function UniverseDetailPage() {
 
     const { scrollTop, scrollHeight, clientHeight } =
       scrollContainerRef.current;
-
-    // 디버깅용 로그 (필요시 주석 해제)
-    // console.log('스크롤 상태:', {
-    //   scrollTop: Math.round(scrollTop),
-    //   scrollHeight,
-    //   clientHeight,
-    //   remaining: scrollHeight - (scrollTop + clientHeight),
-    //   shouldLoad: scrollTop + clientHeight >= scrollHeight - 100
-    // });
 
     if (scrollTop + clientHeight >= scrollHeight - 100) {
       loadMoreSuggestUniverses();
@@ -257,7 +251,7 @@ export default function UniverseDetailPage() {
               className="h-full overflow-y-auto"
               style={{ maxHeight: "100%" }}
             >
-              <div className="grid grid-cols-2 gap-2 p-2">
+              <div ref={contentRef} className="grid grid-cols-2 gap-2 p-2">
                 {suggestUniverses.map((universe, index) => (
                   <div key={`${universe.id}-${index}`}>
                     <UniverseListItem
@@ -268,14 +262,12 @@ export default function UniverseDetailPage() {
                     />
                   </div>
                 ))}
-
                 {/* 로딩 상태 */}
                 {loading && (
                   <div className="col-span-2 flex justify-center py-4">
                     <div className="animate-pulse text-gray-500">로딩</div>
                   </div>
                 )}
-
                 {/* 모든 데이터 로드 완료 */}
                 {!hasMore && !loading && suggestUniverses.length > 0 && (
                   <div className="col-span-2 flex justify-center py-4">
@@ -284,7 +276,6 @@ export default function UniverseDetailPage() {
                     </div>
                   </div>
                 )}
-
                 {/* 데이터가 없을 때 */}
                 {!hasMore && !loading && suggestUniverses.length === 0 && (
                   <div className="col-span-2 flex justify-center py-8">
