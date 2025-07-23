@@ -25,8 +25,8 @@ export default function UniverseListItem({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    setUniverseId(id);
     resetUniverse();
+    setUniverseId(id);
     navigate(`/universe/${id}`);
   };
   return (

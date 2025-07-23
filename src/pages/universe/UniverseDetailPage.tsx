@@ -15,6 +15,7 @@ import { BiFullscreen } from "react-icons/bi";
 import PieceDetailPanel from "../piece/PieceDetailPanel";
 import { RandomUniverse } from "../../types/universe";
 import UniverseListItem from "./detail/UniverseListItem";
+import { useParams } from "react-router-dom";
 
 export default function UniverseDetailPage() {
   const spaceContainerRef = useRef<HTMLDivElement>(null);
@@ -81,13 +82,24 @@ export default function UniverseDetailPage() {
   // 초기 데이터 로딩 함수
   const loadInitialData = async (spaceID: number | null) => {
     try {
+      console.log(universeId);
+
       if (universeId == null) {
-        setUniverseId(31);
-        return;
+        console.log("이건?");
+        
+        const { universeId } = useParams();
+        console.log("universeId");
+        
+        const universeIdParsed = parseInt(universeId || "", 10);
+
+        if (universeIdParsed != null) setUniverseId(universeIdParsed);
+        else return;
+
+        console.log(universeIdParsed);
       }
 
       // 현재 유니버스 조회
-      const currentUniverse: UniverseType = await getUniverseTree(universeId);
+      const currentUniverse: UniverseType = await getUniverseTree(universeId!);
       if (spaceID == null) {
         setRootUniverse(currentUniverse);
         setUniverseData(
@@ -106,9 +118,12 @@ export default function UniverseDetailPage() {
         }
       }
 
+      console.log("여기는?");
+
       // 추천 유니버스 호출 (초기)
-      const initialExceptIds = [universeId];
+      const initialExceptIds = [universeId!];
       const initialSuggest = await public_getUniverseRandom(initialExceptIds);
+      console.log(initialSuggest);
 
       // API 응답 구조에 따라 수정
       const newUniverses = initialSuggest.universes || [];

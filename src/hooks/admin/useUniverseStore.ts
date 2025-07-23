@@ -74,7 +74,9 @@ export const useUniverseStore = create<UniverseStore>((set, get) => ({
 
   resetUniverse: () => {
     set({ universeId: null });
+    set({ universeInfo: null });
     set({ rootUniverse: null });
+    set({ activeInnerImageId: null });
   },
 
   refreshUniverseData: async () => {

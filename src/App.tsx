@@ -22,6 +22,7 @@ import WithdrawalAgreementPage from "./pages/user/mypage/WithdrawalAgreement";
 import NotFoundPage from "./pages/common/NotFound";
 import ForbiddenPage from "./pages/common/Forbidden";
 import UniverseDetailPage from "./pages/universe/UniverseDetailPage";
+import UniverseListPage from "./pages/universe/UniverseListPage";
 
 function App() {
   return (
@@ -35,22 +36,35 @@ function App() {
           <Route path="/login/terms" element={<TermsOfServicePage />} />
           {/* 기존유저 */}
           <Route path="/main/home" element={<MyHomesPage />} />
-          <Route path="/main/home/:homeId/rooms/:roomId" element={<RoomDetailPage />} />
+          <Route
+            path="/main/home/:homeId/rooms/:roomId"
+            element={<RoomDetailPage />}
+          />
 
           {/* 마이페이지 */}
           <Route path="/mypage/account" element={<MyAccount />} />
           <Route path="/mypage/sound-list" element={<MySoundListPage />} />
           <Route path="/mypage/cscenter" element={<CSPage />} />
           {/* 마이페이지 - 서비스 탈퇴 */}
-          <Route path="/mypage/account/withdraw" element={<WithdrawalMemberPage />} />
-          <Route path="/mypage/account/withdraw/agreement" element={<WithdrawalAgreementPage />} />
+          <Route
+            path="/mypage/account/withdraw"
+            element={<WithdrawalMemberPage />}
+          />
+          <Route
+            path="/mypage/account/withdraw/agreement"
+            element={<WithdrawalAgreementPage />}
+          />
 
           {/* 예약 페이지 - 내용x */}
           <Route path="/reservation" element={<ReservationPage />} />
 
           {/* 유니버스 - 상세 페이지 */}
-          <Route path="/universe/:universeId" element={<UniverseDetailPage />} />
 
+          <Route path="/universe" element={<UniverseListPage />} />
+          <Route
+            path="/universe/:universeId"
+            element={<UniverseDetailPage />}
+          />
 
           {/* public page */}
           <Route path="/about" element={<AboutPage />} />
