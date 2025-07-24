@@ -161,8 +161,8 @@ const AudioController: React.FC<AudioControllerProps> = ({
           .custom-fill-slider {
             background: linear-gradient(
               to right,
-              rgb(245, 148, 109) 0%,
-              rgb(245, 148, 109) var(--value, 50%),
+              ${colors.slider} 0%,
+              ${colors.slider} var(--value, 50%),
               #ddd var(--value, 50%),
               #ddd 100%
             );

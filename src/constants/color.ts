@@ -17,18 +17,24 @@ export const AUDIO_COLORS = {
     range: "rgb(229 229 229)",
     timeText: "rgb(82 82 82)",
     icon: "rgb(115 115 115)",
+
+    // 슬라이더 색상
+    slider: "#ff6347",
   },
   dark: {
     background: "#000000",
     unplayedWave: "#3e3a39",
     playedWave: "#ff63478d",
-    cursor: "#F5946D",
+    cursor: "#ff6347",
 
     // 컨트롤러
     text: "#e5e5e5", // text-neutral-200
     range: "#f3f3f3",
     timeText: "rgb(107 114 128)",
     icon: "#f3f3f3",
+
+    // 슬라이더 색상
+    slider: "#ff6347",
   },
 };
 
