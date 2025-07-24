@@ -23,6 +23,7 @@ import NotFoundPage from "./pages/common/NotFound";
 import ForbiddenPage from "./pages/common/Forbidden";
 import UniverseDetailPage from "./pages/universe/UniverseDetailPage";
 import UniverseListPage from "./pages/universe/UniverseListPage";
+import TestPage from "./pages/testPage";
 
 function App() {
   return (
@@ -59,12 +60,8 @@ function App() {
           <Route path="/reservation" element={<ReservationPage />} />
 
           {/* 유니버스 - 상세 페이지 */}
-
           <Route path="/universe" element={<UniverseListPage />} />
-          <Route
-            path="/universe/:id"
-            element={<UniverseDetailPage />}
-          />
+          <Route path="/universe/:id" element={<UniverseDetailPage />} />
 
           {/* public page */}
           <Route path="/about" element={<AboutPage />} />
@@ -78,6 +75,8 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
           {/* 403 page */}
           <Route path="/forbidden" element={<ForbiddenPage />} />
+
+          <Route path="/test" element={<TestPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>
