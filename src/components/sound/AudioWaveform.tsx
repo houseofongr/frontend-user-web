@@ -37,7 +37,7 @@ async function getMaxMinPeaks(
 
 interface AudioWaveformProps {
   audioUrl: string;
-  mode?: "dark" | "light";
+  mode?: "dark" | "light" | "transparent";
 }
 
 export default function AudioWaveform({

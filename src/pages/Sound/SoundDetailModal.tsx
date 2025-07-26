@@ -1,6 +1,4 @@
 import API_CONFIG from "../../config/api";
-import { formatDate } from "../../utils/formatDate";
-// import WaveformWithAudioDark from "../../../components/Sound/WaveformWithAudioDark";
 import Modal from "../../components/modal/Modal";
 import { SoundType } from "../../hooks/admin/useSoundStore";
 import AudioWaveform from "../../components/sound/AudioWaveform";
@@ -57,11 +55,11 @@ export default function SoundDetailModal({ onClose, data }: SoundDetailProps) {
                 >
                   {description}
                   {/* description - 255자 테스트 */}
-                  도자기를 굽는 데는 1,000°C 이상의 고온이 필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의
+                  {/* 도자기를 굽는 데는 1,000°C 이상의 고온이 필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의
                   연료를 사용하여 최고의 온도를 얻을 수 있도록 고안되어 있다. 도자기를 굽는 데는 1,000°C 이상의 고온이
                   필요한데, 이를 위한 장치가 가마라 불리는 것으로, 최소한의 연료를 사용하여 최고의 온도를 얻을 수 있도록
                   고안되어 있다.. 도자기를 굽는 데는 1,000°C 이상의 고온이 필요한데,이를 위한 장치가 가마라 불리는 것으로,
-                  최소한의연료.
+                  최소한의연료. */}
                 </div>
                 <p
                   className="text-right md:text-2xl pb-3"
@@ -79,7 +77,7 @@ export default function SoundDetailModal({ onClose, data }: SoundDetailProps) {
               audioTitle={""}
             /> */}
             <AudioWaveform
-              audioUrl={`${API_CONFIG.FILE_API}/public/audios/808`}
+              audioUrl={`${API_CONFIG.FILE_API}/public/audios/${audioId}`}
               mode="transparent"
             />
           </div>

@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import Pagination from "../../components/common/Pagination";
 import { getPieceDetail } from "../../service/pieceService";
 import { IoIosClose } from "react-icons/io";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { usePieceStore } from "../../hooks/admin/usePieceStore";
-import { useUniverseStore } from "../../hooks/admin/useUniverseStore";
 import { SoundType } from "../../hooks/admin/useSoundStore";
 import PieceSoundItem from "./PieceSoundItem";
 
@@ -75,12 +72,12 @@ const PieceDetailPanel: React.FC<PieceDetailPanelProps> = ({
         {/* 상단 제목/설명 */}
         <div className="text-xl px-8 mb-4 text-white">
           {/* 수정 아이콘 버튼 (닫기 버튼 왼쪽) */}
-          <button
+          {/* <button
             className="absolute top-4 right-12 text-white hover:text-gray-400 transition cursor-pointer"
             onClick={() => setMenuOpen(true)}
           >
             <BiDotsVerticalRounded size={21} />
-          </button>
+          </button> */}
           {/* 닫기 버튼 */}
           <button
             onClick={onClose}

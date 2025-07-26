@@ -90,7 +90,7 @@ const SoundItem: React.FC<SoundItemProps> = ({ index, soundData }) => {
           </div>
 
           {/* 수정 아이콘 */}
-          <div
+          {/* <div
             className="absolute top-2 right-0 transition-opacity duration-400 cursor-pointer"
             style={{ opacity: hoveredIndex === index ? 1 : 0 }}
             onClick={(e) => {
@@ -100,7 +100,7 @@ const SoundItem: React.FC<SoundItemProps> = ({ index, soundData }) => {
             }}
           >
             <BiDotsVerticalRounded size={20} />
-          </div>
+          </div> */}
 
           {/* 날짜 */}
           <div className="text-[11px] absolute bottom-1 right-0">
