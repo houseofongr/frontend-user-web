@@ -1,17 +1,11 @@
 import React from "react";
-import {
-  TbPlayerPlayFilled,
-  TbPlayerPauseFilled,
-  TbPlayerStopFilled,
-} from "react-icons/tb";
-import { MdReplay10, MdForward10 } from "react-icons/md";
 import { VscMute, VscUnmute } from "react-icons/vsc";
 import { getAudioColors } from "../../constants/color";
 import { RiForward10Fill, RiReplay10Fill } from "react-icons/ri";
-import { IoPauseSharp, IoPlayBackSharp, IoPlayForwardSharp, IoPlaySharp } from "react-icons/io5";
+import { IoPauseSharp, IoPlaySharp } from "react-icons/io5";
 
 interface AudioControllerProps {
-  audioTitle: string;
+  audioTitle?: string;
   currentTime: number;
   duration: number;
   isPlaying: boolean;
@@ -25,11 +19,11 @@ interface AudioControllerProps {
   onToggleMute: () => void;
   onVolumeChange: (volume: number) => void;
 
-  mode?: "light" | "dark"; // 추가
+  mode?: "light" | "dark" | "transparent";
 }
 
 const AudioController: React.FC<AudioControllerProps> = ({
-  audioTitle,
+  audioTitle = "",
   currentTime,
   duration,
   isPlaying,
@@ -95,7 +89,7 @@ const AudioController: React.FC<AudioControllerProps> = ({
         </div>
       </div>
 
-      <div className="w-full flex flex-col items-center gap-2 pt-4">
+      <div className="w-full flex flex-col items-center gap-2 pt-2">
         <input
           type="range"
           min={0}
@@ -109,7 +103,7 @@ const AudioController: React.FC<AudioControllerProps> = ({
               "--value": `${(currentTime / duration) * 100}%`,
             } as React.CSSProperties
           }
-          className="w-full h-1.5 appearance-none cursor-pointer custom-fill-slider"
+          className="w-full h-1.5 appearance-none cursor-pointer custom-fill-slider "
         />
         <div className="w-full flex justify-between">
           <span style={{ color: colors.timeText }} className="text-xs">
@@ -120,14 +114,14 @@ const AudioController: React.FC<AudioControllerProps> = ({
           </span>
         </div>
       </div>
-      <div className="w-full flex justify-center gap-4">
+      <div className="w-full flex justify-center gap-6">
         {/* 뒤로 10초 */}
         <button
           onClick={() => onSkip(-10)}
           className="cursor-pointer hover:opacity-80"
         >
           <RiReplay10Fill size={20} color={colors.icon} />
-          <IoPlayBackSharp size={20} color={colors.icon} />
+          {/* <IoPlayBackSharp size={20} color={colors.icon} /> */}
         </button>
         {/* 재생/일시정지 */}
         <button
@@ -153,7 +147,7 @@ const AudioController: React.FC<AudioControllerProps> = ({
           className="cursor-pointer hover:opacity-80"
         >
           <RiForward10Fill size={20} color={colors.icon} />
-          <IoPlayForwardSharp size={20} color={colors.icon} />
+          {/* <IoPlayForwardSharp size={20} color={colors.icon} /> */}
         </button>
       </div>
       <style>

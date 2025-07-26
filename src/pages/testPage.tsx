@@ -1,5 +1,6 @@
 import PageLayout from "../components/layout/PageLayout";
 import AudioWaveform from "../components/sound/AudioWaveform";
+import API_CONFIG from "../config/api";
 
 
 export default function TestPage() {
@@ -8,7 +9,7 @@ export default function TestPage() {
       <h1>오디오 파형 데모</h1>
       <div className="w-[400px]">
         <AudioWaveform
-          audioUrl="/public/sound/sound1.mp3"
+          audioUrl={`${API_CONFIG.FILE_API}/public/audios/808`}
           mode="dark"
         />
       </div>

@@ -238,7 +238,6 @@ export default function AudioWaveform({
         className="w-full block cursor-pointer"
       />
       <AudioController
-        audioTitle="Audio Title"
         currentTime={currentTime}
         duration={duration}
         isPlaying={isPlaying}

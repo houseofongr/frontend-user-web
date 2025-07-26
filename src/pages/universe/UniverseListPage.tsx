@@ -29,11 +29,14 @@ export default function UniverseListPage() {
   // 📌 데이터 불러오기
   const loadMoreUniverses = useCallback(async () => {
     if (loadingRef.current || !hasMoreRef.current) return;
+    if (!hasMore) return;
 
     loadingRef.current = true;
     setLoading(true);
 
     try {
+      console.log("데이터 불러오기");
+
       const nextPage = pageRef.current + 1;
       const data = await public_getUniverse(
         nextPage,
@@ -41,6 +44,9 @@ export default function UniverseListPage() {
         searchFilter,
         searchQuery
       );
+
+
+      console.log(data);
 
       setUniverses((prev) => [...prev, ...data.universes]);
       pageRef.current = nextPage;
@@ -50,6 +56,9 @@ export default function UniverseListPage() {
       hasMoreRef.current = more;
     } catch {
       setAlert("유니버스 추가 조회 중 오류가 발생했습니다.");
+      setHasMore(false);
+      hasMoreRef.current = false;
+
     } finally {
       loadingRef.current = false;
       setLoading(false);
@@ -69,7 +78,11 @@ export default function UniverseListPage() {
       pageRef.current = 1;
 
       try {
+        console.log("여기?");
+
         const data = await public_getUniverse(1, PAGE_SIZE, filter, query);
+        console.log("data", data);
+
         setUniverses(data.universes);
 
         const more = data.universes.length === PAGE_SIZE;
@@ -77,6 +90,8 @@ export default function UniverseListPage() {
         hasMoreRef.current = more;
       } catch {
         setAlert("유니버스 조회 중 오류가 발생했습니다.");
+        setHasMore(false);
+        hasMoreRef.current = false;
       } finally {
         loadingRef.current = false;
         setLoading(false);
@@ -140,16 +155,16 @@ export default function UniverseListPage() {
     return () => resizeObserver.disconnect();
   }, [checkAndLoadMore]);
 
-const handleSearch = useCallback((filter: string, query: string) => {
-  setSearchFilter(filter);
-  setSearchQuery(query.trim() === "" ? null : query.trim());
-  pageRef.current = 1;
-  setUniverses([]);
-  loadInitialData(
-    filter === "ALL" ? null : filter,
-    query.trim() === "" ? null : query.trim()
-  );
-}, []);
+  const handleSearch = useCallback((filter: string, query: string) => {
+    setSearchFilter(filter);
+    setSearchQuery(query.trim() === "" ? null : query.trim());
+    pageRef.current = 1;
+    setUniverses([]);
+    loadInitialData(
+      filter === "ALL" ? null : filter,
+      query.trim() === "" ? null : query.trim()
+    );
+  }, []);
 
   return (
     <PageLayout>
