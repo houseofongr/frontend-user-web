@@ -43,7 +43,6 @@ export const useUniverseStore = create<UniverseStore>((set, get) => ({
   activeInnerImageId: null,
 
   setUniverseId: (id) => set({ universeId: id }),
-
   setUniverseInfo: (universeInfo) => set({ universeInfo }),
 
   setRootUniverse: (data) => {

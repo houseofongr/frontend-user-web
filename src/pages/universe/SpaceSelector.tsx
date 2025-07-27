@@ -130,7 +130,6 @@ useEffect(() => {
 
   const handleMoveToPiece = (piece: PieceType) => {
     setCurrentPiece(piece);
-    console.log("dd", piece);
   };
   const handleSpaceMouseEnter = (index: number) => {
     const space = existingSpaces[index];
@@ -218,15 +217,17 @@ useEffect(() => {
 
           {/* 이미지 */}
           {imgSrc && (
-            <img
-              ref={imgRef}
-              src={imgSrc}
-              alt="space-image"
-              loading="eager"
-              className="object-contain block mx-auto max-h-full max-w-full"
-              style={{ userSelect: "none", pointerEvents: "none" }}
-              draggable={false}
-            />
+            <div className="flex items-center justify-center w-full h-full">
+              <img
+                ref={imgRef}
+                src={imgSrc}
+                alt="space-image"
+                loading="eager"
+                className="object-contain block mx-auto max-h-full max-w-full "
+                style={{ userSelect: "none", pointerEvents: "none" }}
+                draggable={false}
+              />
+            </div>
           )}
 
           {/* 기존 스페이스 박스 */}

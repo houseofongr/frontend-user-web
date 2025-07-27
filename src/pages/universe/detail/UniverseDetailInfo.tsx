@@ -6,11 +6,17 @@ import { useParams } from 'react-router-dom';
 import { public_getUniverseDetail } from '../../../service/user_universeService';
 import { convertUnixToDate } from '../../../utils/formatDate';
 
-export default function UniverseDetailInfo() {
+interface UniverseDetailInfoProps {
+  onLoadComplete?: () => void;
+}
+
+export default function UniverseDetailInfo({
+  onLoadComplete,
+}: UniverseDetailInfoProps) {
   // 라우터 파라미터 및 전역 상태 접근
   const { id } = useParams();
   const universeIdParsed = parseInt(id || "", 10);
-  const { setUniverseId, setUniverseInfo, universeInfo } = useUniverseStore();
+  const { setUniverseInfo, universeInfo } = useUniverseStore();
 
   // 내부 상태
   const [showMore, setShowMore] = useState(false);
@@ -28,8 +34,8 @@ export default function UniverseDetailInfo() {
     };
 
     updateDescriptionLength();
-    window.addEventListener('resize', updateDescriptionLength);
-    return () => window.removeEventListener('resize', updateDescriptionLength);
+    window.addEventListener("resize", updateDescriptionLength);
+    return () => window.removeEventListener("resize", updateDescriptionLength);
   }, []);
 
   // 유니버스 상세 데이터 가져오기
@@ -40,9 +46,9 @@ export default function UniverseDetailInfo() {
       try {
         const data = await public_getUniverseDetail(universeIdParsed);
         setUniverseInfo(data);
-        setUniverseId(data.id!);
+        onLoadComplete?.();
       } catch (error) {
-        console.error('유니버스 조회 실패:', error);
+        console.error("유니버스 조회 실패:", error);
       }
     };
 
@@ -53,13 +59,13 @@ export default function UniverseDetailInfo() {
   if (!universeInfo) return null;
 
   // description 계산
-  const description = universeInfo.description ?? '';
+  const description = universeInfo.description ?? "";
   const isLong = description.length > maxDescriptionLength;
   const shortDesc = description.slice(0, maxDescriptionLength);
 
   // JSX 반환
   return (
-    <div className="w-full flex flex-col gap-1 text-gray-800 px-2">
+    <div className="w-full flex flex-col gap-1 text-gray-800 px-2 min-h-[130px]">
       {/* 제목 */}
       <span className="text-2xl font-bold">{universeInfo.title}</span>
 
@@ -68,16 +74,16 @@ export default function UniverseDetailInfo() {
         <span className="text-lg font-bold">{universeInfo.author}</span>
         <div className="flex gap-4 self-end">
           <div className="flex flex-col gap-1 justify-center text-center text-xs">
-            <span className='text-xs'>조회수 {universeInfo.view}회</span>
+            <span className="text-xs">조회수 {universeInfo.view}회</span>
             <span>{convertUnixToDate(universeInfo.createdTime).default}</span>
           </div>
           <button className="flex flex-col items-center gap-1.5">
             <IoIosHeartEmpty size={16} color="red" />
-            <span className='text-xs'>{universeInfo.like}</span>
+            <span className="text-xs">{universeInfo.like}</span>
           </button>
           <button className="flex flex-col items-center gap-1.5">
             <IoShareSocialOutline size={16} />
-            <div className='text-xs'>공유</div>
+            <div className="text-xs">공유</div>
           </button>
         </div>
       </div>
@@ -97,7 +103,7 @@ export default function UniverseDetailInfo() {
             onClick={() => setShowMore(!showMore)}
             className="ml-2 text-sm font-bold cursor-pointer"
           >
-            {showMore ? '접기' : '더보기'}
+            {showMore ? "접기" : "더보기"}
           </button>
         )}
       </div>

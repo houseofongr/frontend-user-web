@@ -103,11 +103,11 @@ export default function UniverseDetailPage() {
   // 초기 데이터 로딩 함수
   const loadInitialData = async (spaceID: number | null) => {
     try {
-      if (universeId || universeId == null) {
-        if (universeIdParsed != null) setUniverseId(universeIdParsed);
-        else return;
+      if (universeId == null) {
+        if (universeIdParsed != null) {
+          setUniverseId(universeIdParsed);
+        } else return;
       }
-
       // 현재 유니버스 조회
       const currentUniverse: UniverseType = await getUniverseTree(universeId!);
       if (spaceID == null) {
@@ -226,7 +226,7 @@ export default function UniverseDetailPage() {
         {/* 스페이스 영역 */}
         <div
           ref={spaceContainerRef}
-          className="w-full md:w-4/5 aspect-square bg-black rounded-[10px]"
+          className="w-full md:w-4/5 aspect-square bg-black rounded-[10px] min-h-[400px]"
         >
           <div className="relative flex items-center justify-center h-full group">
             <button
@@ -292,14 +292,14 @@ export default function UniverseDetailPage() {
       </div>
 
       {/* 알림 메시지 */}
-      {alert && (
+      {/* {alert && (
         <div className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50">
           {alert}
           <button onClick={() => setAlert("")} className="ml-2 font-bold">
             ×
           </button>
         </div>
-      )}
+      )} */}
     </PageLayout>
   );
 }

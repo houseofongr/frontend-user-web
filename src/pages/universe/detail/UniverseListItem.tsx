@@ -20,12 +20,12 @@ export default function UniverseListItem({
   view,
   createdTime,
 }: UniverseListItemProps) {
-  const { setUniverseId, resetUniverseStore: resetUniverse } = useUniverseStore();
+  const { setUniverseId, resetUniverseStore } = useUniverseStore();
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    resetUniverse();
+    resetUniverseStore();
     setUniverseId(id);
     navigate(`/universe/${id}`);
   };

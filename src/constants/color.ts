@@ -38,7 +38,7 @@ export const AUDIO_COLORS = {
   },
   transparent: {
     background: "#00000000",
-    unplayedWave: "#3e3a39",
+    unplayedWave: "#00000000",
     playedWave: "#ff63478d",
     cursor: "#ff6347",
 
@@ -50,7 +50,7 @@ export const AUDIO_COLORS = {
 
     // 슬라이더 색상
     slider: "#ff6347",
-  }
+  },
 };
 
 export function getAudioColors(mode: "light" | "dark" | "transparent") {
