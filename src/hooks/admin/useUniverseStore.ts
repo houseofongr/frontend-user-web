@@ -6,12 +6,46 @@ import { PieceType, usePieceStore } from "./usePieceStore";
 import { UniverseInfoType } from "../../types/universe";
 import { useSoundStore } from "./useSoundStore";
 
+// export interface UniverseType {
+//   universeId: number;
+//   innerImageId: number;
+//   spaces: SpaceType[];
+//   pieces: PieceType[];
+// }
+
 export interface UniverseType {
   universeId: number;
+  thumbMusicId: number;
+  thumbnailId: number;
   innerImageId: number;
+  authorId: number;
+  createdTime: number;
+  updatedTime: number;
+  view: number;
+  like: number;
+  title: string;
+  description: string;
+  author: string;
+  category: Category;
+  isMine: boolean;
+  isLiked: boolean;
+  hashtags: string[];
   spaces: SpaceType[];
   pieces: PieceType[];
 }
+
+export interface Category {
+  id: number;
+  eng: string;
+  kor: string;
+}
+
+
+export interface Point {
+  x: number;
+  y: number;
+}
+
 
 export type SaveTargetType = null | "universe" | "space";
 
@@ -63,12 +97,9 @@ export const useUniverseStore = create<UniverseStore>((set, get) => ({
 
   setRootUniverseInnerImageId: (id: number) =>
     set((state) => ({
-      rootUniverse: {
-        universeId: state.rootUniverse?.universeId ?? -1,
-        innerImageId: id,
-        spaces: state.rootUniverse?.spaces ?? [],
-        pieces: state.rootUniverse?.pieces ?? [],
-      },
+      rootUniverse: state.rootUniverse
+        ? { ...state.rootUniverse, innerImageId: id }
+        : null,
     })),
 
   resetUniverseStore: () => {

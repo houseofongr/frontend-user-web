@@ -45,6 +45,7 @@ export default function UniverseDetailInfo({
     const fetchUniverse = async () => {
       try {
         const data = await public_getUniverseDetail(universeIdParsed);
+        
         setUniverseInfo(data);
         onLoadComplete?.();
       } catch (error) {

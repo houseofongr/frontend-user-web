@@ -9,7 +9,11 @@ import {
 } from "../../hooks/admin/useUniverseStore";
 import SpaceSelector from "./SpaceSelector";
 import { getUniverseTree } from "../../service/universeService";
-import { public_getUniverseRandom } from "../../service/user_universeService";
+import {
+  public_getUniverse,
+  public_getUniverseDetail,
+  public_getUniverseRandom,
+} from "../../service/user_universeService";
 import UniverseDetailInfo from "./detail/UniverseDetailInfo";
 import { BiFullscreen } from "react-icons/bi";
 import PieceDetailPanel from "../piece/PieceDetailPanel";
@@ -58,11 +62,7 @@ export default function UniverseDetailPage() {
     }
 
     if (currentSpaceId === -1) {
-      setUniverseData(
-        rootUniverse.innerImageId,
-        rootUniverse.spaces,
-        rootUniverse.pieces
-      );
+      setUniverseData(rootUniverse.innerImageId, rootUniverse.spaces, rootUniverse.pieces);
       return;
     }
 
@@ -103,13 +103,19 @@ export default function UniverseDetailPage() {
   // 초기 데이터 로딩 함수
   const loadInitialData = async (spaceID: number | null) => {
     try {
+      console.log("실행?", universeId);
+      
       if (universeId == null) {
         if (universeIdParsed != null) {
           setUniverseId(universeIdParsed);
         } else return;
       }
-      // 현재 유니버스 조회
-      const currentUniverse: UniverseType = await getUniverseTree(universeId!);
+
+      const currentUniverse: UniverseType = await public_getUniverseDetail(
+        universeId!
+      );
+      console.log("currentUniverse", currentUniverse);
+      
       if (spaceID == null) {
         setRootUniverse(currentUniverse);
         setUniverseData(
@@ -138,6 +144,7 @@ export default function UniverseDetailPage() {
 
       // 받아온 데이터가 0개면 더 이상 없음
       setHasMore(newUniverses.length > 0);
+
     } catch (error: any) {
       setAlert("유니버스 조회 중 오류가 발생했습니다.");
     }

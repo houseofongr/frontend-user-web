@@ -9,8 +9,8 @@ import { useSpaceStore } from "../../hooks/admin/useSpaceStore";
 import { usePieceStore } from "../../hooks/admin/usePieceStore";
 
 interface PercentPoint {
-  xPercent: number;
-  yPercent: number;
+  x: number;
+  y: number;
 }
 
 interface SpaceSelectorProps {
@@ -72,53 +72,34 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
     });
 
     return () => observer.disconnect();
-  }, [imgSrc]); // ← innerImageId가 아니라 imgSrc로 변경
+  }, [imgSrc]);
 
   // 이미지 로딩
-useEffect(() => {
-  if (innerImageId === -1 || innerImageId === null) {
-    setImgSrc(null);
-    setLoading(false); // 이미지가 없으면 바로 false
-    return;
-  }
+  useEffect(() => {
+    if (innerImageId === -1 || innerImageId === null) {
+      setImgSrc(null);
+      return;
+    }
 
-  setLoading(true); // 이미지 로딩 시작 시점에 true 세팅
+    const url = `${API_CONFIG.PUBLIC_IMAGE_LOAD_API}/${innerImageId}`;
+    const img = new Image();
 
-  const url = `${API_CONFIG.PUBLIC_IMAGE_LOAD_API}/${innerImageId}`;
-  const img = new Image();
-
-  img.src = url;
-  img.onload = () => {
-    setImgSrc(url);
-    setLoading(false);
-  };
-  img.onerror = () => {
-    setImgSrc(null);
-    setLoading(false);
-  };
-}, [innerImageId]);
+    img.src = url;
+    img.onload = () => {
+      setImgSrc(url);
+      setLoading(false);
+    };
+    img.onerror = () => {
+      setImgSrc(null);
+      setLoading(false);
+    };
+  }, [innerImageId]);
 
   // 유틸 함수
   const toPixel = (point: PercentPoint) => ({
-    x: point.xPercent * imageSize.width,
-    y: point.yPercent * imageSize.height,
+    x: point.x * imageSize.width,
+    y: point.y * imageSize.height,
   });
-
-  const calcBoxStyle = (start: PercentPoint, end: PercentPoint) => {
-    const s = toPixel(start);
-    const e = toPixel(end);
-    const left = Math.min(s.x, e.x);
-    const top = Math.min(s.y, e.y);
-    const width = Math.abs(e.x - s.x);
-    const height = Math.abs(e.y - s.y);
-
-    return {
-      left: `calc(50% - ${imageSize.width / 2}px + ${left}px)`,
-      top: `calc(50% - ${imageSize.height / 2}px + ${top}px)`,
-      width: `${width}px`,
-      height: `${height}px`,
-    };
-  };
 
   // 화면 전환 함수
   const handleMoveToSpace = (space: SpaceType) => {
@@ -133,17 +114,16 @@ useEffect(() => {
   };
   const handleSpaceMouseEnter = (index: number) => {
     const space = existingSpaces[index];
-    const start = toPixel({ xPercent: space.startX, yPercent: space.startY });
-    const end = toPixel({ xPercent: space.endX, yPercent: space.endY });
-    const left = Math.min(start.x, end.x);
-    const top = Math.min(start.y, end.y);
-    const width = Math.abs(end.x - start.x);
-    const height = Math.abs(end.y - start.y);
+    const firstPoint = space.points[0];
+
+    if (!firstPoint) return;
+
+    const pixel = toPixel(firstPoint);
 
     setHoveredSpaceIndex(index);
     setPopupData({
-      x: left + width / 2 + 10,
-      y: top + height / 2 + 5,
+      x: pixel.x + 10, // 살짝 오른쪽
+      y: pixel.y + 5, // 살짝 아래
       title: space.title,
       description: space.description,
     });
@@ -151,21 +131,21 @@ useEffect(() => {
 
   const handlePieceMouseEnter = (index: number) => {
     const piece = existingPieces[index];
-    const start = toPixel({ xPercent: piece.startX, yPercent: piece.startY });
-    const end = toPixel({ xPercent: piece.endX, yPercent: piece.endY });
-    const left = Math.min(start.x, end.x);
-    const top = Math.min(start.y, end.y);
-    const width = Math.abs(end.x - start.x);
-    const height = Math.abs(end.y - start.y);
+    const firstPoint = piece.points[0];
+
+    if (!firstPoint) return;
+
+    const pixel = toPixel(firstPoint);
 
     setHoveredPieceIndex(index);
     setPopupData({
-      x: left + width / 2 + 10,
-      y: top + height / 2 + 5,
+      x: pixel.x + 10, // 오른쪽으로 살짝
+      y: pixel.y + 5, // 아래로 살짝
       title: piece.title,
       description: piece.description,
     });
   };
+
   const handleSpaceMouseLeave = () => {
     setHoveredSpaceIndex(null);
     setPopupData(null);
@@ -196,7 +176,6 @@ useEffect(() => {
           <ScaleLoader width={2} height={40} color="#F5946D" />
         </div>
       )}
-
       {!loading && (
         <>
           {universeInfo != null && (
@@ -231,45 +210,80 @@ useEffect(() => {
           )}
 
           {/* 기존 스페이스 박스 */}
-          {existingSpaces.map((space, index) => (
-            <div
-              key={`space-${index}`}
-              className="absolute"
-              style={calcBoxStyle(
-                { xPercent: space.startX, yPercent: space.startY },
-                { xPercent: space.endX, yPercent: space.endY }
-              )}
-              onMouseEnter={() => handleSpaceMouseEnter(index)}
-              onMouseLeave={handleSpaceMouseLeave}
-            >
-              <div
-                className={`w-full h-full border-3 border-amber-600 bg-white/70 cursor-pointer transition-opacity duration-300 ${
-                  hoveredSpaceIndex === index ? "opacity-100" : "opacity-30"
-                }`}
-                onClick={() => handleMoveToSpace(space)}
-              />
-            </div>
-          ))}
+          <svg
+            className="absolute top-1/2 left-1/2 z-10"
+            style={{
+              transform: "translate(-50%, -50%)",
+              width: imageSize.width,
+              height: imageSize.height,
+              pointerEvents: "none", // 개별 polygon에만 이벤트 적용
+            }}
+          >
+            {existingSpaces.map((space, index) => {
+              const points = space.points
+                .map((point) => {
+                  const { x, y } = toPixel(point);
+                  return `${x},${y}`;
+                })
+                .join(" ");
 
-          {existingPieces.map((piece, index) => (
-            <div
-              key={`piece-${index}`}
-              className="absolute"
-              style={calcBoxStyle(
-                { xPercent: piece.startX, yPercent: piece.startY },
-                { xPercent: piece.endX, yPercent: piece.endY }
-              )}
-              onMouseEnter={() => handlePieceMouseEnter(index)}
-              onMouseLeave={handlePieceMouseLeave}
-            >
-              <div
-                className={`w-full h-full border-3 border-blue-600 bg-white/70 cursor-pointer transition-opacity duration-300 ${
-                  hoveredPieceIndex === index ? "opacity-100" : "opacity-30"
-                }`}
-                onClick={() => handleMoveToPiece(piece)}
-              />
-            </div>
-          ))}
+              const isHovered = hoveredSpaceIndex === index;
+
+              return (
+                <polygon
+                  key={`space-${index}`}
+                  points={points}
+                  fill="white"
+                  fillOpacity={isHovered ? 0.7 : 0.3}
+                  stroke="#f59e0b" // amber-600
+                  strokeWidth={3}
+                  className="cursor-pointer transition-opacity duration-300"
+                  onMouseEnter={() => handleSpaceMouseEnter(index)}
+                  onMouseLeave={handleSpaceMouseLeave}
+                  onClick={() => handleMoveToSpace(space)}
+                  style={{ pointerEvents: "auto" }}
+                />
+              );
+            })}
+          </svg>
+
+          {/* 기존 피스 박스 */}
+          <svg
+            className="absolute top-1/2 left-1/2 z-10"
+            style={{
+              transform: "translate(-50%, -50%)",
+              width: imageSize.width,
+              height: imageSize.height,
+              pointerEvents: "none", // polygon에만 이벤트 적용
+            }}
+          >
+            {existingPieces.map((piece, index) => {
+              const points = piece.points
+                .map((point) => {
+                  const { x, y } = toPixel(point);
+                  return `${x},${y}`;
+                })
+                .join(" ");
+
+              const isHovered = hoveredPieceIndex === index;
+
+              return (
+                <polygon
+                  key={`piece-${index}`}
+                  points={points}
+                  fill="white"
+                  fillOpacity={isHovered ? 0.7 : 0.3}
+                  stroke="#2563eb" // blue-600
+                  strokeWidth={3}
+                  className="cursor-pointer transition-opacity duration-300"
+                  onMouseEnter={() => handlePieceMouseEnter(index)}
+                  onMouseLeave={handlePieceMouseLeave}
+                  onClick={() => handleMoveToPiece(piece)}
+                  style={{ pointerEvents: "auto" }}
+                />
+              );
+            })}
+          </svg>
 
           {/* 팝업 */}
           {popupData && (

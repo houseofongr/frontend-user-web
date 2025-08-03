@@ -1,16 +1,14 @@
+import { Point } from "framer-motion";
 import { create } from "zustand";
 
 export interface PieceType {
   pieceId: number;
-  parentSpaceId: number | null;
-  innerImageId: number;
+  parentSpaceId: number;
+  innerImageId: null;
   depth: number;
   title: string;
   description: string;
-  startX: number;
-  startY: number;
-  endX: number;
-  endY: number;
+  points: Point[];
   createdTime: number;
   updatedTime: number;
 }

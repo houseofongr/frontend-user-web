@@ -4,17 +4,7 @@ import { getPieceDetail } from "../../service/pieceService";
 import { IoIosClose } from "react-icons/io";
 import { SoundType } from "../../hooks/admin/useSoundStore";
 import PieceSoundItem from "./PieceSoundItem";
-
-interface PieceType {
-  pieceId: number;
-  title: string;
-  description: string;
-  startX: number;
-  startY: number;
-  endX: number;
-  endY: number;
-  [key: string]: any;
-}
+import { PieceType } from "../../hooks/admin/usePieceStore";
 
 interface PieceDetailPanelProps {
   piece: PieceType | null;

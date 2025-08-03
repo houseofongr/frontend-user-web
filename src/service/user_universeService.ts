@@ -6,23 +6,16 @@ export enum SearchType {
   AUTHOR = "작성자 검색",
 }
 
-// 유니버스 검색 API
+// 공개 유니버스 검색 API
 export const public_getUniverse = async (
   page: number,
   sizeValue: number,
-  type: string | null,
-  word: string | null
 ) => {
-  console.log("type, word", type, word);
-  
   const query = new URLSearchParams({
     page: page.toString(),
     size: sizeValue.toString(),
   });
-  if (type && word) {
-    query.append("searchType", type);
-    query.append("keyword", word);
-  }
+
   const response = await fetch(
     `${API_CONFIG.BACK_USER_API}/universes?${query.toString()}`
   );

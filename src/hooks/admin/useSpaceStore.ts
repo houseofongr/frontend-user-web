@@ -1,24 +1,22 @@
 // stores/useSpaceStore.ts
 import { create } from "zustand";
-import { useUniverseStore } from "./useUniverseStore";
+import { Point, useUniverseStore } from "./useUniverseStore";
 import { PieceType } from "./usePieceStore";
 
 export interface SpaceType {
   spaceId: number;
-  parentSpaceId: number | null;
+  parentSpaceId: number;
   innerImageId: number;
   depth: number;
   title: string;
   description: string;
-  startX: number;
-  startY: number;
-  endX: number;
-  endY: number;
-  spaces: SpaceType[];
-  pieces: PieceType[];
+  points: Point[];
   createdTime: number;
   updatedTime: number;
+  spaces: SpaceType[];
+  pieces: PieceType[];
 }
+
 
 interface SpaceStore {
   currentSpace: SpaceType | null;

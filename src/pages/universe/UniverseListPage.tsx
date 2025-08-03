@@ -41,8 +41,6 @@ export default function UniverseListPage() {
       const data = await public_getUniverse(
         nextPage,
         PAGE_SIZE,
-        searchFilter,
-        searchQuery
       );
 
 
@@ -80,7 +78,7 @@ export default function UniverseListPage() {
       try {
         console.log("여기?");
 
-        const data = await public_getUniverse(1, PAGE_SIZE, filter, query);
+        const data = await public_getUniverse(1, PAGE_SIZE);
         console.log("data", data);
 
         setUniverses(data.universes);
