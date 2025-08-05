@@ -80,7 +80,7 @@ export default function UniverseDetailInfo({
           </div>
           <button className="flex flex-col items-center gap-1.5">
             <IoIosHeartEmpty size={16} color="red" />
-            <span className="text-xs">{universeInfo.like}</span>
+            <span className="text-xs">{universeInfo.likeCnt}</span>
           </button>
           <button className="flex flex-col items-center gap-1.5">
             <IoShareSocialOutline size={16} />

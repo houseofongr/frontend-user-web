@@ -33,21 +33,24 @@ export default function SoundDetailModal({ onClose, data }: SoundDetailProps) {
             />
             <div className="relative flex items-center text-gray-700 w-[250px] md:w-[400px] min-h-[300px] md:h-[400px]">
               <div
-                className={`flex flex-col w-full ${description.length > 230 ? "md:px-5" : "md:px-10 "
-                  } `}
+                className={`flex flex-col w-full ${
+                  description.length > 230 ? "md:px-5" : "md:px-10 "
+                } `}
               >
                 <h2
-                  className={`leading-4.5 md:leading-6 text-2xl md:text-3xl ${description.length > 230 ? "pt-10" : "pt-10 pb-3"
-                    } `}
+                  className={`leading-4.5 md:leading-6 text-2xl md:text-3xl ${
+                    description.length > 230 ? "pt-10" : "pt-10 pb-3"
+                  } `}
                   style={{ fontFamily: "SangSangShinb7" }}
                 >
                   제목 : {title}
                 </h2>
                 <div
-                  className={`leading-4 md:leading-5.5 text-lg md:text-2xl min-h-[120px] max-h-fit ${description.length > 230
-                    ? "md:max-h-fit"
-                    : "md:max-h-[260px] "
-                    } pt-3 `}
+                  className={`leading-4 md:leading-5.5 text-lg md:text-2xl min-h-[120px] max-h-fit ${
+                    description.length > 230
+                      ? "md:max-h-fit"
+                      : "md:max-h-[260px] "
+                  } pt-3 `}
                   style={{
                     fontFamily: "SangSangShinb7",
                     whiteSpace: "pre-wrap",
@@ -65,7 +68,7 @@ export default function SoundDetailModal({ onClose, data }: SoundDetailProps) {
                   className="text-right md:text-2xl pb-3"
                   style={{ fontFamily: "SangSangShinb7" }}
                 >
-                  { }
+                  {}
                 </p>
               </div>
             </div>
@@ -80,6 +83,12 @@ export default function SoundDetailModal({ onClose, data }: SoundDetailProps) {
               audioUrl={`${API_CONFIG.FILE_API}/public/audios/${audioId}`}
               mode="transparent"
             />
+            {/* <AudioWaveform
+              audioUrl={previewMusic}
+              mode="light"
+              audioTitle={thumbMusic?.name || "썸네일 음악 미리듣기"}
+              waveVisible={false}
+            /> */}
           </div>
         </div>
       </div>

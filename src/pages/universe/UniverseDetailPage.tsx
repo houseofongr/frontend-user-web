@@ -8,9 +8,7 @@ import {
   useUniverseStore,
 } from "../../hooks/admin/useUniverseStore";
 import SpaceSelector from "./SpaceSelector";
-import { getUniverseTree } from "../../service/universeService";
 import {
-  public_getUniverse,
   public_getUniverseDetail,
   public_getUniverseRandom,
 } from "../../service/user_universeService";
@@ -103,8 +101,6 @@ export default function UniverseDetailPage() {
   // 초기 데이터 로딩 함수
   const loadInitialData = async (spaceID: number | null) => {
     try {
-      console.log("실행?", universeId);
-      
       if (universeId == null) {
         if (universeIdParsed != null) {
           setUniverseId(universeIdParsed);
