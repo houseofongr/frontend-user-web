@@ -81,7 +81,7 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
       return;
     }
 
-    const url = `${API_CONFIG.PUBLIC_IMAGE_LOAD_API}/${innerImageId}`;
+    const url = `${API_CONFIG.FILE_API}/public/images/${innerImageId}`;
     const img = new Image();
 
     img.src = url;
