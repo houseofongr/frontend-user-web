@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { IoIosHeartEmpty } from 'react-icons/io';
-import { IoShareSocialOutline } from 'react-icons/io5';
-import { useUniverseStore } from '../../../hooks/admin/useUniverseStore';
-import { useParams } from 'react-router-dom';
-import { public_getUniverseDetail } from '../../../service/user_universeService';
-import { convertUnixToDate } from '../../../utils/formatDate';
+import { useEffect, useState } from "react";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { IoShareSocialOutline } from "react-icons/io5";
+import { useUniverseStore } from "../../../hooks/admin/useUniverseStore";
+import { useParams } from "react-router-dom";
+import { public_getUniverseDetail } from "../../../service/user_universeService";
+import { convertUnixToDate } from "../../../utils/formatDate";
 
 interface UniverseDetailInfoProps {
   onLoadComplete?: () => void;
@@ -25,7 +25,16 @@ export default function UniverseDetailInfo({
   // 화면 높이에 따라 설명 길이 설정
   useEffect(() => {
     const updateDescriptionLength = () => {
+      const width = window.innerWidth;
       const height = window.innerHeight;
+
+      // 📱 모바일일 때는 항상 300
+      if (width < 768) {
+        setMaxDescriptionLength(30);
+        return;
+      }
+
+      // 데스크톱일 때만 height 기반 계산
       if (height > 1000) setMaxDescriptionLength(300);
       else if (height > 900) setMaxDescriptionLength(200);
       else if (height > 800) setMaxDescriptionLength(120);
@@ -45,7 +54,7 @@ export default function UniverseDetailInfo({
     const fetchUniverse = async () => {
       try {
         const data = await public_getUniverseDetail(universeIdParsed);
-        
+
         setUniverseInfo(data);
         onLoadComplete?.();
       } catch (error) {

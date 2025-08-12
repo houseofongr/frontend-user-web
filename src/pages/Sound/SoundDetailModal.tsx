@@ -11,8 +11,8 @@ type SoundDetailProps = {
 export default function SoundDetailModal({ onClose, data }: SoundDetailProps) {
   const { soundId, title, description, audioId, createdTime, hidden } = data;
   return (
-    <Modal onClose={onClose} bgColor="dark">
-      <div className="flex flex-col text-white">
+    <Modal onClose={onClose} bgColor="dark" bgOpacity={100}>
+      <div className="flex flex-col text-white ">
         <img
           src="/images/logo/logo_for-dark-bg.png"
           alt="아카이브 오브 옹알 로고"

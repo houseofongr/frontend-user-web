@@ -3,11 +3,14 @@ import PageLayout from "../../components/layout/PageLayout";
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants/size";
 import { UniverseInfoType } from "../../types/universe";
 import UniverseListItem from "./detail/UniverseListItem";
-import { public_getUniverse, SearchType } from "../../service/user_universeService";
+import {
+  public_getUniverse,
+  SearchType,
+} from "../../service/user_universeService";
 import { useUniverseStore } from "../../hooks/admin/useUniverseStore";
 import SearchComponent from "../../components/SearchComponent";
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 4;
 
 export default function UniverseListPage() {
   const { resetUniverseStore: resetUniverse } = useUniverseStore();
@@ -35,14 +38,8 @@ export default function UniverseListPage() {
     setLoading(true);
 
     try {
-      console.log("데이터 불러오기");
-
       const nextPage = pageRef.current + 1;
-      const data = await public_getUniverse(
-        nextPage,
-        PAGE_SIZE,
-      );
-
+      const data = await public_getUniverse(nextPage, PAGE_SIZE);
 
       console.log(data);
 
@@ -56,47 +53,11 @@ export default function UniverseListPage() {
       setAlert("유니버스 추가 조회 중 오류가 발생했습니다.");
       setHasMore(false);
       hasMoreRef.current = false;
-
     } finally {
       loadingRef.current = false;
       setLoading(false);
     }
   }, [searchFilter, searchQuery]);
-
-  // 📌 최초 로딩
-  const loadInitialData = useCallback(
-    async (
-      filter: string | null = searchFilter,
-      query: string | null = searchQuery
-    ) => {
-      loadingRef.current = true;
-      setLoading(true);
-      setHasMore(true);
-      hasMoreRef.current = true;
-      pageRef.current = 1;
-
-      try {
-        console.log("여기?");
-
-        const data = await public_getUniverse(1, PAGE_SIZE);
-        console.log("data", data);
-
-        setUniverses(data.universes);
-
-        const more = data.universes.length === PAGE_SIZE;
-        setHasMore(more);
-        hasMoreRef.current = more;
-      } catch {
-        setAlert("유니버스 조회 중 오류가 발생했습니다.");
-        setHasMore(false);
-        hasMoreRef.current = false;
-      } finally {
-        loadingRef.current = false;
-        setLoading(false);
-      }
-    },
-    [searchFilter, searchQuery]
-  );
 
   // 📌 공통 로딩 조건 체크 함수
   const checkAndLoadMore = useCallback(async () => {
@@ -111,6 +72,42 @@ export default function UniverseListPage() {
       await loadMoreUniverses();
     }
   }, [loadMoreUniverses]);
+
+  // 📌 최초 로딩
+  const loadInitialData = useCallback(
+    async (
+      filter: string | null = searchFilter,
+      query: string | null = searchQuery
+    ) => {
+      loadingRef.current = true;
+      setLoading(true);
+      setHasMore(true);
+      hasMoreRef.current = true;
+      pageRef.current = 1;
+
+      try {
+        const data = await public_getUniverse(1, PAGE_SIZE);
+        setUniverses(data.universes);
+
+        const more = data.universes.length === PAGE_SIZE;
+        setHasMore(more);
+        hasMoreRef.current = more;
+      } catch {
+        setAlert("유니버스 조회 중 오류가 발생했습니다.");
+        setHasMore(false);
+        hasMoreRef.current = false;
+      } finally {
+        loadingRef.current = false;
+        setLoading(false);
+
+        // ✅ 데이터 로드 후 화면 채우기 체크
+        setTimeout(() => {
+          checkAndLoadMore();
+        }, 0);
+      }
+    },
+    [searchFilter, searchQuery, checkAndLoadMore]
+  );
 
   // 📌 스크롤 이벤트 핸들러
   const handleScroll = useCallback(() => {
@@ -166,7 +163,7 @@ export default function UniverseListPage() {
 
   return (
     <PageLayout>
-      <div className="w-full flex items-center flex-col gap-5 p-5">
+      <div className="w-full flex items-center flex-col gap-5 sm:p-5 pt-5">
         <SearchComponent
           onSearch={handleSearch}
           placeholder="유니버스 검색하기"
@@ -188,7 +185,7 @@ export default function UniverseListPage() {
             style={{ maxHeight: "100%" }}
           >
             <div className="w-[90%] sm:w-[80%] mx-auto">
-              <div className="p-2 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] sm:gap-20">
+              <div className="p-2 gap-5 grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] sm:gap-20">
                 {universes.map((universe, index) => (
                   <div key={`${universe.id}-${index}`}>
                     <UniverseListItem

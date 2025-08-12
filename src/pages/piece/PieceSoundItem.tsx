@@ -89,19 +89,6 @@ const SoundItem: React.FC<SoundItemProps> = ({ index, soundData }) => {
             <div className="text-xs mt-1 mr-5">{soundData.description}</div>
           </div>
 
-          {/* 수정 아이콘 */}
-          {/* <div
-            className="absolute top-2 right-0 transition-opacity duration-400 cursor-pointer"
-            style={{ opacity: hoveredIndex === index ? 1 : 0 }}
-            onClick={(e) => {
-              e.stopPropagation(); // 부모 onClick 막기!
-              // setMenuOpen(true);
-              handleClick(e);
-            }}
-          >
-            <BiDotsVerticalRounded size={20} />
-          </div> */}
-
           {/* 날짜 */}
           <div className="text-[11px] absolute bottom-1 right-0">
             {convertUnixToDate(soundData.createdTime).default}

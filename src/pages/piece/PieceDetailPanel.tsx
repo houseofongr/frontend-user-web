@@ -15,7 +15,7 @@ const PieceDetailPanel: React.FC<PieceDetailPanelProps> = ({
   piece,
   onClose,
 }) => {
-
+  const [isMobile, setIsMobile] = useState(false);
   const [sounds, setSounds] = useState<SoundType[]>([]);
   const [pagination, setPagination] = useState({
     size: 10,
@@ -23,14 +23,6 @@ const PieceDetailPanel: React.FC<PieceDetailPanelProps> = ({
     totalPages: 1,
     totalElements: 0,
   });
-
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showInfoEdit, setShowInfoEdit] = useState(false);
-  // const [alert, setAlert] = useState<{
-  //   text: string;
-  //   type: AlertType;
-  //   subText: string | null;
-  // } | null>(null);
 
   const fetchPieceDetail = async (page: number) => {
     if (!piece) return;
@@ -52,22 +44,29 @@ const PieceDetailPanel: React.FC<PieceDetailPanelProps> = ({
     fetchPieceDetail(1);
   }, [piece?.pieceId]);
 
+  // 화면 크기 체크
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // ⚙️ 이벤트 핸들러
   const handlePageChange = (newPage: number) => fetchPieceDetail(newPage);
 
   if (!piece) return null;
   return (
     <>
-      <div className="absolute top-0 right-0 h-full w-80 bg-black/70 shadow-lg border-l z-20 pt-13 overflow-y-auto">
+      <div
+        className={`${
+          isMobile
+            ? "fixed top-0 left-0 w-full h-full bg-black/90 shadow-lg border-l z-50 pt-13 overflow-y-auto transition-transform duration-300"
+            : "absolute top-0 right-0 h-full w-80 bg-black/70 shadow-lg border-l z-20 pt-13 overflow-y-auto"
+        }`}
+      >
         {/* 상단 제목/설명 */}
         <div className="text-xl px-8 mb-4 text-white">
-          {/* 수정 아이콘 버튼 (닫기 버튼 왼쪽) */}
-          {/* <button
-            className="absolute top-4 right-12 text-white hover:text-gray-400 transition cursor-pointer"
-            onClick={() => setMenuOpen(true)}
-          >
-            <BiDotsVerticalRounded size={21} />
-          </button> */}
           {/* 닫기 버튼 */}
           <button
             onClick={onClose}
@@ -97,11 +96,13 @@ const PieceDetailPanel: React.FC<PieceDetailPanelProps> = ({
         </div>
         {/* 페이지네이션 */}
         {pagination.totalPages >= 1 && (
-          <Pagination
-            currentPage={pagination.currentPage}
-            totalPages={pagination.totalPages}
-            onPageChange={handlePageChange}
-          />
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center">
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         )}
       </div>
       z

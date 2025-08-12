@@ -103,6 +103,10 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
 
   // 화면 전환 함수
   const handleMoveToSpace = (space: SpaceType) => {
+    console.log("실행");
+
+    console.log(space);
+
     setParentSpaceId(currentSpaceId ?? -1);
     setCurrentSpaceId(space.spaceId);
     setCurrentSpace(space);
