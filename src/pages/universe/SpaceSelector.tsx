@@ -8,6 +8,7 @@ import { ScaleLoader } from "react-spinners";
 import { useSpaceStore } from "../../hooks/admin/useSpaceStore";
 import { usePieceStore } from "../../hooks/admin/usePieceStore";
 import { MdMusicNote } from "react-icons/md";
+import { PiPlanet } from "react-icons/pi";
 
 interface PercentPoint {
   x: number;
@@ -247,28 +248,37 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
                     onMouseLeave={handleSpaceMouseLeave}
                     onClick={() => handleMoveToSpace(space)}
                   />
-                  {isHovered && (
-                    <circle
-                      cx={firstPoint.x}
-                      cy={firstPoint.y}
-                      r={4}
-                      fill="white"
-                    >
-                      <animate
-                        attributeName="fill"
-                        values="white;black;white"
-                        dur="2s"
-                        repeatCount="indefinite"
-                      />
-                    </circle>
-                  )}
                 </g>
               );
             })}
           </svg>
 
+          {/* 스페이스 circle을 아이콘처럼 SVG 밖에서 절대 좌표로 표시 + blink */}
+          {existingSpaces.map((space, index) => {
+            const pixelPoints = space.points.map((point) => toPixel(point));
+            const firstPoint = pixelPoints[0];
+
+            return (
+              <PiPlanet
+                key={index}
+                size={18}
+                className="blink"
+                style={{
+                  position: "absolute",
+                  left: `calc(50% - ${imageSize.width / 2}px + ${
+                    firstPoint.x - 18
+                  }px)`,
+                  top: `calc(50% - ${imageSize.height / 2}px + ${
+                    firstPoint.y - 15
+                  }px)`,
+                  pointerEvents: "none",
+                  color: "white",
+                }}
+              />
+            );
+          })}
+
           {/* 기존 피스 박스 */}
-          {/* SVG polygon */}
           <svg
             className="absolute top-1/2 left-1/2 z-10"
             style={{
@@ -284,7 +294,6 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
                 .map(({ x, y }) => `${x},${y}`)
                 .join(" ");
               const isHovered = hoveredPieceIndex === index;
-              // const isHovered = true;
 
               return (
                 <polygon
@@ -306,31 +315,29 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
               );
             })}
           </svg>
+          {existingPieces.map((piece, index) => {
+            const pixelPoints = piece.points.map((point) => toPixel(point));
+            const firstPoint = pixelPoints[0];
 
-          {hoveredPieceIndex !== null &&
-            (() => {
-              const piece = existingPieces[hoveredPieceIndex];
-              const pixelPoints = piece.points.map((point) => toPixel(point));
-              const firstPoint = pixelPoints[0];
-
-              return (
-                <MdMusicNote
-                  size={24}
-                  style={{
-                    position: "absolute",
-                    left: `calc(50% - ${imageSize.width / 2}px + ${
-                      firstPoint.x - 24
-                    }px)`,
-                    top: `calc(50% - ${imageSize.height / 2}px + ${
-                      firstPoint.y - 20
-                    }px)`,
-                    pointerEvents: "none",
-                    color: "white",
-                    animation: "blink 3s infinite linear",
-                  }}
-                />
-              );
-            })()}
+            return (
+              <MdMusicNote
+                key={index}
+                size={24}
+                className="blink"
+                style={{
+                  position: "absolute",
+                  left: `calc(50% - ${imageSize.width / 2}px + ${
+                    firstPoint.x - 24
+                  }px)`,
+                  top: `calc(50% - ${imageSize.height / 2}px + ${
+                    firstPoint.y - 20
+                  }px)`,
+                  pointerEvents: "none",
+                  color: "white",
+                }}
+              />
+            );
+          })}
 
           {/* 팝업 */}
           {popupData && (
