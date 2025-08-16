@@ -36,7 +36,7 @@ export default function UniverseListItem({
     >
       {/* 썸네일 */}
       <img
-        src={`${API_CONFIG.PUBLIC_IMAGE_LOAD_API}/${thumbnailId}`} // 썸네일 파일 경로
+        src={`${API_CONFIG.PUBLIC_FILE_API}/${thumbnailId}`} // 썸네일 파일 경로
         alt={title}
         className="object-cover bg-gray-100 mb-1.5"
       />

@@ -9,6 +9,7 @@ import { useSpaceStore } from "../../hooks/admin/useSpaceStore";
 import { usePieceStore } from "../../hooks/admin/usePieceStore";
 import { MdMusicNote } from "react-icons/md";
 import { PiPlanet } from "react-icons/pi";
+import { getPublicImage } from "../../service/fileService";
 
 interface PercentPoint {
   x: number;
@@ -83,20 +84,41 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
       return;
     }
 
-    const url = `${API_CONFIG.FILE_API}/public/images/${innerImageId}`;
-    const img = new Image();
+    const loadImage = async () => {
+      setLoading(true);
+      try {
+        const blob = await getPublicImage(innerImageId);
+        const url = URL.createObjectURL(blob); // Blob URL 생성
 
-    img.src = url;
-    img.onload = () => {
-      setImgSrc(url);
-      setLoading(false);
+        console.log(url);
+
+        const img = new Image();
+        img.src = url;
+
+        img.onload = () => {
+          setImgSrc(url); // 로딩 완료 후 렌더링
+          setLoading(false);
+        };
+        img.onerror = () => {
+          setImgSrc(null);
+          setLoading(false);
+        };
+      } catch {
+        setImgSrc(null);
+        setLoading(false);
+      }
     };
-    img.onerror = () => {
-      setImgSrc(null);
-      setLoading(false);
-    };
+
+    loadImage();
   }, [innerImageId]);
 
+  function hexToBlobUrl(hexString: string, mimeType = "image/png"): string {
+    const bytes = new Uint8Array(
+      hexString.match(/.{1,2}/g)!.map((byte) => parseInt(byte, 16))
+    );
+    const blob = new Blob([bytes], { type: mimeType });
+    return URL.createObjectURL(blob);
+  }
   // 유틸 함수
   const toPixel = (point: PercentPoint) => ({
     x: point.x * imageSize.width,
@@ -307,8 +329,8 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
             const Icon = item.type === "piece" ? MdMusicNote : PiPlanet;
 
             const size = item.type === "piece" ? 24 : 18;
-            const offsetX = item.type === "piece" ? 24 : 18;
-            const offsetY = item.type === "piece" ? 20 : 15;
+            const offsetX = item.type === "piece" ? 15 : 13;
+            const offsetY = item.type === "piece" ? 15 : 10;
 
             return (
               <Icon

@@ -4,7 +4,7 @@ import API_CONFIG from "../config/api";
 export const postPublicImage = async (image: File) => {
   const formData = new FormData();
   formData.append("images", image);
-  const response = await fetch(`${API_CONFIG.FILE_API}/public/images `, {
+  const response = await fetch(`${API_CONFIG.PUBLIC_FILE_API}/images `, {
     method: "POST",
     body: formData,
   });
@@ -16,17 +16,17 @@ export const postPublicImage = async (image: File) => {
 
 // 공개 이미지 인라인 다운로드(DownloadPublicImageInline)
 export const getPublicImage = async (id: number) => {
-  const response = await fetch(`${API_CONFIG.FILE_API}/public/images/${id}`);
+  const response = await fetch(`${API_CONFIG.PUBLIC_FILE_API}/images/${id}`);
 
   if (!response.ok) throw new Error("Failed to fetch file.");
 
-  return response;
+  return response.blob();
 };
 
 // 공개 이미지 첨부파일 다운로드(DownloadPublicImageAttachment)
 export const downloadPublicImage = async (id: number) => {
   const response = await fetch(
-    `${API_CONFIG.FILE_API}/public/images/${id}?attachment=true`
+    `${API_CONFIG.PUBLIC_FILE_API}/images/${id}?attachment=true`
   );
 
   if (!response.ok) throw new Error("Failed to fetch file.");
@@ -38,7 +38,7 @@ export const downloadPublicImage = async (id: number) => {
 export const postPublicAudio = async (audio: File) => {
   const formData = new FormData();
   formData.append("audios", audio);
-  const response = await fetch(`${API_CONFIG.FILE_API}/public/audios `, {
+  const response = await fetch(`${API_CONFIG.PUBLIC_FILE_API}/audios `, {
     method: "POST",
     body: formData,
   });
@@ -50,7 +50,7 @@ export const postPublicAudio = async (audio: File) => {
 
 // 공개 오디오 인라인 다운로드(DownloadPublicAudioInline)
 export const getPublicAudio = async (id: number) => {
-  const response = await fetch(`${API_CONFIG.FILE_API}/public/audios/${id}`);
+  const response = await fetch(`${API_CONFIG.PUBLIC_FILE_API}/audios/${id}`);
 
   if (!response.ok) throw new Error("Failed to fetch file.");
 
@@ -60,7 +60,7 @@ export const getPublicAudio = async (id: number) => {
 // 공개 오디오 첨부파일 다운로드(DownloadPublicAudioAttachment)
 export const downloadPublicAudio = async (id: number) => {
   const response = await fetch(
-    `${API_CONFIG.FILE_API}/public/audios/${id}?attachment=true`
+    `${API_CONFIG.PUBLIC_FILE_API}/audios/${id}?attachment=true`
   );
 
   if (!response.ok) throw new Error("Failed to fetch file.");

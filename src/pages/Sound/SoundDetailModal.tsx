@@ -24,7 +24,7 @@ export default function SoundDetailModal({ onClose, data }: SoundDetailProps) {
           <div className="h-[80px]">{description}</div>
         </div>
         <AudioWaveform
-          audioUrl={`${API_CONFIG.FILE_API}/public/audios/${audioId}`}
+          audioUrl={`${API_CONFIG.PUBLIC_FILE_API}/audios/${audioId}`}
           mode="transparent"
         />
       </div>
