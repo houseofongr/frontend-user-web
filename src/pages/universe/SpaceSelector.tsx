@@ -109,6 +109,8 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
     setCurrentSpaceId(space.spaceId);
     setCurrentSpace(space);
     setPopupData(null);
+    setHoveredPieceIndex(null);
+    setHoveredSpaceIndex(null);
   };
 
   const handleMoveToPiece = (piece: PieceType) => {
@@ -253,31 +255,6 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
             })}
           </svg>
 
-          {/* 스페이스 circle을 아이콘처럼 SVG 밖에서 절대 좌표로 표시 + blink */}
-          {existingSpaces.map((space, index) => {
-            const pixelPoints = space.points.map((point) => toPixel(point));
-            const firstPoint = pixelPoints[0];
-
-            return (
-              <PiPlanet
-                key={index}
-                size={18}
-                className="blink"
-                style={{
-                  position: "absolute",
-                  left: `calc(50% - ${imageSize.width / 2}px + ${
-                    firstPoint.x - 18
-                  }px)`,
-                  top: `calc(50% - ${imageSize.height / 2}px + ${
-                    firstPoint.y - 15
-                  }px)`,
-                  pointerEvents: "none",
-                  color: "white",
-                }}
-              />
-            );
-          })}
-
           {/* 기존 피스 박스 */}
           <svg
             className="absolute top-1/2 left-1/2 z-10"
@@ -315,25 +292,39 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
               );
             })}
           </svg>
-          {existingPieces.map((piece, index) => {
-            const pixelPoints = piece.points.map((point) => toPixel(point));
+
+          {/* 공통 Blink 아이콘 */}
+          {[
+            ...existingPieces.map((p) => ({ type: "piece", data: p })),
+            ...existingSpaces.map((s) => ({ type: "space", data: s })),
+          ].map((item, index) => {
+            const pixelPoints =
+              item.type === "piece"
+                ? item.data.points.map((point: PercentPoint) => toPixel(point))
+                : item.data.points.map((point: PercentPoint) => toPixel(point));
             const firstPoint = pixelPoints[0];
 
+            const Icon = item.type === "piece" ? MdMusicNote : PiPlanet;
+
+            const size = item.type === "piece" ? 24 : 18;
+            const offsetX = item.type === "piece" ? 24 : 18;
+            const offsetY = item.type === "piece" ? 20 : 15;
+
             return (
-              <MdMusicNote
+              <Icon
                 key={index}
-                size={24}
-                className="blink"
+                size={size}
                 style={{
                   position: "absolute",
                   left: `calc(50% - ${imageSize.width / 2}px + ${
-                    firstPoint.x - 24
+                    firstPoint.x - offsetX
                   }px)`,
                   top: `calc(50% - ${imageSize.height / 2}px + ${
-                    firstPoint.y - 20
+                    firstPoint.y - offsetY
                   }px)`,
                   pointerEvents: "none",
                   color: "white",
+                  animation: "blink 2s infinite linear",
                 }}
               />
             );
