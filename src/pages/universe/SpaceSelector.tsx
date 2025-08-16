@@ -7,6 +7,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { ScaleLoader } from "react-spinners";
 import { useSpaceStore } from "../../hooks/admin/useSpaceStore";
 import { usePieceStore } from "../../hooks/admin/usePieceStore";
+import { MdMusicNote } from "react-icons/md";
 
 interface PercentPoint {
   x: number;
@@ -103,10 +104,6 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
 
   // 화면 전환 함수
   const handleMoveToSpace = (space: SpaceType) => {
-    console.log("실행");
-
-    console.log(space);
-
     setParentSpaceId(currentSpaceId ?? -1);
     setCurrentSpaceId(space.spaceId);
     setCurrentSpace(space);
@@ -224,70 +221,116 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
             }}
           >
             {existingSpaces.map((space, index) => {
-              const points = space.points
-                .map((point) => {
-                  const { x, y } = toPixel(point);
-                  return `${x},${y}`;
-                })
+              const pixelPoints = space.points.map((point) => toPixel(point));
+              const points = pixelPoints
+                .map(({ x, y }) => `${x},${y}`)
                 .join(" ");
-
               const isHovered = hoveredSpaceIndex === index;
 
+              // 첫 번째 점 좌표
+              const firstPoint = pixelPoints[0];
+
               return (
-                <polygon
-                  key={`space-${index}`}
-                  points={points}
-                  fill="white"
-                  fillOpacity={isHovered ? 0.7 : 0.3}
-                  stroke="#f59e0b" // amber-600
-                  strokeWidth={3}
-                  className="cursor-pointer transition-opacity duration-300"
-                  onMouseEnter={() => handleSpaceMouseEnter(index)}
-                  onMouseLeave={handleSpaceMouseLeave}
-                  onClick={() => handleMoveToSpace(space)}
-                  style={{ pointerEvents: "auto" }}
-                />
+                <g key={`space-${index}`}>
+                  <polygon
+                    points={points}
+                    fill="white"
+                    fillOpacity={isHovered ? 0.3 : 0}
+                    stroke={isHovered ? "white" : "none"} // hover 시만 외곽선
+                    strokeWidth={isHovered ? 2 : 0} // 외곽선 두께
+                    style={{
+                      pointerEvents: "auto",
+                      filter: isHovered ? "blur(4px)" : "none", // hover 시만 블러
+                    }}
+                    className="cursor-pointer"
+                    onMouseEnter={() => handleSpaceMouseEnter(index)}
+                    onMouseLeave={handleSpaceMouseLeave}
+                    onClick={() => handleMoveToSpace(space)}
+                  />
+                  {isHovered && (
+                    <circle
+                      cx={firstPoint.x}
+                      cy={firstPoint.y}
+                      r={4}
+                      fill="white"
+                    >
+                      <animate
+                        attributeName="fill"
+                        values="white;black;white"
+                        dur="2s"
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  )}
+                </g>
               );
             })}
           </svg>
 
           {/* 기존 피스 박스 */}
+          {/* SVG polygon */}
           <svg
             className="absolute top-1/2 left-1/2 z-10"
             style={{
               transform: "translate(-50%, -50%)",
               width: imageSize.width,
               height: imageSize.height,
-              pointerEvents: "none", // polygon에만 이벤트 적용
+              pointerEvents: "none",
             }}
           >
             {existingPieces.map((piece, index) => {
-              const points = piece.points
-                .map((point) => {
-                  const { x, y } = toPixel(point);
-                  return `${x},${y}`;
-                })
+              const pixelPoints = piece.points.map((point) => toPixel(point));
+              const points = pixelPoints
+                .map(({ x, y }) => `${x},${y}`)
                 .join(" ");
-
               const isHovered = hoveredPieceIndex === index;
+              // const isHovered = true;
 
               return (
                 <polygon
                   key={`piece-${index}`}
                   points={points}
                   fill="white"
-                  fillOpacity={isHovered ? 0.7 : 0.3}
-                  stroke="#2563eb" // blue-600
-                  strokeWidth={3}
-                  className="cursor-pointer transition-opacity duration-300"
+                  fillOpacity={isHovered ? 0.3 : 0}
+                  stroke={isHovered ? "white" : "none"} // hover 시만 외곽선
+                  strokeWidth={isHovered ? 2 : 0} // 외곽선 두께
+                  style={{
+                    pointerEvents: "auto",
+                    filter: isHovered ? "blur(4px)" : "none", // hover 시만 블러
+                  }}
+                  className="cursor-pointer"
                   onMouseEnter={() => handlePieceMouseEnter(index)}
                   onMouseLeave={handlePieceMouseLeave}
                   onClick={() => handleMoveToPiece(piece)}
-                  style={{ pointerEvents: "auto" }}
                 />
               );
             })}
           </svg>
+
+          {hoveredPieceIndex !== null &&
+            (() => {
+              const piece = existingPieces[hoveredPieceIndex];
+              const pixelPoints = piece.points.map((point) => toPixel(point));
+              const firstPoint = pixelPoints[0];
+
+              return (
+                <MdMusicNote
+                  size={24}
+                  style={{
+                    position: "absolute",
+                    left: `calc(50% - ${imageSize.width / 2}px + ${
+                      firstPoint.x - 24
+                    }px)`,
+                    top: `calc(50% - ${imageSize.height / 2}px + ${
+                      firstPoint.y - 20
+                    }px)`,
+                    pointerEvents: "none",
+                    color: "white",
+                    animation: "blink 3s infinite linear",
+                  }}
+                />
+              );
+            })()}
 
           {/* 팝업 */}
           {popupData && (
@@ -307,3 +350,12 @@ export default function SpaceSelector({ innerImageId }: SpaceSelectorProps) {
     </div>
   );
 }
+
+<style>
+  {`
+  @keyframes blink {
+    0%, 100% { color: white; }
+    50% { color: black; }
+  }
+`}
+</style>;
